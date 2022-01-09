@@ -45,6 +45,7 @@ class Solution {
             while (j < n && arr[j] != ' ') {
                 arr[i++] = arr[j++];
             }
+            //not add ' ' at tail
             if (j < n) {
                 arr[i++] = ' ';
             }
