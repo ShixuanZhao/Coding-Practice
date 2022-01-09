@@ -66,6 +66,7 @@ class MyHashMap {
         Node dummy = new Node(-1, -1);
         dummy.next = head;
         Node prev = dummy;
+        //!!!!
         arr[index] = dummy;
         while (node != null) {
             if (node.key == key) {
@@ -76,6 +77,20 @@ class MyHashMap {
             node = node.next;
         }
     }
+    
+    //another way to design remove, not actually remove the node, set the value to -1
+    // public void remove(int key) {
+    // int index = hash(key);
+    // Node node = array[index];
+    // while (node != null) {
+    //     if (node.key == key) {
+    //         node.value = -1;
+    //         return;
+    //     }
+    //     node = node.next;
+    // }
+
+
 }
 
 /**
