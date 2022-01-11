@@ -13,21 +13,19 @@ class Solution {
     //如果考虑去重并且返回结果，substring之后放入set里
     public int countSubstrings(String s) {
         int n = s.length();
-        int res = 0;
+        int[] res = new int[1];
         for (int i = 0; i < n; i++) {
-            res += expand(s, i , i); //odd length
-            res += expand(s, i , i + 1);//even length
+            expand(s, i , i, res); //odd length
+            expand(s, i , i + 1, res);//even length
         }
-        return res;
+        return res[0];
     }
     
-    private int expand(String s, int left, int right) {
-        int res = 0;
+    private void expand(String s, int left, int right, int[] res) {
         while (left >= 0 && right < s.length() && s.charAt(left) == s.charAt(right)) {
-            res++;
+            res[0]++;
             left--;
             right++;
         }
-        return res;
     }
 }
