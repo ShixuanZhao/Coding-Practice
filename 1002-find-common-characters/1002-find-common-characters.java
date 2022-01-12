@@ -1,28 +1,29 @@
 class Solution {
     //find common letter in k array
     public List<String> commonChars(String[] A) {
-        List<String> res = new ArrayList<>();
+        List<String> ans = new ArrayList<>();
+        // Common characters dictionary
         int[] dict = new int[26];
-        for (int i = 0; i < A[0].length(); i++) {
-            dict[A[0].charAt(i) - 'a']++;
+        for (int j = 0; j < A[0].length(); j++) {
+            dict[A[0].charAt(j) - 'a']++;
         }
+        //binary reduction
         for (int i = 1; i < A.length; i++) {
-            int[] cur = new int[26];
+            // Dictionary of the current word
+            int[] curr = new int[26];
             for (int j = 0; j < A[i].length(); j++) {
-                cur[A[i].charAt(j) - 'a']++;
+                curr[A[i].charAt(j) - 'a']++;
             }
-            //update the common dict
+            // Update the common dictionary
             for (int j = 0; j < 26; j++) {
-                if (cur[j] < dict[j]) {
-                    dict[j] = cur[j];
-                }
+                if (curr[j] < dict[j]) dict[j] = curr[j];
             }
         }
         for (int i = 0; i < 26; i++) {
             for (int j = 0; j < dict[i]; j++) {
-                res.add(Character.toString((char)(i + 'a')));
+                ans.add(Character.toString((char) ('a' + i)));
             }
         }
-        return res;
+        return ans;
     }
 }
