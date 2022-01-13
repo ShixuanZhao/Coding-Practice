@@ -1,6 +1,7 @@
  class RandomizedSet {
 //     动态数组存储元素值
 // 哈希表存储存储值到索引的映射
+     //这样查找元素就是O（1）
      //valToIndex
   Map<Integer, Integer> dict;
   List<Integer> list;
