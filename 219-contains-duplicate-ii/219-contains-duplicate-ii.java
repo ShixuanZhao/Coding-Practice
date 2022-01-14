@@ -3,7 +3,7 @@ class Solution {
     using a map to store the index of last occurrence for each number
     for each n
     if exists in map, check difference
-    if not exists, put n and index in map
+    
     */
     public boolean containsNearbyDuplicate(int[] nums, int k) {
         if (nums == null || nums.length < 2) {
@@ -17,6 +17,7 @@ class Solution {
                     return true;
                 }
             }
+            //we always update to the latest index
             map.put(nums[i], i);
         }
         return false;
