@@ -1,5 +1,6 @@
 class Solution {
     public boolean canJump(int[] nums) {
+        //make a diff from leetcode746
         if (nums.length == 1) {
             return true;
         }
@@ -18,5 +19,17 @@ class Solution {
             }
         }
         return M[0];
+        
+        //M2 is wrong!! we must traverse from right to left
+        // M[0] = true;
+        // for (int i = 1; i < n; i++) {
+        //     for (int j = 1; j <= nums[i]; j++) {
+        //         if (i - j >= 0 && M[i - j]) {
+        //             M[i] = true;
+        //             break;
+        //         }
+        //     }
+        // }
+        // return M[n - 1];
     }
 }
