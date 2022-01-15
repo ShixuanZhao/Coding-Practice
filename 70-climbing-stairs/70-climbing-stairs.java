@@ -1,4 +1,5 @@
 class Solution {
+    //left big part is the subproblem, right small part we can choose 1 step ot 2 step
     public int climbStairs(int n) {
         int[] M = new int[n + 1];
         M[0] = 1;
