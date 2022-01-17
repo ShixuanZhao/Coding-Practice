@@ -1,5 +1,7 @@
 class HitCounter {
+    //record the most recent record 300 timestamp
     int[] time;
+    //the most recent 300 hit responding to time[]
     int[] hit;
     public HitCounter() {
         time = new int[300];
