@@ -16,13 +16,15 @@ And surprisingly the number of sub-arrays with this new element in it is equal t
     */
    private int atMostK(int[] A, int K) {
         int i = 0, res = 0;
-        Map<Integer, Integer> count = new HashMap<>();
+        Map<Integer, Integer> map = new HashMap<>();
         for (int j = 0; j < A.length; ++j) {
-            if (count.getOrDefault(A[j], 0) == 0) K--;
-            count.put(A[j], count.getOrDefault(A[j], 0) + 1);
-            while (K < 0) {
-                count.put(A[i], count.get(A[i]) - 1);
-                if (count.get(A[i]) == 0) K++;
+            map.put(A[j], map.getOrDefault(A[j], 0) + 1);
+            while (map.size() > K) {
+                int cnt = map.get(A[i]);
+                map.put(A[i], --cnt);
+                if (cnt == 0) {
+                    map.remove(A[i]);
+                }
                 i++;
             }
             res += j - i + 1;
