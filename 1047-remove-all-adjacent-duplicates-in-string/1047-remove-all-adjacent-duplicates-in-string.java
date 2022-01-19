@@ -31,6 +31,12 @@ class Solution {
             } else {
                 slow--;
                 fast++;
+                //OR skip all duplicate
+                //"aaaaaa" we should return "a" rather than ""
+                // int temp = arr[fast];
+                // while (fast < arr.length && arr[fast] == temp) {
+                //     fast++;
+                // }
             }
         }
         return new String(arr, 0, slow + 1);
