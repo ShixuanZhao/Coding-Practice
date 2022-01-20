@@ -17,6 +17,7 @@ class Solution {
                 right = mid;
             }
         }
+        //the missing number is between left and right
         return nums[left] + k;
     }
 }
