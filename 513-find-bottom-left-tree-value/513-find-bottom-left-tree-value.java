@@ -25,6 +25,7 @@ class Solution {
             int size = queue.size();
             for (int i = 0; i < size; i++) {
                 TreeNode node = queue.poll();
+                //Only additional step is to remember the first element of each level.
                 if (i == 0) result = node.val;
                 if (node.left != null) queue.add(node.left);
                 if (node.right != null) queue.add(node.right);
