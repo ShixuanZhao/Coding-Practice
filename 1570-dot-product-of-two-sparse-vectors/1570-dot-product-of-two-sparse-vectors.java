@@ -1,5 +1,6 @@
 class SparseVector {
     //index to value
+    //We only need to store the values > 0, as we dont need to waste computing on calculating for all 0 valued indexes. We are also storing the distinct index-value pairs in a map.
     Map<Integer, Integer> map;
     SparseVector(int[] nums) {
         map = new HashMap<>();
