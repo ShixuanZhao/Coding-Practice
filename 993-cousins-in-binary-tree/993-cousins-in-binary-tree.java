@@ -24,7 +24,8 @@ class Solution {
     //return is the level of x or y
     private int isCousins(TreeNode root, int x, int y, boolean[] flag, int level) {
         if (root == null) {
-            return 0;
+            //must not be Integer.MIN_VALUE because on line 36, for leaf node Integer.MIN_VALUE - level > 1, flag become true
+            return -1;
         }
         //if find x or y return its level
         if (root.val == x || root.val == y) {
