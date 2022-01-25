@@ -17,6 +17,7 @@ class Solution {
     public List<List<Integer>> verticalOrder(TreeNode root) {
         List<List<Integer>> res = new ArrayList<>();
         //col to a list of ele which have diff level and val, so we need a int[] to record the level and val for each node
+        //key:col value:the node which have same col, int[]A A[0]:level A[1]:val
         Map<Integer, List<int[]>> map = new TreeMap<>();
         dfs(root, map, 0, 0);
         for (List<int[]> cur : map.values()) {
@@ -39,6 +40,7 @@ class Solution {
             map.put(col, new LinkedList<int[]>());
         }
         map.get(col).add(new int[] {level, root.val});
+        //preOrder traversal, must be traverse left subtree first because for same level and col, we need the left one first 
         dfs(root.left, map, col - 1, level + 1);
         dfs(root.right, map, col + 1, level + 1);
     }
