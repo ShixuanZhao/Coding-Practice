@@ -18,20 +18,24 @@ class Solution {
         //     temp[i] = res.get(i);
         // }
         // return temp;
-        List<Integer> ls = new ArrayList<>();
-        int last = Integer.MIN_VALUE;
-        for (int i = heights.length - 1; i >= 0; i--) {
-            if (heights[i] > last) {
-                ls.add(i);
-                last = heights[i];
+        
+        int n = heights.length;
+        //store the index that can have an ocean view
+        List<Integer> temp = new ArrayList<>();
+        //maintain prev max
+        int max = Integer.MIN_VALUE;
+        for (int i = n - 1; i >= 0; i--) {
+            if (heights[i] > max) {
+                temp.add(i);
+                max = heights[i];
             }
         }
-        
+        //increasing order
         int index = 0;
-        int[] res = new int[ls.size()];
-        for (int i = ls.size() - 1; i >= 0; i--)
-            res[index++] = ls.get(i);
-        
+        int[] res = new int[temp.size()];
+        for (int i = temp.size() - 1; i >= 0; i--) {
+            res[index++] = temp.get(i);
+        }
         return res;
     }
 }
