@@ -20,31 +20,34 @@ class Node {
 */
 
 class Solution {
-    public Node treeToDoublyList(Node root) {
-       if (root == null) {
-           return null;
-       }
+   public Node treeToDoublyList(Node root) {
+        //!!!!!do not forget to check the corner case otherwise it would cause NPE
+        if (root == null) {
+            return root;
+        }
         Node[] head = new Node[1];
-        Node[] prev = new Node[1];
-        convert(root, head, prev);
-        head[0].left = prev[0];
-        prev[0].right = head[0];
+        //pre must be global variable
+        Node[] pre = new Node[1];
+        helper(root, pre, head);
+        //must add this step because we need a circular doubly linked list
+        head[0].left = pre[0];
+        pre[0].right = head[0];
         return head[0];
     }
     
-    private void convert(Node root, Node[] head, Node[] prev) {
+    private void helper(Node root, Node[] pre, Node[] head) {
         if (root == null) {
             return;
         }
-        convert(root.left, head, prev);
+        helper(root.left, pre, head);
         if (head[0] == null) {
             head[0] = root;
         }
-        if (prev[0] != null) {
-            root.left = prev[0];
-            prev[0].right = root;
+        if (pre[0] != null) {
+            pre[0].right = root;
+            root.left = pre[0];
         }
-        prev[0] = root;
-        convert(root.right, head, prev);
+        pre[0] = root;
+        helper(root.right, pre, head);
     }
 }
