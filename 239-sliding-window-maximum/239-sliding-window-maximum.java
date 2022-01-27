@@ -63,6 +63,7 @@ class Solution {
         int index = 0;
         res[index++] = maxHeap.peek()[1];
         for (int i = k; i < n; i++) {
+            //out
             while (!maxHeap.isEmpty() && maxHeap.peek()[0] < i - k + 1) {
                 maxHeap.poll();
             }
