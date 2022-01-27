@@ -60,44 +60,47 @@ class Solution {
     //     }
     //     return -1;
     // }
-    
+    //古城算法：滚动hash，rabin-karp
     public int strStr(String haystack, String needle) {
-        if (needle.length() > haystack.length()) {
-            return -1;
-        }
-        int m = haystack.length();
+        int h = haystack.length();
         int n = needle.length();
-        int[] hashM = new int[m];
-        int[] hashN = new int[n];
-        //convert string to int[]
-        for (int i = 0; i < m; i++) {
-            hashM[i] = haystack.charAt(i) - 'a';
-        }
-        for (int i = 0; i < n; i++) {
-            hashN[i] = needle.charAt(i) - 'a';
-        }
+
+        if (n == 0) return 0;
+        if (h == 0 || n > h) return -1;
+
+        // convert string to array of integers
+        int[] numsH = new int[h];
+        int[] numsN = new int[n];
+        for (int i = 0; i < h; i++) numsH[i] = (int)haystack.charAt(i) - (int)'a';
+        for (int i = 0; i < n; i++) numsN[i] = (int)needle.charAt(i) - (int)'a';
+
+		// there are 26 letters in English
         int base = 26;
-        long MOD = (long)Math.pow(2, 32);
-        //the first sequence hash of hashM[] and hashN[]
-        long hash1 = 0;
-        for (int i = 0; i < n; i++) {
-            hash1 = (hash1 * base + hashM[i]) % MOD;
-        }
-        long hash2 = 0;
-        for (int i = 0; i < n; i++) {
-            hash2 = (hash2 * base + hashN[i]) % MOD;
-        }
-        if (hash1 == hash2) {
-            return 0;
-        }
+		// needle.length() could be 5 x 10^4 ==>> without modulus, the hash will overflow 
+        long modulus = (long)Math.pow(2,32);
+
+        // compute the hash of the first sequence h_0 of haystack
+        long hashH = 0;
+        for (int i = 0; i < n; i++) hashH = (hashH * base + numsH[i]) % modulus;
+        // compute the hash of needle
+        long hashN = 0;
+        for (int i = 0; i < n; i++) hashN = (hashN * base + numsN[i]) % modulus;
+
+        if (hashH == hashN) return 0;
+
+		// the weight of the first digit in any sequence is base^(n-1)
+		// but in LeetCode, the operation of Rolling Hash is in a generalized way, so the weight becomes base^n.
         long adjustedWeight = 1;
-        for (int i = 1; i <= n; ++i) adjustedWeight = (adjustedWeight * base) % MOD;
-        for (int i = 1; i < m - n + 1; i++) {
-            hash1 = (hash1 * base - hashM[i - 1] * adjustedWeight + hashM[i + n - 1]) % MOD;
-            if (hash1 == hash2) {
-                return i;
-            }
+        for (int i = 1; i <= n; ++i) adjustedWeight = (adjustedWeight * base) % modulus;
+
+		// Rolling Hash
+        for (int start = 1; start < h - n + 1; start++) {
+            //remove last digit and add new digit
+            hashH = (hashH * base - numsH[start-1] * adjustedWeight + numsH[start + n -1]) % modulus;
+            //while (modulus < 0) hashH += modulus;
+            if (hashH == hashN) return start;
         }
+
         return -1;
     }
 }
