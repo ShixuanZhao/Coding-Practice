@@ -96,7 +96,7 @@ class Solution {
 		// Rolling Hash
         for (int start = 1; start < h-n+1; start++) {
             hashH = (hashH * base - numsH[start-1] * adjustedWeight + numsH[start + n -1]) % modulus;
-            while (modulus < 0) hashH += modulus;
+            //while (modulus < 0) hashH += modulus;
             if (hashH == hashN) return start;
         }
 
