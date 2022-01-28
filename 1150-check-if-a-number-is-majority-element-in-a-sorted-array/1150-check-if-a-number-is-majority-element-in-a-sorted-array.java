@@ -3,6 +3,7 @@ class Solution {
         int n = nums.length;
         int first = search1(nums, target);
         int last = search2(nums, target);
+        //target is not in the nums
         if (first == -1 || last == -1) {
             return false;
         }
