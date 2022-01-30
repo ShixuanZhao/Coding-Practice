@@ -22,7 +22,7 @@ class Solution {
             if (o1.getValue() != o2.getValue()) {
                 return o1.getValue() - o2.getValue();
             } else {
-                //// 如果词频相同，根据字典序倒序，因为最后要反转!!!
+                //// 如果词频相同，根据字典序倒序，因为要pop出字典序大的
                 return o2.getKey().compareTo(o1.getKey());
             }
         });
@@ -30,10 +30,11 @@ class Solution {
             if (minHeap.size() < k) {
                 minHeap.offer(entry);
             } else {
+                //排除法，把频率小的排除，这样heap里面留的都是k个频率最大的
                 if (minHeap.peek().getValue() < entry.getValue()) {
                     minHeap.poll();
                     minHeap.offer(entry);
-                } else if (minHeap.peek().getValue() == entry.getValue() && entry.getKey().compareTo(minHeap.peek().getKey()) < 0) {
+                } else if (minHeap.peek().getValue() == entry.getValue() && entry.getKey().compareTo(minHeap.peek().getKey()) < 0) {                    //把heap里字典序大的排除，遇到小的push，这样剩下来的都是字典序小的
                     // 词频与堆顶元素相同 且字典序大小比堆顶元素小，弹出堆顶元素，入堆
                     minHeap.poll();
                     minHeap.offer(entry);
