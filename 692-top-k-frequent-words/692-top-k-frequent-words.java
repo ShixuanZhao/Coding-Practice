@@ -46,7 +46,7 @@ class Solution {
         while (minHeap.size() > 0) {
             res.add(minHeap.poll().getKey());
         }
-        // 5.注意最后需要反转元素的顺序。
+        // 注意最后需要反转元素的顺序。因为栈顶元素先pop出的是频率小的
         Collections.reverse(res);
         return res;
     }
