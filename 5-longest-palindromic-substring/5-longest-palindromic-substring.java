@@ -27,35 +27,61 @@ class Solution {
         T = O(n^2) S = O(n^2)
     */
     public String longestPalindrome(String s) {
-        if (s == null || s.length() == 0) {
-            return "";
-        }
+        // if (s == null || s.length() == 0) {
+        //     return "";
+        // }
+        // int n = s.length();
+        // boolean[][] M = new boolean[n][n];
+        // for (int i = 0; i < n; i++) {
+        //     M[i][i] = true;
+        // }
+        // int begin = 0;
+        // //the minimum len is 1
+        // int maxLen = 1;
+        // for (int j = 1; j < n; j++) {
+        //     for (int i = j - 1; i >= 0; i--) {
+        //         if (s.charAt(i) == s.charAt(j)) {
+        //             //guarantee at least 3 ele
+        //             if (j - i < 3) {
+        //                 M[i][j] = true;
+        //             } else {
+        //                 M[i][j] = M[i + 1][j - 1];
+        //             }
+        //         } else {
+        //             M[i][j] = false;
+        //         }
+        //         if (M[i][j] && j - i + 1 > maxLen) {
+        //             begin = i;
+        //             maxLen = j - i + 1;
+        //         }
+        //     }
+        // }
+        // return s.substring(begin, begin + maxLen);
+        
         int n = s.length();
-        boolean[][] M = new boolean[n][n];
+        if (n == 1) {
+            return s;
+        }
+        StringBuilder sb = new StringBuilder();
+        int[] maxLen = new int[1];
         for (int i = 0; i < n; i++) {
-            M[i][i] = true;
+            checkP(s, i, i, sb, maxLen);
+            checkP(s, i, i + 1, sb, maxLen);
         }
-        int begin = 0;
-        //the minimum len is 1
-        int maxLen = 1;
-        for (int j = 1; j < n; j++) {
-            for (int i = j - 1; i >= 0; i--) {
-                if (s.charAt(i) == s.charAt(j)) {
-                    //guarantee at least 3 ele
-                    if (j - i < 3) {
-                        M[i][j] = true;
-                    } else {
-                        M[i][j] = M[i + 1][j - 1];
-                    }
-                } else {
-                    M[i][j] = false;
-                }
-                if (M[i][j] && j - i + 1 > maxLen) {
-                    begin = i;
-                    maxLen = j - i + 1;
-                }
-            }
+        return sb.toString();
+    }
+    
+    private void checkP(String s, int left, int right, StringBuilder sb, int[] maxLen) {
+        while (left >= 0 && right < s.length() && s.charAt(left) == s.charAt(right)) {
+            left--;
+            right++;
         }
-        return s.substring(begin, begin + maxLen);
+        //(left, right) not include boundary
+        if (maxLen[0] < right - left - 1) {
+            maxLen[0] = right - left - 1;
+            sb.setLength(0);
+            sb.append(s.substring(left + 1, right));
+        }
+    
     }
 }
