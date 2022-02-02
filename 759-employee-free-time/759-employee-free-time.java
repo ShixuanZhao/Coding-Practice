@@ -13,8 +13,10 @@ class Interval {
 };
 */
 /*
+interval:sweep line
 Free time is a period of time such that no employees scheduled to work, i.e. the gap between every two non-overlapping intervals. If we meet a start of interval, score++; or else(if we meet an end of interval), score--. Non-overlapping intervals exist when score equals to 0.
 We add current gap interval to the result list when score is not 0 any more.
+meeting room, meet 0 means common free time
 1 2 3    4 5 6  10
 2 -1 -1  1 1 -1 -1
      0   1                cnt
