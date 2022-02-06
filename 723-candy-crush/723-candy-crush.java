@@ -10,12 +10,12 @@ class Solution {
                 int target = Math.abs(board[i][j]);
                 if (board[i][j] != 0 && Math.abs(board[i][j + 1]) == target && Math.abs(board[i][j + 2]) == target) {
                     stable = false;
-                    int k = j;
-                    while (k < n && Math.abs(board[i][k]) == target) {
-                        board[i][k] = -target;
-                        k++;
+                    
+                    while (j < n && Math.abs(board[i][j]) == target) {
+                        board[i][j] = -target;
+                        j++;
                     }
-                    j = k;
+                    
                 } else {
                     j++;
                 }
