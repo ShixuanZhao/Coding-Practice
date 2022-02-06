@@ -1,4 +1,10 @@
 class Solution {
+    /*
+    123333
+    243456
+    953285
+    行和列的3都要删除，关键把3变成-3，技能保留原来的数值，负数也能表示是需要删除的
+    */
     public int[][] candyCrush(int[][] board) {
         int m = board.length;
         int n = board[0].length;
@@ -10,6 +16,7 @@ class Solution {
                 int target = Math.abs(board[i][j]);
                 if (board[i][j] != 0 && Math.abs(board[i][j + 1]) == target && Math.abs(board[i][j + 2]) == target) {
                     stable = false;
+                    //no need for k
                     int k = j;
                     while (k < n && Math.abs(board[i][k]) == target) {
                         board[i][k] = -target;
