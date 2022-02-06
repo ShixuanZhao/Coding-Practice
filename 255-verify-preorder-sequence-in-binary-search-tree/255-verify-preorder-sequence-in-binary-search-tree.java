@@ -35,7 +35,8 @@ class Solution {
             return false;
         }
         int rightIndex = left + 1;
-        while (rightIndex <= right && preorder[rightIndex] <= root) {
+        //rightIndex > right means we have no right subtree
+        while (rightIndex <= right && preorder[rightIndex] < root) {
             rightIndex++;
         }
         return helper(preorder, left + 1, rightIndex - 1, min, root) && helper(preorder, rightIndex, right, root, max);
