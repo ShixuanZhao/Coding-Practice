@@ -17,11 +17,11 @@ class Solution {
     }
     
    private void dfs(int[][] grid, int[][] direction, int[] area, int i, int j) {
-       if (i < 0 || i >= grid.length || j < 0 || j >= grid[0].length || grid[i][j] == 0) {
+       if (i < 0 || i >= grid.length || j < 0 || j >= grid[0].length || grid[i][j] != 1) {
             return;
         }
        area[0]++;
-       grid[i][j] = 0;
+       grid[i][j] = -1;
        for (int dir[] : direction) {
             int nextI = i + dir[0];
             int nextJ = j + dir[1];
