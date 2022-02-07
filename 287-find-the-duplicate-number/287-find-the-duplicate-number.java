@@ -20,39 +20,41 @@ class Solution {
         // return -1;
         
         //swap-swap
-//         for (int i = 0; i < nums.length - 1; i++) {
-//              // 如果元素的 值 和 下标 不匹配，则将其交换至对的位置
-//             while (i != nums[i] - 1) {
-//                 // 如果发现待交换的两个元素相同则直接返回 如：[3,1,3,4,2]
-//                 if (nums[i] == nums[nums[i] - 1]) {
-//                     return nums[i];
-//                 }
-//                 swap(nums, i, nums[i] - 1);
-//             }
-//         }
-//         return nums[nums.length - 1];
-    
-//     private void swap(int[] nums, int i, int j) {
-//         int temp = nums[i];
-//         nums[i] = nums[j];
-//         nums[j] = temp;
-//     }
-        
-        //O（n） O（1）
-        //转换成find the start of circle in linkedlist
-        int slow = nums[0];
-        int fast = nums[0];
-        while (true) {
-            slow = nums[slow];
-            fast = nums[nums[fast]];
-            if (slow == fast) {
-                fast = nums[0];
-                while (fast != slow) {
-                    slow = nums[slow];
-                    fast = nums[fast];
+        for (int i = 0; i < nums.length; i++) {
+            //need swap
+            while (i != nums[i] - 1) {
+                //find duplicate
+                if (nums[i] == nums[nums[i] - 1]) {
+                    return nums[i];
                 }
-                return slow;
+                swap(nums, i, nums[i] - 1);
             }
         }
-    }     
+        return -1;
+    }
+    
+    private void swap(int[] nums, int i, int j) {
+        int temp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = temp;
+    }
+        
+        //best solution
+        //O（n） O（1）
+        //转换成find the start of circle in linkedlist
+        // int slow = nums[0];
+        // int fast = nums[0];
+        // while (true) {
+        //     slow = nums[slow];
+        //     fast = nums[nums[fast]];
+        //     if (slow == fast) {
+        //         fast = nums[0];
+        //         while (fast != slow) {
+        //             slow = nums[slow];
+        //             fast = nums[fast];
+        //         }
+        //         return slow;
+        //     }
+        // }
+       
 }
