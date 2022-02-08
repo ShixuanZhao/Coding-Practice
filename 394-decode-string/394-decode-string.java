@@ -14,24 +14,23 @@ class Solution {
         StringBuilder sb = new StringBuilder();
         int num = 0;
         while (cur[0] < array.length) {
+            //cur[0]++
             char c = array[cur[0]++];
             if (Character.isDigit(c)) {
                 //remember to convert to number accumulately
-                num = num * 10 + c - '0';
-                
+                num = num * 10 + c - '0'; 
             } else if (c == '[') {
-                
                 String temp = helper(array, cur);
                 for (int i = 0; i < num; i++) {
                     sb.append(temp);
                 }
+                //must reset, otherwise 3[a]2[bc] the next time num would be 32
+                //每一层有一个q
                 num = 0;
             } else if (c >= 'a' && c <= 'z') {
                 sb.append(c);
-                
             } else {
                 //cur[0] refers to ']'
-                
                 break;
             }
         }
