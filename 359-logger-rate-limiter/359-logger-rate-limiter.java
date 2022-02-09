@@ -5,6 +5,7 @@ class Logger {
     }
 
     public boolean shouldPrintMessage(int timestamp, String message) {
+        //threshold
         int end = map.getOrDefault(message, timestamp);
         if (end <= timestamp) {
             map.put(message, timestamp + 10);
