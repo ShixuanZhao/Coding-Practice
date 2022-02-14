@@ -1,6 +1,7 @@
 class Solution {
     public void wiggleSort(int[] nums) {
         Arrays.sort(nums);//可以自己写快速排序.
+        //not in place
         int[]array=new int[nums.length];
         int k=nums.length-1;
         //index is odd, is peak
