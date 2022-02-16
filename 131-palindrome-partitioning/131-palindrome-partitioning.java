@@ -14,11 +14,9 @@ class Solution {
     private void partition(char[] array, int index, List<List<String>> res, List<String> cur) {
         if (index == array.length) {
             res.add(new LinkedList<>(cur));
-            return;
         }
         for (int i = index; i < array.length; i++) {
             if (isPalidrome(array, index, i)) {
-                 //the third parameter is length
                 cur.add(new String(array, index, i - index + 1));
                 partition(array, i + 1, res, cur);
                 cur.remove(cur.size() - 1);
