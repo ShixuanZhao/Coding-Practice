@@ -30,6 +30,11 @@ class Solution {
         int cnt = 1;
         //the index of prev car we are chasing
         int prev = 0;
+        /*
+        dis:0               T
+    car     D  C   B   A   
+           -----------------    cars[]: A B C D
+        */
         for (int i = 1; i < cars.length; i++) {
             if (cars[i].time > cars[prev].time) {
                 cnt++;
