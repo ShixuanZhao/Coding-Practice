@@ -34,7 +34,7 @@ class Solution {
         }
         //求出所有以i为min的subarray的sum，i向左右扩散
         for (int i = 0; i < n; i++) {
-            res = ((res + (long)arr[i] * (i - left[i]) * (right[i] - i)) % mod) % mod;
+            res = (res + (long)arr[i] * (i - left[i]) * (right[i] - i)) % mod;
         }
         return (int)res;
     }
