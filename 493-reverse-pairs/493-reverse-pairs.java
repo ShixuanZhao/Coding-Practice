@@ -11,6 +11,7 @@ class Solution {
     //     if(s>=e) return 0; 
     //     int mid = s + (e-s)/2; 
     //     int cnt = mergeSort(nums, s, mid) + mergeSort(nums, mid+1, e); 
+            //both of left part and right part are sorted
     //     for(int i = s, j = mid+1; i<=mid; i++){
     //         while(j<=e && nums[i]/2.0 > nums[j]) j++; 
     //         cnt += j-(mid+1); 
