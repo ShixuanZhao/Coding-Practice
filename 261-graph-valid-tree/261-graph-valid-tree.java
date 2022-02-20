@@ -78,6 +78,7 @@ class Solution {
     //  2 0
     //从1开始，2是从1来的他的邻居是0，这样就是有环
      boolean hasCycle(List<List<Integer>> adjList, int u, boolean[] visited, int parent) {
+         //从u开始又回来了
         if (visited[u]) {
             return true;
         }
@@ -85,6 +86,7 @@ class Solution {
         visited[u] = true;
 
         for(int v: adjList.get(u)){
+            //v != parent 不走回头路遍历
             if(v != parent && hasCycle(adjList, v, visited, u)){
                 return true;
             }
