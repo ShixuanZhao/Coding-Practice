@@ -1,5 +1,9 @@
 class Solution {
+    Map<String, List<Integer>> map = new HashMap<>();
     public List<Integer> diffWaysToCompute(String expression) {
+        if (map.containsKey(expression)) {
+            return map.get(expression);
+        }
         //recursion:divide a larger problem as two smaller problem
         List<Integer> res = new LinkedList<>();
         for (int i = 0; i < expression.length(); i++) {
@@ -23,10 +27,11 @@ class Solution {
                 }
             }
         }
-        //base case如果只有数字完全没有符号
+        //base case如果只有数字完全没有符号, special case
         if (res.size() == 0) {
             res.add(Integer.parseInt(expression));
         }
+        map.put(expression, res);
         return res;
         
         // List<Integer> res = new LinkedList<>();
