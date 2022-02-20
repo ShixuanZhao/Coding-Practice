@@ -1,6 +1,7 @@
 class Solution {
     public List<Integer> diffWaysToCompute(String expression) {
-        List<Integer> res = new ArrayList<>();
+        //recursion:divide a larger problem as two smaller problem
+        List<Integer> res = new LinkedList<>();
         for (int i = 0; i < expression.length(); i++) {
             char c = expression.charAt(i);
             if (c == '+' || c == '-' || c == '*') {
@@ -16,15 +17,22 @@ class Solution {
                         } else if (c == '*') {
                             temp = l * r;
                         }
+                        // System.out.println(temp);
                         res.add(temp);
                     }
                 }
             }
         }
+        //base case如果只有数字完全没有符号
         if (res.size() == 0) {
             res.add(Integer.parseInt(expression));
         }
         return res;
+        
+        // List<Integer> res = new LinkedList<>();
+        // int[] index = new int[] {0};
+        // helper(res, 0, expression.length() - 1, expression, index);
+        // return res;
     }
     
     // private List<Integer> helper(List<Integer> res, int lo, int hi, String expression, int[] index) {
