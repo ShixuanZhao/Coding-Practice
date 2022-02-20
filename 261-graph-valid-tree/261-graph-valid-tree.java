@@ -13,20 +13,9 @@ class Solution {
             adjList.get(u).add(v);
             adjList.get(v).add(u);
         }
-        
-        boolean[] visited = new boolean[n];
-        
-        // make sure there's no cycle
-        if (hasCycle(adjList, 0, visited, -1))
-            return false;
-        
-        // make sure all vertices are connected
-        for (int i = 0; i < n; i++) {
-            if (!visited[i]) 
-                return false;
-        }
-        
-        return true;
+        Set<Integer> visited = new HashSet<>();
+        dfs(adjList, 0, visited);
+        return visited.size() == n && edges.length == n - 1;
     }
     
     // check if an undirected graph has cycle started from vertex u
@@ -39,21 +28,12 @@ class Solution {
     //   1
     //  2 0
     //从1开始，2是从1来的他的邻居是0，这样就是有环
-     boolean hasCycle(List<List<Integer>> adjList, int u, boolean[] visited, int parent) {
-        visited[u] = true;
-         //nei
-        for (int i = 0; i < adjList.get(u).size(); i++) {
-            int v = adjList.get(u).get(i);
-            if (!visited[v]) {
-                if (hasCycle(adjList, v, visited, u)) {
-                    return true;
-                }
-            } else {
-                if (parent != v) {
-                    return true;
-                }
-            }
-        }
-         return false;
-    }
+     private void dfs(List<List<Integer>> adjList, int i, Set<Integer> visited) {
+         visited.add(i);
+         for (int nei : adjList.get(i)) {
+             if (!visited.contains(nei)) {
+                 dfs(adjList, nei, visited);
+             }
+         }
+     }
 }
