@@ -18,7 +18,8 @@ class Solution {
         //因为可能有孤岛，多个disjoint graph
         for (int v = 1; v <= n; v++) {
             if (!visited[v]) {
-                dfs(map, v);
+                // dfs(map, v);
+                bfs(map, v);
             }
         }
         return ok;
@@ -36,22 +37,49 @@ class Solution {
     }
     
     //dfs
-    private void dfs(Map<Integer, List<Integer>> map, int v) {
+    // private void dfs(Map<Integer, List<Integer>> map, int v) {
+    //     if (!ok) {
+    //         return;
+    //     }
+    //     if (!map.containsKey(v)) {
+    //         return;
+    //     }
+    //     visited[v] = true;
+    //     for (int u : map.get(v)) {
+    //         if (!visited[u]) {
+    //             color[u] = !color[v];
+    //             dfs(map, u);
+    //         } else {
+    //             if (color[u] == color[v]) {
+    //                 ok = false;
+    //                 return;
+    //             }
+    //         }
+    //     }
+    // }
+    
+    private void bfs(Map<Integer, List<Integer>> map, int v) {
         if (!ok) {
             return;
         }
         if (!map.containsKey(v)) {
             return;
         }
+        Queue<Integer> q = new ArrayDeque<>();
+        q.offer(v);
         visited[v] = true;
-        for (int u : map.get(v)) {
-            if (!visited[u]) {
-                color[u] = !color[v];
-                dfs(map, u);
-            } else {
-                if (color[u] == color[v]) {
-                    ok = false;
-                    return;
+        while (!q.isEmpty()) {
+            int cur = q.poll();
+            for (int u : map.get(cur)) {
+                if (!visited[u]) {
+                    visited[u] = true;
+                    color[u] = !color[cur];
+                    q.offer(u);
+                } else {
+                    if (color[u] == color[cur]) {
+                        ok = false;
+                        return;
+                    }
                 }
             }
         }
