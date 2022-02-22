@@ -22,6 +22,7 @@ class Solution {
         return res;
     }
     
+    //postorder:return how many coins do the cur node need to transmit to its parent
     private int helper(TreeNode root) {
         if (root == null) {
             return 0;
