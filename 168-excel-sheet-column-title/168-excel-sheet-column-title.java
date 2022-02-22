@@ -1,15 +1,12 @@
 class Solution {
     public String convertToTitle(int columnNumber) {
         StringBuilder sb = new StringBuilder();
-        while (columnNumber > 0) {
-            //!!!!!!!
-            //because it is 26-nary problem, but we start from 1
-            //就像提取整数的每一位一样，从右往左
-            columnNumber--;
-            sb.append((char)(columnNumber % 26 + 'A'));
-            columnNumber /= 26;
+        //26进制余数0-25转成'A'-> 0, 这样不会出现余数是26的情况
+        for (int i = columnNumber; i != 0; i /= 26) {
+            i--;
+            int cur = i % 26;
+            sb.append((char)(cur + 'A'));
         }
-        sb.reverse();
-        return sb.toString();
+        return sb.reverse().toString();
     }
 }
