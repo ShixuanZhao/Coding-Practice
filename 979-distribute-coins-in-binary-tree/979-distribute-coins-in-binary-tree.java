@@ -18,19 +18,16 @@ class Solution {
 // Write a dfs helper, return the number of coins given to the parent.
     int res = 0;
     public int distributeCoins(TreeNode root) {
-        dfs(root);
-        
-        
-        
+        helper(root);
         return res;
     }
     
-    private int dfs(TreeNode root) {
+    private int helper(TreeNode root) {
         if (root == null) {
             return 0;
         }
-        int left = dfs(root.left);
-        int right = dfs(root.right);
+        int left = helper(root.left);
+        int right = helper(root.right);
         res += Math.abs(left) + Math.abs(right);
         return left + right + root.val - 1;
     }
