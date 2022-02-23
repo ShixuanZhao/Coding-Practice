@@ -20,10 +20,12 @@ class Solution {
         // return -1;
         
         //swap-swap
+        /*
+         0 1 2 3 4
+        [1,2,3,4,2]
+        */
         for (int i = 0; i < nums.length; i++) {
-            //need swap
             while (i != nums[i] - 1) {
-                //find duplicate
                 if (nums[i] == nums[nums[i] - 1]) {
                     return nums[i];
                 }
