@@ -14,18 +14,18 @@
  * }
  */
 class Solution {
-    int max;
+    int max = 0;
     public int longestZigZag(TreeNode root) {
         dfs(root);
         return max - 1;
     }
     
-    //we should get res from left and right
+    //root the num of node either go left or go right
     private int[] dfs(TreeNode root) {
-        int[] res = new int[2]; //{leftSum, rightSum}
         if (root == null) {
-            return res;
+            return new int[] {0, 0};
         }
+        int[] res = new int[2];
         int[] left = dfs(root.left);
         int[] right = dfs(root.right);
         res[0] = left[1] + 1;
