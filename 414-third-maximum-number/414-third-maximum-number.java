@@ -25,6 +25,7 @@ class Solution {
     
     //for scalable
     public int thirdMax(int[] nums) {
+        //minHeap size == 3
        PriorityQueue<Integer> pq = new PriorityQueue<>();
        Set<Integer> set = new HashSet<>();
        for(int n : nums) {
@@ -33,6 +34,7 @@ class Solution {
                if(pq.size() > 3 ) pq.poll();
            }
        }
+        //this case we return max1
        if(pq.size() == 2) pq.poll();
        return pq.peek();
     }
