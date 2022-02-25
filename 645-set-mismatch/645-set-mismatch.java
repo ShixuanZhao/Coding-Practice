@@ -23,6 +23,7 @@ class Solution {
         int n = nums.length;
         int dup = 0;
         for (int i = 0; i < n; i++) {
+            //while and break
             while (nums[i] - 1 != i) {
                 if (nums[i] == nums[nums[i] - 1]) {
                     dup = nums[i];
