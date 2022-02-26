@@ -2,6 +2,7 @@ class Solution {
     public List<Integer> findDisappearedNumbers(int[] nums) {
         for (int i = 0; i < nums.length; i++) {
             while (i != nums[i] - 1) {
+                //must be break not continue
                 if (nums[i] == nums[nums[i] - 1]) {
                     break;
                 }
