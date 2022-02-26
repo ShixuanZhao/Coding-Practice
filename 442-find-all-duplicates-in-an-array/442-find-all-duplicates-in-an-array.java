@@ -5,16 +5,27 @@ class Solution {
      0 1 2
     [-1,-2,2]
     res:1
-      
+       0 1 2 
+      [1,2,1]
     */
     public List<Integer> findDuplicates(int[] nums) {
-      List<Integer> res = new ArrayList();
-      for(int num : nums){
-        int n = Math.abs(num);
-        int index = n - 1;
-        if(nums[index] < 0) res.add(n);
-        nums[index] = -nums[index];
-      }
-      return res;
+      Set<Integer> set = new HashSet<>();
+      for (int i = 0; i < nums.length; i++) {
+            while (i != nums[i] - 1) {
+                //must be break not continue
+                if (nums[i] == nums[nums[i] - 1]) {
+                    set.add(nums[i]);
+                    break;
+                }
+                swap(nums, i, nums[i] - 1);
+            }
+        }
+        return new ArrayList<>(set);
+    }
+    
+    private void swap(int[] nums, int i, int j) {
+        int temp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = temp;
     }
 }
