@@ -1,4 +1,13 @@
 class Solution {
+//     One pass on A,
+// For each different number a in A,
+// we need to count its frequency and it first occurrence index.
+
+// If a has the maximum frequency,
+// update the degree = count[a] and res = i - first[A[i]] + 1.
+
+// If a is one of the numbers that has the maximum frequency,
+// update the res = min(res, i - first[A[i]] + 1)
     public int findShortestSubArray(int[] nums) {
         Map<Integer, Integer> freq = new HashMap<>();
         Map<Integer, Integer> firstIndex = new HashMap<>();
