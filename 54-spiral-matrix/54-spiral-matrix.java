@@ -13,11 +13,13 @@ class Solution {
                 res.add(matrix[up][i]);
             }
             up++;
+            //start from 6
             for (int i = up; i <= down; i++) {
                 res.add(matrix[i][right]);
             }
             right--;
-            //notice the termination condition because it is possible that there is only one row or column
+            //notice the termination condition because it is possible that there is only one row or column at last
+            //not add up <= down otherwise we would add duplicate number
             for (int i = right; i >= left && up <= down; i--) {
                 res.add(matrix[down][i]);
             }
@@ -27,6 +29,7 @@ class Solution {
             }
             left++;
         }
+        
         return res;
     }
 }
