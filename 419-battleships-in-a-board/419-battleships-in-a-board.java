@@ -18,4 +18,5 @@ class Solution {
         
         return count;
     }
+    //dfs is also ok, but for this question, we need only count the left-top 'X'
 }
