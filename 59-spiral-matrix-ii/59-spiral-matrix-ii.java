@@ -1,5 +1,6 @@
 class Solution {
     public int[][] generateMatrix(int n) {
+        //遍历顺序是螺旋行的
         int[][] res = new int[n][n];
         int left = 0;
         int right = n - 1;
