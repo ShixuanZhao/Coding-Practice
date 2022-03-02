@@ -27,7 +27,7 @@ class Solution {
             }
             swap(nums, i, j);
         } 
-        //i往后是递减的，reverse之后变为递增的
+        //i往后是递减的，reverse之后变为递增的，不用sort
         reverse(nums, i + 1);
     }
     
