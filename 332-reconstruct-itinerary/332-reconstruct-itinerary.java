@@ -22,8 +22,9 @@ class Solution {
     
     private void dfs(String departure) {
         PriorityQueue<String> nei = flights.get(departure);
-        //post order travesal, first find a valid end
+        //post order travesal, first find a valid（遍历所有的边） end
         while (nei != null && !nei.isEmpty()) {
+            //访问过的边删除，避免重复访问这条边
             dfs(nei.poll());
         }
         //back-tracking
