@@ -29,11 +29,13 @@ class Solution {
         for (Map.Entry<String, Double> nei : m.get(start).entrySet()) {
             if (visited.add(nei.getKey())) {
                 double productWeight = dfs(nei.getKey(), end, m, visited);
+                //get one and only one valid res
                 if (productWeight != -1.0) {
                     return nei.getValue() * productWeight;
                 } 
             }
         }
+        //have try all the path, but cannot get res
         return -1.0;
     }
 }
