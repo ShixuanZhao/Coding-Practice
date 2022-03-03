@@ -49,15 +49,16 @@ class Solution {
         while (left.hasNext() && right.hasNext()) {
             int l = left.peek();
             int r = right.peek();
+            //teminate, we have traversed all the elment in the tree
             if (l >= r) {
                 return false;
             }
             if (l + r < k) {
                 left.next();
-            } else if (l + r == k) {
-                return true;
-            } else {
+            } else if (l + r > k) {
                 right.next();
+            } else {
+                return true;
             }
         }
         return false;
@@ -65,15 +66,17 @@ class Solution {
     
     class BSTIterator {
         TreeNode root;
-        //from left to right
-        boolean isLeft;
+        //记录一个方向是从小往大还是从大到小
+        boolean forward;
+        //must store TreeNode not int because we cannot convert int to TreeNode when poll
+        //keep the same type with root when iterate
         Deque<TreeNode> stack;
         
-        public BSTIterator(TreeNode root, boolean isLeft) {
+        public BSTIterator(TreeNode root, boolean forward) {
             this.root = root;
-            this.isLeft = isLeft;
+            this.forward = forward;
             stack = new ArrayDeque<>();
-            if (isLeft) {
+            if (forward) {
                 pushAllLeft(root);
             } else {
                 pushAllRight(root);
@@ -85,31 +88,33 @@ class Solution {
         }
         
         public int next() {
-            TreeNode root = stack.pollFirst();
-            if (isLeft) {
-                pushAllLeft(root.right);
+            TreeNode cur = stack.pollFirst();
+            if (forward) {
+                pushAllLeft(cur.right);
             } else {
-                pushAllRight(root.left);
+                pushAllRight(cur.left);
             }
-            return root.val;
+            return cur.val;
         }
         
-        public int peek() {
-            return stack.peekFirst().val;
-        }
-        
-        private void pushAllLeft(TreeNode root) {
+        //把当前node所有一路向左的node都放入stack
+        public void pushAllLeft(TreeNode root) {
             while (root != null) {
                 stack.offerFirst(root);
                 root = root.left;
             }
         }
         
-        private void pushAllRight(TreeNode root) {
+        //把当前node所有一路向右的node都放入stack
+        public void pushAllRight(TreeNode root) {
             while (root != null) {
                 stack.offerFirst(root);
                 root = root.right;
             }
+        }
+        
+        public int peek() {
+            return stack.peekFirst().val;
         }
     }
 }
