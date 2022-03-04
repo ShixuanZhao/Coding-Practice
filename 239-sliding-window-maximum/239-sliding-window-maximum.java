@@ -83,11 +83,10 @@ class Solution {
             //out 
             //maxHeap is not fixed size. only the max ele is out of the left bound of the window we need to keep pop it
             //so we need to record the index
-            maxHeap.offer(new int[] {i, nums[i]});
             while (!maxHeap.isEmpty() && maxHeap.peek()[0] < i - k + 1) {
                 maxHeap.poll();
             }
-            //maxHeap.offer(new int[] {i, nums[i]});
+            maxHeap.offer(new int[] {i, nums[i]});
             res[index++] = maxHeap.peek()[1];
         }
         return res;
