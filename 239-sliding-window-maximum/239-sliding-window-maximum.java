@@ -52,6 +52,23 @@ class Solution {
                                 r
                
     */
+    //TLE beacause heap.remove(target ele) is O(n) we need to first search the target cost O(n)
+    // public int[] maxSlidingWindow(int[] nums, int k) {
+    //     //Pair[0] is the index, Pair[1] is the val
+    //     PriorityQueue<Integer> maxHeap = new PriorityQueue<>((a, b) -> (b - a));
+    //     int n = nums.length;
+    //     int[] res = new int[n - k + 1];
+    //     int index = 0;
+    //     for (int i = 0; i < k - 1; i++) {
+    //         maxHeap.offer(nums[i]);
+    //     }
+    //     for (int i = k - 1; i < n; i++) {
+    //         maxHeap.offer(nums[i]);
+    //         res[index++] = maxHeap.peek();
+    //         maxHeap.remove(nums[i - k + 1]);
+    //     }
+    //     return res;
+    // }
     public int[] maxSlidingWindow(int[] nums, int k) {
         //Pair[0] is the index, Pair[1] is the val
         PriorityQueue<int[]> maxHeap = new PriorityQueue<>((a, b) -> (b[1] - a[1]));
@@ -63,11 +80,14 @@ class Solution {
         int index = 0;
         res[index++] = maxHeap.peek()[1];
         for (int i = k; i < n; i++) {
-            //out
+            //out 
+            //maxHeap is not fixed size. only the max ele is out of the left bound of the window we need to keep pop it
+            //so we need to record the index
+            maxHeap.offer(new int[] {i, nums[i]});
             while (!maxHeap.isEmpty() && maxHeap.peek()[0] < i - k + 1) {
                 maxHeap.poll();
             }
-            maxHeap.offer(new int[] {i, nums[i]});
+            //maxHeap.offer(new int[] {i, nums[i]});
             res[index++] = maxHeap.peek()[1];
         }
         return res;
