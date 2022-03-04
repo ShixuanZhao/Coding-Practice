@@ -97,6 +97,7 @@ class Solution {
         PriorityQueue<int[]> maxHeap = new PriorityQueue<>((a, b) -> (b[1] - a[1]));
         int n = nums.length;
         int[] res = new int[n - k + 1];
+        //fisrt put k - 1 number of ele
         for (int i = 0; i < k - 1; i++) {
             maxHeap.offer(new int[] {i, nums[i]});
         }
@@ -106,7 +107,6 @@ class Solution {
             while (!maxHeap.isEmpty() && maxHeap.peek()[0] < i - k + 1) {
                 maxHeap.poll();
             }
-            
             res[index++] = maxHeap.peek()[1];
         }
         return res;
