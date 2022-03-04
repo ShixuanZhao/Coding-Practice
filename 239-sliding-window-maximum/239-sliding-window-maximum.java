@@ -69,24 +69,44 @@ class Solution {
     //     }
     //     return res;
     // }
+    // public int[] maxSlidingWindow(int[] nums, int k) {
+    //     //Pair[0] is the index, Pair[1] is the val
+    //     PriorityQueue<int[]> maxHeap = new PriorityQueue<>((a, b) -> (b[1] - a[1]));
+    //     int n = nums.length;
+    //     int[] res = new int[n - k + 1];
+    //     for (int i = 0; i < k; i++) {
+    //         maxHeap.offer(new int[] {i, nums[i]});
+    //     }
+    //     int index = 0;
+    //     res[index++] = maxHeap.peek()[1];
+    //     for (int i = k; i < n; i++) {
+    //         //when to pop? the max ele in the heap is out of the left bound of the window
+    //         //maxHeap is not fixed size. only the max ele is out of the left bound of the window we need to keep pop it
+    //         //so we need to record the index
+    //         while (!maxHeap.isEmpty() && maxHeap.peek()[0] < i - k + 1) {
+    //             maxHeap.poll();
+    //         }
+    //         maxHeap.offer(new int[] {i, nums[i]});
+    //         res[index++] = maxHeap.peek()[1];
+    //     }
+    //     return res;
+    // }
+    
     public int[] maxSlidingWindow(int[] nums, int k) {
         //Pair[0] is the index, Pair[1] is the val
         PriorityQueue<int[]> maxHeap = new PriorityQueue<>((a, b) -> (b[1] - a[1]));
         int n = nums.length;
         int[] res = new int[n - k + 1];
-        for (int i = 0; i < k; i++) {
+        for (int i = 0; i < k - 1; i++) {
             maxHeap.offer(new int[] {i, nums[i]});
         }
         int index = 0;
-        res[index++] = maxHeap.peek()[1];
-        for (int i = k; i < n; i++) {
-            //out 
-            //maxHeap is not fixed size. only the max ele is out of the left bound of the window we need to keep pop it
-            //so we need to record the index
+        for (int i = k - 1; i < n; i++) {
+            maxHeap.offer(new int[] {i, nums[i]});
             while (!maxHeap.isEmpty() && maxHeap.peek()[0] < i - k + 1) {
                 maxHeap.poll();
             }
-            maxHeap.offer(new int[] {i, nums[i]});
+            
             res[index++] = maxHeap.peek()[1];
         }
         return res;
