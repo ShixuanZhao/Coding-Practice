@@ -10,7 +10,11 @@ class MedianFinder {
     public MedianFinder() {
         
     }
-    
+//     Time:
+// Constructor: O(1)
+// addNum: O(logN)
+// findMedian: O(1)
+// Space: O(N)
     public void addNum(int num) {
         if (even) {
             //before:small 1 large:2   3
