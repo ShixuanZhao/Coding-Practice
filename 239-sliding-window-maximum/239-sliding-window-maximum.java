@@ -104,6 +104,7 @@ class Solution {
         int index = 0;
         for (int i = k - 1; i < n; i++) {
             maxHeap.offer(new int[] {i, nums[i]});
+            //clever technique to lazy remove elements outside of the window
             while (!maxHeap.isEmpty() && maxHeap.peek()[0] < i - k + 1) {
                 maxHeap.poll();
             }
