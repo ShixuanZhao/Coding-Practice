@@ -25,7 +25,7 @@ class Solution {
         List<List<Integer>> res = new ArrayList<>();
         int m = nums1.length;
         int n = nums2.length;
-        int[][] dirs = new int[][] {{1, 0}, {0, 1}};
+        int[][] dirs = {{1, 0}, {0, 1}};
         Set<Integer> visited = new HashSet<>();
         visited.add(0);
         PriorityQueue<int[]> pq = new PriorityQueue<>((a, b) -> Integer.compare(nums1[a[0]] + nums2[a[1]], nums1[b[0]] + nums2[b[1]]));
