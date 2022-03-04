@@ -1,6 +1,7 @@
 class Solution {
     public double[] medianSlidingWindow(int[] nums, int k) {
         double[] result = new double[nums.length - k + 1];
+        //put small ele into left, put large ele into right
         PriorityQueue<Integer> left = new PriorityQueue<>(Collections.reverseOrder());
         PriorityQueue<Integer> right = new PriorityQueue<>();
         //-------i
@@ -27,6 +28,7 @@ class Solution {
                 int start = i - k + 1;
                 result[start] = median;
                 //remove the tail from either left or right depend on which heap has this ele
+                //Java PQ remove() takes O(n)
                 if(!left.remove(nums[start])) {
                     right.remove(nums[start]);
                 }
@@ -34,4 +36,5 @@ class Solution {
         }
         return result;
     }
+        
 }
