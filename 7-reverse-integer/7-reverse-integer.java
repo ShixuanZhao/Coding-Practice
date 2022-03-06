@@ -5,6 +5,7 @@ class Solution {
         for (int i = x; i != 0; i /= 10) {
             res = res * 10 + i % 10;
         }
+        //(int)res != res means it is overflow return 0
         return (int)res != res ? 0 : (int)res;
     }
 }
