@@ -13,6 +13,8 @@ class Solution {
         while (left < right - 1) {
             int mid = left + (right - left) / 2;
             if (mid % 2 == 0) {
+                // if mid in at even index and assume the single element is not in the left part(nums[0 : mid + 1] inclusively)
+                // the number in mid and the next number should be the same; otherwise, it is in the left part: nums[0 : mid] inclusively
                 if(nums[mid] == nums[mid + 1]){
 					left = mid;
 				}else{
