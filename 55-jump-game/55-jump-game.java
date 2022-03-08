@@ -22,7 +22,7 @@ class Solution {
 //         }
 //         return M[0];
         
-        //M2 is wrong!! we must traverse from right to left
+        //M2:much slower
     //M[i] whether index i is reachable from index0
         if (nums.length == 1) {
             return true;
@@ -31,7 +31,7 @@ class Solution {
         boolean[] M = new boolean[n];
         M[0] = true;
         for (int i = 1; i < n; i++) {
-            for (int j = 0; j < i; j++) {
+            for (int j = i - 1; j >= 0; j--) {
                 if (M[j] && j + nums[j] >= i) {
                     M[i] = true;
                     break;
