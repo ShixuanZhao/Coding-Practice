@@ -1,4 +1,5 @@
 class Solution {
+    //和lc 377做区分
     public int change(int amount, int[] coins) {
         //M[i]: the number of way og amount i
         //M[i] += M[i - coin[j]] coin[j] is the right little part i > coim[j]
