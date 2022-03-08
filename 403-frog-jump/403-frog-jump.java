@@ -19,9 +19,11 @@ f[1][1] = true
         int n = stones.length;
         // check first step
         if (stones[1] != 1) return false;
+        //M[i][j] i is the index in stones arr, j is the step for last jump, whether we can reach index i from index0
         boolean[][] f = new boolean[n][n];
         f[1][1] = true;
         for (int i = 2; i < n; i++) {
+            //M[j] is the left big part
             for (int j = 1; j < i; j++) {
                 int k = stones[i] - stones[j];
                 // 我们知道从位置 j 到位置 i 是需要步长为 k 的跳跃
@@ -33,6 +35,7 @@ f[1][1] = true
                 }
             }
         }
+        //check for the all states for last position
         for (int i = 1; i < n; i++) {
             if (f[n - 1][i]) return true;
         }
