@@ -38,18 +38,17 @@ class Solution {
             if (nums[mid] == target) {
                 return mid;
             }
-            //left part is in ascending order
-            if (nums[mid] >= nums[left]) {
-                if (nums[left] <= target && target < nums[mid]) {
-                    right = mid;
-                } else {
-                    left = mid;
-                }
-            } else {
+            if (nums[mid] < nums[right]) {
                 if (nums[mid] < target && target <= nums[right]) {
                     left = mid;
                 } else {
                     right = mid;
+                }
+            } else {
+                if (target >= nums[left] && target < nums[mid]) {
+                    right = mid;
+                } else {
+                    left = mid;
                 }
             }
         }
