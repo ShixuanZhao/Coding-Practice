@@ -1,4 +1,16 @@
 class Solution {
+    /*
+      max
+    
+  1   / \
+    /    \
+          \ 
+           \  /  2
+            \/
+            min
+            begin > end
+    from max 直接到 Min 中间是没有点的，在1或者2两段
+    */
     public int findMin(int[] nums) {
         if (nums == null || nums.length == 0) {
             return Integer.MAX_VALUE;
@@ -7,6 +19,7 @@ class Solution {
         int right = nums.length - 1;
         while (left < right - 1) {
             int mid = left + (right - left) / 2;
+            //must compare with last ele, because when the arr is ascending, this case can pass
             if (nums[mid] < nums[nums.length - 1]) {
                 right = mid;
             } else {
