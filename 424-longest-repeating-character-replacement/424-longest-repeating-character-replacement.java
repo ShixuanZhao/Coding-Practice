@@ -7,6 +7,7 @@ class Solution {
         maxCnt:the most freq letter
         f:the cur letter
         s:move s when different letter > k
+        //最多将k个letter转换，也就是说在window里面除了最多的那个元素，其他最多剩k个不同的元素
     */
     public int characterReplacement(String s, int k) {
         if (k >= s.length()) {
@@ -23,6 +24,7 @@ class Solution {
             if (cnt1 > maxCnt) {
                 maxCnt = cnt1;
             }
+            //非最多的元素的个数大于k了，不符合要求，出
             while (i - slow + 1 - maxCnt > k) {
                 char c1 = s.charAt(slow);
                 map.put(c1, map.get(c1) - 1);
