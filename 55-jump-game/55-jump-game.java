@@ -1,4 +1,5 @@
 class Solution {
+    //M[i] whether can reach last position from index i
     public boolean canJump(int[] nums) {
         //make a diff from leetcode746
         if (nums.length == 1) {
@@ -6,6 +7,7 @@ class Solution {
         }
         int n = nums.length;
         boolean[] M = new boolean[n];
+        M[n - 1] = true;
         for (int i = n - 2; i >= 0; i--) {
             if (i + nums[i] >= n - 1) {
                 M[i] = true;
