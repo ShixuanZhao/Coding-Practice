@@ -1,5 +1,6 @@
 class Solution {
     //M[i] whether can reach last position from index i
+    //scanning from right to left
     public boolean canJump(int[] nums) {
 //         //make a diff from leetcode746
 //         if (nums.length == 1) {
@@ -22,7 +23,7 @@ class Solution {
 //         }
 //         return M[0];
         
-        //M2:much slower
+        //M2:scanning from left to right, the difference with M1 is the definition of M[i]
     //M[i] whether index i is reachable from index0
         if (nums.length == 1) {
             return true;
