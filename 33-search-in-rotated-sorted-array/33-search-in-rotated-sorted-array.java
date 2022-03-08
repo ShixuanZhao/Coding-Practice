@@ -39,7 +39,7 @@ class Solution {
                 return mid;
             }
             //left part is in ascending order
-            if (nums[mid] >= nums[left]) {
+            if (nums[mid] > nums[left]) {
                 if (nums[left] <= target && target < nums[mid]) {
                     right = mid;
                 } else {
