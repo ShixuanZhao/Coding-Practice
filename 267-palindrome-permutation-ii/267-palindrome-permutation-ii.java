@@ -27,6 +27,7 @@ class Solution {
             return;
         }
         
+        //中心拓展法
         for(int i=0;i<c.length;i++){
             if(c[i]>1){
                 c[i]-=2;
