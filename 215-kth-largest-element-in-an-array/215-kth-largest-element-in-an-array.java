@@ -30,6 +30,7 @@ class Solution {
          //      |  k   |
          // ------------         
          //      a   pos   a = nums.length - k
+            //pos右边可以排除他们都是比较大的，已经放在结果集里了，在左边再继续找
         } else if (pos > nums.length - k) {
             quickSelect(nums, k, left, pos - 1);
         } else {
