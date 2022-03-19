@@ -9,6 +9,7 @@
  * }
  */
 class Solution {
+    //be care of k = 0, also can use dummynode to avoid npe
     public ListNode rotateRight(ListNode head, int k) {
         if (head == null || head.next == null) {
             return head;
