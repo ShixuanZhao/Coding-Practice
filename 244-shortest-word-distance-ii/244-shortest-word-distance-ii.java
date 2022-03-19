@@ -1,5 +1,7 @@
 class WordDistance {
-
+    //compare with wordDistance1 using two pointers
+    //in this question, use hashmap is faster because when calling shortest we do not need to interate
+    //over the String arr
     private Map<String, List<Integer>> map;
     public WordDistance(String[] wordsDict) {
         map = new HashMap<String, List<Integer>>();
