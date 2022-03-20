@@ -20,5 +20,15 @@ public class Solution {
         return result;
     }
     
-    
+    //wrong
+    // public String toHex(int num) {
+    //     if (num == 0) {
+    //         return "0";
+    //     }
+    //     String res = "";
+    //     for (int i = num; i != 0; i /= 16) {
+    //         res = map[(i + 16) % 16] + res;
+    //     }
+    //     return res;
+    // }
 }
