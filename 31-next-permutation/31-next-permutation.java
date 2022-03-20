@@ -10,6 +10,7 @@ class Solution {
     public void nextPermutation(int[] nums) {
         int n = nums.length;
         int i = n - 2;
+        //from right to left, find the fisrt non-increasing num[i]
         while (i >= 0 && nums[i] >= nums[i + 1]) {
             i--;
         }
@@ -17,12 +18,14 @@ class Solution {
         if (i == -1) {
             reverse(nums, 0);
         } else {
+            //find j, nums[j] > nums[i], the smallest nums[j]
             int j = n - 1;
             while (j > i && nums[j] <= nums[i]) {
                 j--;
                 //System.out.println(j);
             }
             swap(nums, i, j);
+            //i往后是递减的，reverse之后变为递增的，不用sort
             reverse(nums, i + 1);
         }
         
