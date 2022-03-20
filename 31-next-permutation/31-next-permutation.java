@@ -8,27 +8,24 @@ class Solution {
     step4: reverse from i + 1 to end
     */
     public void nextPermutation(int[] nums) {
-        //step1
         int n = nums.length;
         int i = n - 2;
-        //from right to left, find the fisrt non-increasing num[i]
         while (i >= 0 && nums[i] >= nums[i + 1]) {
             i--;
         }
-        //find j, nums[j] > nums[i], the smallest nums[j]
-        if (i >= 0) {
+        //321 -> 123
+        if (i == -1) {
+            reverse(nums, 0);
+        } else {
             int j = n - 1;
-            //scan from right to left. it is increasing
-            while (j > i) {
-                if (nums[j] > nums[i]) {
-                    break;
-                }
+            while (j > i && nums[j] <= nums[i]) {
                 j--;
+                System.out.println(j);
             }
             swap(nums, i, j);
-        } 
-        //i往后是递减的，reverse之后变为递增的，不用sort
-        reverse(nums, i + 1);
+            reverse(nums, i + 1);
+        }
+        
     }
     
     private void swap(int[] array, int i, int j) {
