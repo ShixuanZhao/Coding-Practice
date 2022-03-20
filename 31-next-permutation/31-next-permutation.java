@@ -20,7 +20,7 @@ class Solution {
             int j = n - 1;
             while (j > i && nums[j] <= nums[i]) {
                 j--;
-                System.out.println(j);
+                //System.out.println(j);
             }
             swap(nums, i, j);
             reverse(nums, i + 1);
