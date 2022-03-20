@@ -15,10 +15,11 @@ public class Solution {
     /** Returns a random shuffling of the array. */
     public int[] shuffle() {
         if(nums == null) return null;
+        //deep copy a new array
         int[] a = nums.clone();
-        for(int j = 1; j < a.length; j++) {
-            //nextInt(j + 1) returns a random num between [0, j]
-            int i = random.nextInt(j + 1);
+        //i is the cur ele, swap i with a random ele
+        for (int i = 0; i < a.length; i++) {
+            int j = random.nextInt(a.length);
             swap(a, i, j);
         }
         return a;
