@@ -12,19 +12,18 @@ Eventually, if we reached a position that satisfied everybody in the bus at the 
         if (s == null || s.length() == 0) {
             return res;
         }
-        //record the last occurence position for each letter
-        int[] map = new int[26];
-        for (int i = 0; i < s.length(); i++) {
-            map[s.charAt(i) - 'a'] = i;
+        int[] lastPos = new int[26];
+        int n = s.length();
+        for (int i = 0; i < n; i++) {
+            lastPos[s.charAt(i) - 'a'] = i;
         }
-        //find the most further distance
         int start = 0;
-        int last = 0;
-        for (int i = 0; i < s.length(); i++) {
-            last = Math.max(last, map[s.charAt(i) - 'a']);
-            if (last == i) {
-                res.add(last - start + 1);
-                start = last + 1;
+        int end = 0;
+        for (int i = 0; i < n; i++) {
+            end = Math.max(end, lastPos[s.charAt(i) - 'a']);
+            if (i == end) {
+                res.add(end -start + 1);
+                start = end + 1;
             }
         }
         return res;
