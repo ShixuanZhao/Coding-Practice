@@ -13,10 +13,13 @@ class Solution {
         //find the infrequent ele, and split s
         for (int i = 0; i < n; i++) {
             char c = s.charAt(i);
+            //判断条件 找到小于出现k次的字符串
             if (arr[c - 'a'] < k) {
+                //将字符串切分成多个小段 分别在求解
                 for (String sub : s.split(String.valueOf(c))) {
                     res = Math.max(res, longestSubstring(sub, k));
                 }
+                //原字符串里面没有小于k的字符串 直接返回字符串长度
                 return res;
             }
         }
