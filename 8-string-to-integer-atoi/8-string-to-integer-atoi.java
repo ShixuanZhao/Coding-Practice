@@ -28,7 +28,7 @@ class Solution {
             // check for overflow before *10
             if(Integer.MAX_VALUE / 10 < total || Integer.MAX_VALUE / 10 == total && Integer.MAX_VALUE % 10 < digit)
                 return sign == 1 ? Integer.MAX_VALUE : Integer.MIN_VALUE;
-            
+            //may be overflow
             total = total*10 + digit;
             index++; // don't forget to increment the counter
         }
