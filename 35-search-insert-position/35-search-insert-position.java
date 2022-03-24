@@ -17,6 +17,9 @@ class Solution {
         int n = nums.length;
         int left = 0;
         int right = n - 1;
+        //cannot be delete
+        // [1,3]
+        // 3 output 1 instead of 2
         if (nums[left] == target) {
             return left;
         }
