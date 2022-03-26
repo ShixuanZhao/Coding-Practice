@@ -30,8 +30,11 @@ class Solution {
            return -1;
        }
         //use postOrder 触底反弹这样顺序才是对的
+        //bottom up height相同的在一层
         int left = getHeight(root.left, res);
         int right = getHeight(root.right, res);
+        //level is the height
+        //4 5 3 的height是0
         int level = Math.max(left, right) + 1;
         if (level == res.size()) {
             res.add(new ArrayList<>());
