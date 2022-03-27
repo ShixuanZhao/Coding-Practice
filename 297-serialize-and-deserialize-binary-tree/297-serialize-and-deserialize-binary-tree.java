@@ -37,20 +37,23 @@ public class Codec {
             return null;
         }
         TreeNode root = new TreeNode(Integer.valueOf(values[0]));
-        Queue<TreeNode> queue = new ArrayDeque<>();
-        queue.offer(root);
-        for (int i = 1; i < values.length; i++) {
-            TreeNode cur = queue.poll();
-            if (!values[i].equals(NN)) {
-                TreeNode left = new TreeNode(Integer.valueOf(values[i]));
+        Queue<TreeNode> q = new ArrayDeque<>();
+        q.offer(root);
+        int index = 1;
+        while (index < values.length) {
+            TreeNode cur = q.poll();
+            if (!values[index].equals(NN)) {
+                TreeNode left = new TreeNode(Integer.valueOf(values[index]));
                 cur.left = left;
-                queue.offer(left);
+                q.offer(left);
             }
-            if (!values[++i].equals(NN)) {
-                TreeNode right = new TreeNode(Integer.valueOf(values[i]));
+            index++;
+            if (!values[index].equals(NN)) {
+                TreeNode right = new TreeNode(Integer.valueOf(values[index]));
                 cur.right = right;
-                queue.offer(right);
+                q.offer(right);
             }
+            index++;
         }
         return root;
     }
