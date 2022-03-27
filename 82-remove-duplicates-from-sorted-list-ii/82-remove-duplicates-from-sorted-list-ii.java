@@ -19,22 +19,18 @@ class Solution {
     
     */
     public ListNode deleteDuplicates(ListNode head) {
-        //重复的一个不留
         ListNode dummy = new ListNode(0);
         dummy.next = head;
         ListNode cur = head;
         ListNode prev = dummy;
         while (cur != null) {
-            //case1
             if (cur.next != null && cur.val == cur.next.val) {
-                //skip all duplicate num
                 int temp = cur.val;
                 while (cur != null && cur.val == temp) {
                     cur = cur.next;
                 }
                 prev.next = cur;
             } else {
-                //case2
                 prev = cur;
                 cur = cur.next;
             }
