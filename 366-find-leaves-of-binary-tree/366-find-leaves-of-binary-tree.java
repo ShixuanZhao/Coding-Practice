@@ -25,6 +25,7 @@ class Solution {
     }
     
     //use this method, we do not remove node actually
+    //寻找这一类节点的共同特征：就是他底下的节点数量都一样
     private int getHeight(TreeNode root, List<List<Integer>> res) {
        if (root == null) {
            return -1;
