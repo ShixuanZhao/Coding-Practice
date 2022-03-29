@@ -42,22 +42,49 @@ class Solution {
 //     }
         
     //find the intersction of a cycle linkedlist
+    // public int findDuplicate(int[] nums) {
+    //     int slow = nums[0];
+    //     int fast = nums[0];
+    //     while (true) {
+    //         slow = nums[slow];
+    //         fast = nums[nums[fast]];
+    //         if (slow == fast) {
+    //             fast = nums[0];
+    //             while (slow != fast) {
+    //                 slow = nums[slow];
+    //                 fast = nums[fast];
+    //             }
+    //             return slow;
+    //         }
+    //     }
+    // }
+    
+    //guess the ans by using binary search
     public int findDuplicate(int[] nums) {
-        int slow = nums[0];
-        int fast = nums[0];
-        while (true) {
-            slow = nums[slow];
-            fast = nums[nums[fast]];
-            if (slow == fast) {
-                fast = nums[0];
-                while (slow != fast) {
-                    slow = nums[slow];
-                    fast = nums[fast];
-                }
-                return slow;
+        //the ans is between [left, right]
+        //left mid right are num instead of index
+        int left = 1;
+        int right = nums.length - 1;
+        while (left < right) {
+            int mid = left + (right - left) / 2;
+            int cnt = countInRange(nums, left, mid);
+            if (cnt > mid - left + 1) {
+                right = mid;
+            } else {
+                left = mid + 1;
             }
         }
+        return left;
     }
-       
+    
+    private int countInRange(int[] nums, int start, int end) {
+        int cnt = 0;
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] >= start && nums[i] <= end) {
+                cnt++;
+            }
+        }
+        return cnt;
+    }
        
 }
