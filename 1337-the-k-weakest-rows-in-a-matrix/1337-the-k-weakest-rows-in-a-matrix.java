@@ -22,18 +22,22 @@ class Solution {
     }
     
     private int numOnes(int[] row) {
-        int lo = 0;
-        int hi = row.length;
-        
-        while (lo < hi) {
-            int mid = lo + (hi - lo) / 2;
-            
-            if (row[mid] == 1)
-                lo = mid + 1;
-            else
-                hi = mid;
+        int left = 0;
+        int right = row.length - 1;
+        while (left < right - 1) {
+            int mid = left + (right - left) / 2;
+            if (row[mid] == 1) {
+                left = mid;
+            } else {
+                right = mid;
+            }
         }
-        
-        return lo;
+        if (row[right] == 1) {
+            return right + 1;
+        } else if (row[left] == 1){
+            return left + 1;
+        } else {
+            return left;
+        }
     }
 }
