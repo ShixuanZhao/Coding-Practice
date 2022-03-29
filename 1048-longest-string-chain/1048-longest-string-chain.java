@@ -1,7 +1,7 @@
 class Solution {
-    //longest inscreasing subsequence
+    //longest inscreasing subsequence + helper fuc 判断predecessor
     //逆向思维：删除一个，从后往前从长变短的一个chain
-    //M[i]:the longest chain starting from index i(begin to delete)
+    //M[i]:the longest chain starting from index i(begin to delete) 以i结尾的最长chain
     //M[i] = MAX(M[j] + 1) words[j] can be obtained by deleting a letter from words[i]
     //sort by length, liear scan the words have smaller length
     //i scan from left to right, j scan from i - 1
@@ -13,6 +13,7 @@ class Solution {
         for (int i = 0; i < n; i++) {
             //initialize
             M[i] = 1;
+            //长度相同的word相邻，所以保证相邻重复的可以跳过
             for (int j = i - 1; j >= 0 && words[i].length() - words[j].length() <= 1; j--) {
                 if (isPredecessor(words[j], words[i])) {
                     M[i] = Math.max(M[i], M[j] + 1);
