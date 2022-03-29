@@ -10,6 +10,7 @@ class Solution {
         });
         for (int i = 0; i < mat.length; i++) {
             pq.offer(new int[] {numOnes(mat[i]), i});
+            //easy to write but can improve 
             if (pq.size() > k) {
                 pq.poll();
             }
@@ -32,6 +33,10 @@ class Solution {
                 right = mid;
             }
         }
+        /*
+        three case:
+        00 10 11
+        */
         if (row[right] == 1) {
             return right + 1;
         } else if (row[left] == 1){
