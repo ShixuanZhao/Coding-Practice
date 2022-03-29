@@ -41,6 +41,7 @@ class Solution {
 //         nums[j] = temp;
 //     }
         
+    //find the intersction of a cycle linkedlist
     public int findDuplicate(int[] nums) {
         int slow = nums[0];
         int fast = nums[0];
