@@ -31,28 +31,54 @@ class Solution {
 //         dfs(nums, index + 1);
 //     }
     
+    // public int maximumSwap(int num) {
+    //     //Use buckets to record the last position of digit 0 ~ 9 in this num.
+    //     // Loop through the num array from left to right. For each position, 
+    //     // we check whether there exists a larger digit in this num (start from 9 to current digit). 
+    //     // We also need to make sure the position of this larger digit is behind the current one. 
+    //     // If we find it, simply swap these two digits and return the result.
+    //     char[] arr = Integer.toString(num).toCharArray();
+    //     int[] bucket = new int[10];
+    //     //find the last occurence index for each digit
+    //     for (int i = 0; i < arr.length; i++) {
+    //         bucket[arr[i] - '0'] = i;
+    //     }
+    //     for (int i = 0; i < arr.length; i++) {
+    //         for (int j = 9; j > arr[i] - '0'; j--) {
+    //             if (bucket[j] > i) {
+    //                 char temp = arr[i];
+    //                 arr[i] = arr[bucket[j]];
+    //                 arr[bucket[j]] = temp;
+    //                 return Integer.valueOf(new String(arr));
+    //             }
+    //         }
+    //     }
+    //     return num;
+    // }
+    
     public int maximumSwap(int num) {
-        //Use buckets to record the last position of digit 0 ~ 9 in this num.
-        // Loop through the num array from left to right. For each position, 
-        // we check whether there exists a larger digit in this num (start from 9 to current digit). 
-        // We also need to make sure the position of this larger digit is behind the current one. 
-        // If we find it, simply swap these two digits and return the result.
-        char[] arr = Integer.toString(num).toCharArray();
-        int[] bucket = new int[10];
-        //find the last occurence index for each digit
-        for (int i = 0; i < arr.length; i++) {
-            bucket[arr[i] - '0'] = i;
+        char[] arr = String.valueOf(num).toCharArray();
+        dfs(arr, 0);
+        return Integer.valueOf(new String(arr));
+    }
+    
+    private void dfs(char[] arr, int index) {
+        if (index == arr.length) {
+            return;
         }
-        for (int i = 0; i < arr.length; i++) {
-            for (int j = 9; j > arr[i] - '0'; j--) {
-                if (bucket[j] > i) {
-                    char temp = arr[i];
-                    arr[i] = arr[bucket[j]];
-                    arr[bucket[j]] = temp;
-                    return Integer.valueOf(new String(arr));
-                }
+        //find the index of the largest greater ele
+        int maxIndex = index;
+        for (int i = index + 1; i < arr.length; i++) {
+            if (arr[i] > arr[index] && arr[i] >= arr[maxIndex]) {
+                maxIndex = i;
             }
         }
-        return num;
+        if (maxIndex != index) {
+            char temp = arr[index];
+            arr[index] = arr[maxIndex];
+            arr[maxIndex] = temp;
+            return;
+        }
+        dfs(arr, index + 1);
     }
 }
