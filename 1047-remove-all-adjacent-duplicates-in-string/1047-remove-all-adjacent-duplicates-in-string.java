@@ -45,9 +45,15 @@ class Solution {
         int slow = -1;
         int fast = 0;
         while (fast < arr.length) {
-            arr[++slow] = arr[fast++];
-            if (slow - 1 >= 0 && arr[slow] == arr[slow - 1]) {
-                slow -= 2;
+            // arr[++slow] = arr[fast++];
+            // if (slow - 1 >= 0 && arr[slow] == arr[slow - 1]) {
+            //     slow -= 2;
+            // }
+            if (slow < 0 || arr[slow] != arr[fast]) {
+                arr[++slow] = arr[fast++];
+            } else {
+                slow--;
+                fast++;
             }
         }
         return new String(arr, 0, slow + 1);
