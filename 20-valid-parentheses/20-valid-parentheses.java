@@ -4,31 +4,60 @@ class Solution {
             i
         stack:} ] 
     */
+    // public boolean isValid(String s) {
+    //     Deque<Character> stack = new ArrayDeque<>();
+    //     for (char c : s.toCharArray()) {
+    //         if (c == '(') {
+    //             stack.offerFirst(')');
+    //         } else if (c == '[') {
+    //             stack.offerFirst(']');
+    //         } else if (c == '{') {
+    //             stack.offerFirst('}');
+    //         } else {
+    //             if (stack.isEmpty()) {
+    //                 return false;
+    //             } else {
+    //                 if (stack.peekFirst() == c) {
+    //                     stack.pollFirst();
+    //                 } else {
+    //                     return false;
+    //                 }
+    //             }
+    //         }
+    //     }
+    //     //find whether all the open paranthes has been matched
+    //     return stack.isEmpty();
+    // }
+    
+    //two pointers without using stack
+    /*
+    ([)]
+       i
+        j
+    */
     public boolean isValid(String s) {
-        Deque<Character> stack = new ArrayDeque<>();
-        for (char c : s.toCharArray()) {
-            if (c == '(') {
-                stack.offerFirst(')');
-            } else if (c == '[') {
-                stack.offerFirst(']');
-            } else if (c == '{') {
-                stack.offerFirst('}');
+        //i:当前待匹配的元素的index，模拟栈顶元素(slow)
+        char[] arr = s.toCharArray();
+        int i = -1;
+        //fast 当前看的元素
+        int j = 0;
+        while (j < s.length()) {
+            if (i == -1 || !isMatch(arr[i], arr[j])) {
+                arr[++i] = arr[j++];
             } else {
-                if (stack.isEmpty()) {
-                    return false;
-                } else {
-                    if (stack.peekFirst() == c) {
-                        stack.pollFirst();
-                    } else {
-                        return false;
-                    }
-                }
+                i--;
+                j++;
             }
         }
-        //find whether all the open paranthes has been matched
-        return stack.isEmpty();
+        return i == -1;
     }
     
+    boolean isMatch(char c1, char c2){
+        if(c1 == '(' && c2 == ')') return true;
+        if(c1 == '[' && c2 == ']') return true;
+        if(c1 == '{' && c2 == '}') return true;
+        return false;
+    }
     /*
     WRONG!
     Open brackets must be closed by the same type of brackets.
