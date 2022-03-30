@@ -12,7 +12,8 @@ class Solution {
         }
         Queue<int[]> queue = new LinkedList<>();
         queue.add(new int[] {0, 0});
-        
+//         why use Set instead of Set<int[]>?
+// Arrays in Java are objects and don't override hashCode and equals.
         Set<String> visited = new HashSet<>();
         visited.add("0,0");
         
