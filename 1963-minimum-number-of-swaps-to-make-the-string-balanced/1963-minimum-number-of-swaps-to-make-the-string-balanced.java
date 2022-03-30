@@ -20,6 +20,7 @@ class Solution {
                     mismatch++;
             }
         }
+        //ceiling
         return (mismatch + 1) / 2;
     }
 }
