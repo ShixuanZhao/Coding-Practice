@@ -22,6 +22,7 @@ class Solution {
         dfs(root, map, 0, 0);
         for (List<int[]> cur : map.values()) {
             //sort by level
+            //because dfs we use preOrder which can ensure traverse left node first when same col and level
             Collections.sort(cur, (a, b) -> (a[0] - b[0]));
             List<Integer> temp = new ArrayList<>();
             for (int[] arr : cur) {
