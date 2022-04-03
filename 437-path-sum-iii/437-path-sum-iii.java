@@ -24,6 +24,7 @@
 class Solution {
     int res = 0;
     public int pathSum(TreeNode root, int targetSum) {
+        //<prefixSum, freq>
         Map<Integer, Integer> preSum = new HashMap<>();
         preSum.put(0, 1);
         dfs(root, targetSum, preSum, 0);
