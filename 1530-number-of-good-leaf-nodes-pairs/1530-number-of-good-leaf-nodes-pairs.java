@@ -28,11 +28,14 @@ class Solution {
         return res;
     }
     
+    //for each node, return a int[] size == distance
+    //for node1 [0, 1, 1] 代表距离node1 distance为1的有一个，2的有一个 {distance, # of leaf nodes}
     private int[] helper(TreeNode n) {
         int[] arr = new int[dist + 1];
         if(n == null)
             return arr;
         if(n.left == null && n.right == null) {
+            //距离他的parentdis为1 有一个
             arr[1] = 1;
             return arr;
         }
@@ -47,6 +50,7 @@ class Solution {
         }
         
         for(int i = dist; i > 0; i--) 
+            //距离+1，个数相加
             arr[i] += (left[i - 1] + right[i - 1]);
         return arr;
     }
