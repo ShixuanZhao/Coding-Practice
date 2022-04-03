@@ -16,25 +16,26 @@
 class Solution {
     public List<List<Integer>> pathSum(TreeNode root, int targetSum) {
         List<List<Integer>> res = new LinkedList<>();
+        if (root == null) {
+            return res;
+        }
         List<Integer> cur = new LinkedList<>();
-        dfs(root, targetSum, res, cur, 0);
+        helper(root, targetSum, res, cur);
         return res;
     }
     
-    private void dfs(TreeNode root, int targetSum, List<List<Integer>> res, List<Integer> cur, int sum) {
+    private void helper(TreeNode root, int targetSum, List<List<Integer>> res, List<Integer> cur) {
         if (root == null) {
             return;
         }
-        sum += root.val;
+        targetSum -= root.val;
         cur.add(root.val);
-        if (root.left == null && root.right == null) {
-            if (sum == targetSum) {
-                res.add(new LinkedList<>(cur));
-            }
+        if (root.left == null && root.right == null && targetSum == 0) {
+            res.add(new LinkedList<>(cur));
         }
-        dfs(root.left, targetSum, res, cur, sum);
-        dfs(root.right, targetSum, res, cur, sum);
-        sum -= root.val;
+        helper(root.left, targetSum, res, cur);
+        helper(root.right, targetSum, res, cur);
+        targetSum += root.val;
         cur.remove(cur.size() - 1);
     }
 }
