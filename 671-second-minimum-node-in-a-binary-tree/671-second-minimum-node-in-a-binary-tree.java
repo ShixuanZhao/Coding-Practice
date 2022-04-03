@@ -26,8 +26,10 @@ class Solution {
             if (cur.val != root.val) {
                 if (second == null) {
                     second = cur.val;
-                } else {
-                    second = Math.min(second, cur.val);
+                } else if (cur.val < second){
+                    second = cur.val;
+                    //no need to add it's children into queue
+                    continue;
                 }
             }
             if(cur.right!=null) q.offer(cur.right);
