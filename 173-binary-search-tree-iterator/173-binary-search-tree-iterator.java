@@ -13,22 +13,16 @@
  *     }
  * }
  */
-/*
-    1
-  2   3
-  print:213
-  stack:
-*/
 class BSTIterator {
     Deque<TreeNode> stack;
     public BSTIterator(TreeNode root) {
-       stack = new ArrayDeque<>();
-       pushAllLeft(root);
+        stack = new ArrayDeque<>();
+        putAllLeft(root);
     }
     
     public int next() {
         TreeNode cur = stack.pollFirst();
-        pushAllLeft(cur.right);
+        putAllLeft(cur.right);
         return cur.val;
     }
     
@@ -36,8 +30,7 @@ class BSTIterator {
         return !stack.isEmpty();
     }
     
-    //from root, keep pushing all the left node into stack
-    private void pushAllLeft(TreeNode root) {
+    private void putAllLeft(TreeNode root) {
         while (root != null) {
             stack.offerFirst(root);
             root = root.left;
