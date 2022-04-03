@@ -35,7 +35,7 @@ class Solution {
         }
         helper(root.left, targetSum, res, cur);
         helper(root.right, targetSum, res, cur);
-        targetSum += root.val;
+        //targetSum += root.val;
         cur.remove(cur.size() - 1);
     }
 }
