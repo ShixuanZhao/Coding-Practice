@@ -40,6 +40,8 @@ class Solution {
         preSum.put(sum, preSum.getOrDefault(sum, 0) + 1);
         dfs(root.left, targetSum, preSum, sum);
         dfs(root.right, targetSum, preSum, sum);
+        //sum is primitive type, not object
+        //sum -= root.val;
         preSum.put(sum, preSum.getOrDefault(sum, 0) - 1);
     }
 }
