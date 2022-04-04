@@ -55,6 +55,7 @@ public class NestedIterator implements Iterator<Integer> {
             helper(nestedList);
     }
     
+    //weighted sum
     private void helper(List<NestedInteger> list){
         if (list == null)
             return;
