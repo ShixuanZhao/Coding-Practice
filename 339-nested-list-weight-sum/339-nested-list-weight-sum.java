@@ -28,19 +28,18 @@
  */
 class Solution {
     public int depthSum(List<NestedInteger> nestedList) {
-        //maintain a level
-        return depthSum(nestedList, 1);
+        return helper(nestedList, 1);
     }
     
-    private int depthSum(List<NestedInteger> nestedList, int level) {
-        int res = 0;
-        for (NestedInteger unit : nestedList) {
-            if (unit.isInteger()) {
-                res += level * unit.getInteger();
+    private int helper(List<NestedInteger> nestedList, int level) {
+        int sum = 0;
+        for (NestedInteger cur : nestedList) {
+            if (cur.isInteger()) {
+                sum += level * cur.getInteger();
             } else {
-                res += depthSum(unit.getList(), level + 1);
+                sum += helper(cur.getList(), level + 1);
             }
         }
-        return res;
+        return sum;
     }
 }
