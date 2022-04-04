@@ -15,9 +15,47 @@
  */
 class Solution {
     //M1:find LCA, and add the distance to LCA
+//     public int findDistance(TreeNode root, int p, int q) {
+//         TreeNode lca = LCA(root, p, q);
+//         return dis(lca, p) + dis(lca, q);
+//     }
+    
+//     private TreeNode LCA(TreeNode root, int p, int q) {
+//         if (root == null || root.val == p || root.val == q) {
+//             return root;
+//         }
+//         TreeNode left = LCA(root.left, p, q);
+//         TreeNode right = LCA(root.right, p, q);
+//         if (left != null && right != null) {
+//             return root;
+//         }
+//         return left == null ? right : left;
+//     }
+    
+//     private int dis(TreeNode root, int node) {
+//         Queue<TreeNode> q = new LinkedList<>();
+//         int distance = 0;
+//         q.offer(root);
+//         while(!q.isEmpty()) {
+//             int sz = q.size();
+//             for(int i = 0; i < sz; i++) {
+//                 TreeNode cur = q.poll();
+//                 if(cur.val == node) return distance;
+//                 else {
+//                     if(cur.left != null) q.offer(cur.left);
+//                     if(cur.right != null) q.offer(cur.right);
+//                 }
+//             }
+//             distance++;
+//         }
+        
+//         return -1;
+//     }
+    
+    //M1,dfs
     public int findDistance(TreeNode root, int p, int q) {
         TreeNode lca = LCA(root, p, q);
-        return dis(lca, p) + dis(lca, q);
+        return dis(lca, p, 0) + dis(lca, q, 0);
     }
     
     private TreeNode LCA(TreeNode root, int p, int q) {
@@ -32,23 +70,15 @@ class Solution {
         return left == null ? right : left;
     }
     
-    private int dis(TreeNode root, int node) {
-        Queue<TreeNode> q = new LinkedList<>();
-        int distance = 0;
-        q.offer(root);
-        while(!q.isEmpty()) {
-            int sz = q.size();
-            for(int i = 0; i < sz; i++) {
-                TreeNode cur = q.poll();
-                if(cur.val == node) return distance;
-                else {
-                    if(cur.left != null) q.offer(cur.left);
-                    if(cur.right != null) q.offer(cur.right);
-                }
-            }
-            distance++;
+    private int dis(TreeNode root, int node, int level) {
+        if (root == null) {
+            return -1;
         }
-        
-        return -1;
-    }
+        if (root.val == node) {
+            return level;
+        }
+        int left = dis(root.left, node, level + 1);
+        int right = dis(root.right, node, level + 1);
+        return left == -1 ? right : left;
+    } 
 }
