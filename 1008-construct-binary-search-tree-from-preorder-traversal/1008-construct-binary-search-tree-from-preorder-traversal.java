@@ -24,6 +24,7 @@ class Solution {
         }
         TreeNode root = new TreeNode(preorder[left]);
         int index = left + 1;
+        //boundary index == right is ok, means all left node no right node
         while (index <= right && preorder[index] < preorder[left]) {
             index++;
         }
