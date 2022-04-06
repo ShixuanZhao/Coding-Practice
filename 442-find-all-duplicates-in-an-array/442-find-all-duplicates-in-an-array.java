@@ -8,6 +8,7 @@ class Solution {
        0 1 2 
       [1,2,1]
     */
+    //smart trick
     public List<Integer> findDuplicates(int[] nums) {
         List<Integer> res = new ArrayList<>();
         for (int num : nums) {
