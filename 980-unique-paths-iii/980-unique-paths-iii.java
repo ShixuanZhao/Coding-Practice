@@ -5,7 +5,12 @@ Also We need to know the number of empty cells.
 
 We we try to explore a cell,
 it will change 0 to -2 and do a dfs in 4 direction.
+
+Initially int empty = 1;, it represents the starting point.
+ Because during backtracking, both grid[x][y] == 0 && grid[x][y] == 1 will be set to -2 
+firstly and reset back to grid[x][y] = 0, i.e. grid[x][y] == 1 is also counted as 0 during DFS + Backtracking.
     */
+    //empty = 1
     int res = 0, empty = 1, sx, sy, ex, ey;
     public int uniquePathsIII(int[][] grid) {
         int m = grid.length, n = grid[0].length;
