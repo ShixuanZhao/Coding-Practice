@@ -16,6 +16,7 @@ class Vector2D {
     }
     
     public boolean hasNext() {
+        //must be while not if because some list can be empty. we need to keep moving index
         while (indexList < vector.length && indexEle >= vector[indexList].length) {
             indexList++;
             indexEle = 0;
