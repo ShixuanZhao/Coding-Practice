@@ -1,5 +1,5 @@
 class Solution {
-    //it is a directed weighted graph
+    //it is a directed weighted graph无向有权图
     public double[] calcEquation(List<List<String>> equations, double[] values, List<List<String>> queries) {
         Map<String, Map<String, Double>> m = new HashMap<>();
         for (int i = 0; i < values.length; i++) {
