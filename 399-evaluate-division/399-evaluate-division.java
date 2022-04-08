@@ -18,24 +18,21 @@ class Solution {
         return res;
     }
     
-    private double dfs(String start, String end, Map<String, Map<String, Double>> m, Set<String> visited) {
-        if (m.get(start) == null) {
+    private double dfs(String start, String end, Map<String, Map<String, Double>> map, Set<String> visited) {
+        if (map.get(start) == null) {
             return -1.0;
         }
         if (start.equals(end)) {
             return 1.0;
         }
-        //a->b->c 2*3 = 6
-        for (Map.Entry<String, Double> nei : m.get(start).entrySet()) {
+        for (Map.Entry<String, Double> nei: map.get(start).entrySet()) {
             if (visited.add(nei.getKey())) {
-                double productWeight = dfs(nei.getKey(), end, m, visited);
-                //get one and only one valid res
-                if (productWeight != -1.0) {
-                    return nei.getValue() * productWeight;
-                } 
+                double weight = dfs(nei.getKey(), end, map, visited);
+                if (weight != -1.0) {
+                    return nei.getValue() * weight;
+                }
             }
         }
-        //have try all the path, but cannot get res
         return -1.0;
     }
 }
