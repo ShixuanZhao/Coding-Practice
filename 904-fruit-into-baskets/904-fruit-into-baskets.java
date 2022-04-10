@@ -20,6 +20,7 @@ class Solution {
     
     
     //another solution without hashmap
+    //Find out the longest length of subarrays with at most 2 different numbers?
     public int totalFruit(int[] fruits) {
         //last kind of fruit
         int last = -1;
@@ -31,7 +32,7 @@ class Solution {
             if (fruit == last || fruit == second) {
                 curMax++;
             } else {
-                curMax = lastCnt + 1;
+                curMax = lastCnt + 1;// last fruit + new fruit
             }
             
             if (fruit == last) {
