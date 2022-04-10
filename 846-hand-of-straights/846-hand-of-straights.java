@@ -3,6 +3,7 @@ class Solution {
         if (hand.length % groupSize != 0) {
             return false;
         }
+        //TreeMap, map.firstKey();
         TreeMap<Integer, Integer> map = new TreeMap<>();
         for (int card : hand) {
             map.put(card, map.getOrDefault(card, 0) + 1);
