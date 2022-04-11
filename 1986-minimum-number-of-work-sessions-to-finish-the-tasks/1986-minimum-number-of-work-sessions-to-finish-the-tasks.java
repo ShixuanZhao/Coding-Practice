@@ -11,6 +11,7 @@ class Solution {
         return res[0];
     }
     
+    //可以选择放进能放的session也可以选择新开一个session
     private void dfs(int[] tasks, int sessionTime, int[] res, int index, int[] session, int sessionCount) {
         if (sessionCount > res[0]) {
             return;
