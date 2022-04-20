@@ -1,7 +1,10 @@
 class Solution {
     public int knightDialer(int n) {
+        //数字0可以由数字4和6得到
+        //所以得到dp：newM[0] = oldM[4] + oldM[6]
         int paths[][]= { {4,6}, {6,8},{7,9}, {4,8}, {0,3,9}, {}, {1,7,0}, {2,6}, {1,3}, {2,4}};
         int mod = (int)1e9+7;
+        //n次之后到数字0-9各有多少种方式
         int [] dp = new int[10];
         
         Arrays.fill(dp,1);
