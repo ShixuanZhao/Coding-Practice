@@ -20,8 +20,11 @@ class Solution {
         // as we can see, the length of pattern should be even && the character at the even position should be *, 
 		// thus for odd length, M[0][j] = false which is default. So we can just skip the odd position, i.e. j starts from 2, the interval of j is also 2. 
 		// and notice that the length of repeat sub-pattern #* is only 2, we can just make use of M[0][j - 2] rather than scanning j length each time 
-		// for checking if it matches #*#*#*#*.
+		// for checking if it matches #*#*#*#*. # is any char
+        //a* match empty
         for(int j = 2; j < n + 1; j +=2){
+            //j is number of char
+            //the cur char is * and 前一个的前一个是true
             if(p.charAt(j - 1) == '*' && M[0][j - 2]){
                 M[0][j] = true;
             }
@@ -43,10 +46,10 @@ class Solution {
         //       ####.*(j)
 		//
 		// 	  	 #####a(i)
-        //    	 ###a*(j)
-        //      2.1 if p.charAt(j - 1) is counted as empty, then M[i][j] = M[i][j - 2]
-        //      2.2 if counted as one, then M[i][j] = M[i - 1][j - 2]
-        //      2.3 if counted as multiple, then M[i][j] = M[i - 1][j]
+        //    	 ###a*(j)  counted as one
+        //      2.1 if p.charAt(j - 1) is counted as empty, then M[i][j] = M[i][j - 2]  abc  abc.*
+        //      2.2 if counted as one, then M[i][j] = M[i - 1][j - 2]  #####a(i)   ###a*(j)
+        //      2.3 if counted as multiple, then M[i][j] = M[i - 1][j] abcccc abc* (*可以被重复使用)
                 
 		// recap:
 		// M[i][j] = M[i - 1][j - 1]
@@ -67,6 +70,7 @@ class Solution {
                 }else if(curP == '*'){
                     char preCurP = p.charAt(j - 2);
                     if(preCurP != '.' && preCurP != curS){
+                        //abc  abcd* count as empty
                         M[i][j] = M[i][j - 2];
                     }else{
                         //case2.1 2.2 2.3
