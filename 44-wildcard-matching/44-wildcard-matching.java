@@ -10,6 +10,7 @@ class Solution {
         //"" ***
         for (int i = 1; i <= n; i++) {
             if (p.charAt(i - 1) == '*') {
+                //match 0 letter
                 M[0][i] = M[0][i - 1];
             }
         }
@@ -20,7 +21,7 @@ class Solution {
                 if (s.charAt(i - 1) == p.charAt(j - 1) || p.charAt(j - 1) == '?') {
                     M[i][j] = M[i - 1][j - 1];
                 } else if (p.charAt(j - 1) == '*') {
-                    //abc * M[i - 1][j]| ab a* M[i - 1][j - 1] | ab ab* M[i][j - 1] 
+                    //abc * M[i - 1][j] || ab a* M[i - 1][j - 1] || ab ab* M[i][j - 1] 
                     M[i][j] = M[i - 1][j] || M[i - 1][j - 1] || M[i][j - 1];
                 } else {
                     M[i][j] = false;
