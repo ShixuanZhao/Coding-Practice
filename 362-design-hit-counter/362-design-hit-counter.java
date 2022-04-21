@@ -1,5 +1,6 @@
 class HitCounter {
-    //record the most recent record 300 timestamp
+    //record the most recent record 300 timestamp,最近300个timestamp
+    //rolling array
     int[] time;
     //the most recent 300 hit responding to time[]
     int[] hit;
