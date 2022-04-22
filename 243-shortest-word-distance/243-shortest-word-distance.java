@@ -24,7 +24,10 @@ class Solution {
     
     //not use hashmap
     public int shortestDistance(String[] words, String word1, String word2) {
-        //index for word1
+        //the latest index for word1 and word2
+        /*
+        ***@**#**@@**#
+        */
         int p1 = -1;
         int p2 = -1;
         int res = Integer.MAX_VALUE;
@@ -38,7 +41,7 @@ class Solution {
             if (p1 != -1 && p2 != -1) {
                 res = Math.min(res, Math.abs(p1 - p2));
             }
-        }
+        } 
         return res;
     }
 }
