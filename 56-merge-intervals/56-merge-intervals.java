@@ -12,18 +12,18 @@ class Solution {
     */
     public int[][] merge(int[][] intervals) {
        int n = intervals.length;
-        //step1
+        if (n == 1) {
+            return intervals;
+        }
         Arrays.sort(intervals, (a, b) -> (a[0] - b[0]));
-        //step2
+        List<int[]> res = new LinkedList<>();
         int[] prev = intervals[0];
-        List<int[]> res = new ArrayList<>();
-        for (int[] cur : intervals) {
-            if (prev[1] >= cur[0]) {
-                //merge
-                prev[1] = Math.max(prev[1], cur[1]);
+        for (int i = 1; i < n; i++) {
+            if (intervals[i][0] <= prev[1]) {
+                prev[1] = Math.max(prev[1], intervals[i][1]);
             } else {
                 res.add(prev);
-                prev = cur;
+                prev = intervals[i];
             }
         }
         res.add(prev);
