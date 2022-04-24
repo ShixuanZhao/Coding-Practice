@@ -8,48 +8,47 @@
  * }
  */
 public class Codec {
-    private static final String SPLITTER = ",";
-    private static final String NN = "X";
-    
-    // Encodes a tree to a single string.
     public String serialize(TreeNode root) {
+        if (root == null) {
+            return "X";
+        }
+        Queue<TreeNode> q = new LinkedList<>();
+        q.offer(root);
         StringBuilder sb = new StringBuilder();
-        Queue<TreeNode> queue = new LinkedList<>();
-        queue.offer(root);
-        TreeNode cur = root;
-        while (!queue.isEmpty()) {
-            cur = queue.poll();
+        while (!q.isEmpty()) {
+            TreeNode cur = q.poll();
             if (cur == null) {
-                sb.append(NN).append(SPLITTER);
+                //use 'X' to represent null
+                sb.append('X').append(',');
             } else {
-                sb.append(cur.val).append(SPLITTER);
-                queue.offer(cur.left);
-                queue.offer(cur.right);
+                sb.append(cur.val).append(',');
+                q.offer(cur.left);
+                q.offer(cur.right);
             }
         }
         return sb.toString();
     }
 
-    // Decodes your encoded data to tree.
     public TreeNode deserialize(String data) {
-        String[] values = data.split(SPLITTER);
-        if (values[0].equals(NN)) {
+        String[] val = data.split(",");
+        if (val[0].equals("X")) {
             return null;
         }
-        TreeNode root = new TreeNode(Integer.valueOf(values[0]));
-        Queue<TreeNode> q = new ArrayDeque<>();
+        Queue<TreeNode> q = new LinkedList<>();
+        TreeNode root = new TreeNode(Integer.valueOf(val[0]));
         q.offer(root);
         int index = 1;
-        while (index < values.length) {
+        while (index < val.length) {
             TreeNode cur = q.poll();
-            if (!values[index].equals(NN)) {
-                TreeNode left = new TreeNode(Integer.valueOf(values[index]));
+            //ignore the null
+            if (!val[index].equals("X")) {
+                TreeNode left = new TreeNode(Integer.valueOf(val[index]));
                 cur.left = left;
                 q.offer(left);
             }
             index++;
-            if (!values[index].equals(NN)) {
-                TreeNode right = new TreeNode(Integer.valueOf(values[index]));
+            if (!val[index].equals("X")) {
+                TreeNode right = new TreeNode(Integer.valueOf(val[index]));
                 cur.right = right;
                 q.offer(right);
             }
@@ -57,7 +56,7 @@ public class Codec {
         }
         return root;
     }
-    
+}
     
     //using preOrder is easier
     // Encodes a tree to a single string.
@@ -85,7 +84,7 @@ public class Codec {
 //         root.right = helper(q);
 //         return root;
 //     }
-}
+
 
 // Your Codec object will be instantiated and called as such:
 // Codec ser = new Codec();
