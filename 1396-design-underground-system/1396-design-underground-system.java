@@ -44,9 +44,8 @@ class UndergroundSystem {
         arrival.remove(id);
         int duration = t - e.time;
         String key = e.name + "+" + stationName;
-        Average a = average.getOrDefault(key, new Average());
-        a.update(duration);
-        average.put(key, a);
+        average.putIfAbsent(key, new Average());
+        average.get(key).update(duration);
     }
     
     public double getAverageTime(String startStation, String endStation) {
