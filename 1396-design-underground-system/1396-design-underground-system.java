@@ -17,7 +17,7 @@ class UndergroundSystem {
     //update average
     public void checkOut(int id, String stationName, int t) {
         Event arrivalEvent = arrivals.get(id);
-        //arrivals.remove(id);
+        arrivals.remove(id);
         int diff = t - arrivalEvent.time;
         String key = arrivalEvent.stationName + "," + stationName;
         Average average = averages.getOrDefault(key, new Average());
