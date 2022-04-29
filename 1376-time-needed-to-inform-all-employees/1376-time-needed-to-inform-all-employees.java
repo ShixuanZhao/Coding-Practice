@@ -36,6 +36,7 @@ class Solution {
     private int dfs(int i, int[] manager, int[] informTime) {
         if (manager[i] != -1) {
             informTime[i] += dfs(manager[i], manager, informTime);
+            //mark this node's manager as -1. Why? Because you don't want to ask for information again once the information has reached you.
             manager[i] = -1;
         }
         return informTime[i];
