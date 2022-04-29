@@ -23,6 +23,8 @@ class Solution {
                 res.add(matrix[i][right]);
             }
             right--;
+            //notice the termination condition because it is possible that there is only one row or column at last
+            //not add up <= down otherwise we would add duplicate number
             for (int i = right; i >= left && up <= down; i--) {
                 res.add(matrix[down][i]);
             }
