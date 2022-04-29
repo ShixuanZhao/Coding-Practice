@@ -1,25 +1,28 @@
 class Solution {
+    /*
+    for each level
+        for up side
+        for right
+        for down
+        for left
+    */
     public List<Integer> spiralOrder(int[][] matrix) {
         List<Integer> res = new LinkedList<>();
-        if (matrix == null || matrix.length == 0 || matrix[0].length == 0) {
-            return res;
-        }
+        int m = matrix.length;
+        int n = matrix[0].length;
         int left = 0;
-        int right = matrix[0].length - 1;
+        int right = n - 1;
         int up = 0;
-        int down = matrix.length - 1;
+        int down = m - 1;
         while (left <= right && up <= down) {
             for (int i = left; i <= right; i++) {
                 res.add(matrix[up][i]);
             }
             up++;
-            //start from 6
             for (int i = up; i <= down; i++) {
                 res.add(matrix[i][right]);
             }
             right--;
-            //notice the termination condition because it is possible that there is only one row or column at last
-            //not add up <= down otherwise we would add duplicate number
             for (int i = right; i >= left && up <= down; i--) {
                 res.add(matrix[down][i]);
             }
@@ -29,7 +32,6 @@ class Solution {
             }
             left++;
         }
-        
         return res;
     }
 }
