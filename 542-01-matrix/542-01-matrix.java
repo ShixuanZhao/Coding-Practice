@@ -14,16 +14,15 @@ class Solution {
         int m = mat.length;
         int n = mat[0].length;
         Queue<int[]> queue = new LinkedList<>();
+        int[][] res = new int[m][n];
+        boolean[][] visited = new boolean[m][n];
         for (int i = 0; i < m; i++) {
             for (int j = 0; j < n; j++) {
                 if (mat[i][j] == 0) {
                     //0的话距离就是0
                     queue.offer(new int[] {i, j});
-                }
-                else {
-                    //区分原来的1还是距离是1
-                    //Integer.MAX_VALUE marked as unvisited
-                    mat[i][j] = Integer.MAX_VALUE;
+                    res[i][j] = 0;
+                    visited[i][j] = true;
                 }
             }
         }
@@ -32,13 +31,14 @@ class Solution {
             for (int[] d : dirs) {
                 int r = cell[0] + d[0];
                 int c = cell[1] + d[1];
-                //if visited, continue
-                if (r < 0 || r >= m || c < 0 || c >= n || 
-                    mat[r][c] != Integer.MAX_VALUE) continue;
-                queue.add(new int[] {r, c});
-                mat[r][c] = mat[cell[0]][cell[1]] + 1;
+                if (r < 0 || r >= m || c < 0 || c >= n || visited[r][c]) {
+                    continue;
+                }   
+                queue.offer(new int[] {r, c});
+                res[r][c] = res[cell[0]][cell[1]] + 1;
+                visited[r][c] = true;
             }
         }
-        return mat;
+        return res;
     }
 }
