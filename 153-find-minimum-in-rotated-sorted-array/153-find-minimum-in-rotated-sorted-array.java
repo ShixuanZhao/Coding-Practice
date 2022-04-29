@@ -20,7 +20,7 @@ class Solution {
         while (left < right - 1) {
             int mid = left + (right - left) / 2;
             //must compare with last ele, because when the arr is ascending, this case can pass
-            if (nums[mid] < nums[nums.length - 1]) {
+            if (nums[mid] < nums[right]) {
                 right = mid;
             } else {
                 left = mid;
