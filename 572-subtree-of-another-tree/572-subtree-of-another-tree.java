@@ -14,27 +14,18 @@
  * }
  */
 class Solution {
-    /*
-        high level: recursion
-        3               for each node in the big tree(preOrder traverse), check whether two tree is the same
-      4   5     4      how to judge the whether two tree is identical:
-1(l)   2(r)  1(l)  2(r)   root == subroot && left && right  return true
-                                    else                    return false
-                                    base case:either is null, return false
-                                              both is null, return true
-    */                      
+    //check each root of subtree, whether it is the same as subRoot tree
     public boolean isSubtree(TreeNode root, TreeNode subRoot) {
         if (root == null) {
             return false;
         }
-        //遍历每一个节点，在当前层检查以roor为根的子树和subtree一样不一样， PreOrder
-        if (sameTree(root, subRoot)) {
+        if (isSame(root, subRoot)) {
             return true;
         }
         return isSubtree(root.left, subRoot) || isSubtree(root.right, subRoot);
     }
     
-    private boolean sameTree(TreeNode root, TreeNode subRoot) {
+    private boolean isSame(TreeNode root, TreeNode subRoot) {
         if (root == null && subRoot == null) {
             return true;
         }
@@ -44,6 +35,6 @@ class Solution {
         if (root.val != subRoot.val) {
             return false;
         }
-        return sameTree(root.left, subRoot.left) && sameTree(root.right, subRoot.right);
+        return isSame(root.left, subRoot.left) && isSame(root.right, subRoot.right);
     }
 }
