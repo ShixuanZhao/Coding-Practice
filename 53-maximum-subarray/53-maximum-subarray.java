@@ -11,16 +11,15 @@ class Solution {
         if (n == 1) {
             return nums[0];
         }
-        int[] M = new int[n];
-        M[0] = nums[0];
+        int pre = nums[0];
         int res = nums[0];
         for (int i = 1; i < n; i++) {
-            if (M[i - 1] > 0) {
-                M[i] = M[i - 1] + nums[i];
+            if (pre > 0) {
+                pre = pre + nums[i];
             } else {
-                M[i] = nums[i];
+                pre = nums[i];
             }
-            res = Math.max(res, M[i]);
+            res = Math.max(res, pre);
         }
         return res;
     }
