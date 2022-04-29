@@ -28,6 +28,7 @@ class Solution {
     */
      public int minMeetingRooms(int[][] intervals) {
          Arrays.sort(intervals, (a, b) -> (a[0] - b[0]));
+         //pq always pop the earliest ending time
          PriorityQueue<int[]> pq = new PriorityQueue<>((a, b) -> (a[1] - b[1]));
          pq.offer(intervals[0]);
          for (int i = 1; i < intervals.length; i++) {
