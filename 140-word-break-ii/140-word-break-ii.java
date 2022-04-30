@@ -18,16 +18,19 @@ class Solution {
         for (int i = index; i < s.length(); i++) {
             int len = sb.length();
             if (dict.contains(s.substring(index, i + 1))) {
-                if (i != s.length() - 1) {
-                    sb.append(s.substring(index, i + 1)).append(" ");
-                    dfs(s, dict, sb, i + 1, res);
-                } else {
+                if (i == s.length() - 1) {
+                    //not add " "
                     sb.append(s.substring(index, i + 1));
                     dfs(s, dict, sb, i + 1, res);
+                    sb.setLength(len);
+                } else {
+                    //add word and add space
+                    sb.append(s.substring(index, i + 1)).append(" ");
+                    dfs(s, dict, sb, i + 1, res);
+                    sb.setLength(len);
                 }
             }
-            sb.setLength(len);
-        }  
+        }
     }
     
     private boolean canBreak(String s, Set<String> dict) {
