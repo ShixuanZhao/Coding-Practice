@@ -20,9 +20,10 @@ class Solution {
         int num = 0;
         while (i < s.length()) {
             char c = s.charAt(i++);
-            if (Character.isDigit(c)) {
+            if (c >= '0' && c <= '9') {
                 num = num * 10 + (c - '0');
             }  
+            //must be put here before line31
             if (c == '(') {
                 num = calculate(s);
             } 
