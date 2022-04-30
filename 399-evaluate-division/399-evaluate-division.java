@@ -18,6 +18,8 @@ class Solution {
         return res;
     }
     
+    //map of map is the key
+    //visited避免走回头路
     private double dfs(String start, String end, Map<String, Map<String, Double>> m, Set<String> visited) {
         if (m.get(start) == null) {
             return -1.0;
