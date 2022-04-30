@@ -35,8 +35,7 @@ class Solution {
                     sign = -1;
                 }
                 num = 0;
-            } 
-           
+            }  
             if (c == ')') {
                 break;
             }
