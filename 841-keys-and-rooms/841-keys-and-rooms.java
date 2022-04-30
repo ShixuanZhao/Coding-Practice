@@ -1,18 +1,17 @@
 class Solution {
-    //graph, check one connected component
     public boolean canVisitAllRooms(List<List<Integer>> rooms) {
-        Set<Integer> set = new HashSet<>();
-        dfs(0, rooms, set);
-        return set.size() == rooms.size();
+        Set<Integer> visited = new HashSet<>();
+        dfs(rooms, 0, visited);
+        return visited.size() == rooms.size();
     }
     
-    //dfs from the room 0, add all the connected node to set
-    private void dfs(int start, List<List<Integer>> rooms, Set<Integer> set) {
-        set.add(start);
-        for (int nei : rooms.get(start)) {
-            if (!set.contains(nei)) {
-                dfs(nei, rooms, set);
-            }
+    private void dfs(List<List<Integer>> rooms, int i, Set<Integer> visited) {
+        if (visited.contains(i)) {
+            return;
+        }
+        visited.add(i);
+        for (int next : rooms.get(i)) {
+            dfs(rooms, next, visited);
         }
     }
 }
