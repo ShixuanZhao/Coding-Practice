@@ -10,7 +10,9 @@ class Solution {
         int n = s.length();
         int[] cnt = new int[26];
         for (int i = 0; i < n; i++) {
+            //compute the occurence in s
             cnt[s.charAt(i) - 'a']++;
+            //compute the diff between s and t
             cnt[t.charAt(i) - 'a']--;
         }
         int res = 0;
