@@ -17,6 +17,7 @@ class Solution {
         }
         int res = 0;
         for (int count : cnt) {
+            //需要注意的是不要double count
             if (count > 0) {
                 res += count;
             }
