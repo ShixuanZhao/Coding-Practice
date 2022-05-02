@@ -14,8 +14,11 @@ final int[][] dir = new int[][]{{0, 1}, {0, -1}, {1, 0}, {-1, 0}};
 public int shortestDistance(int[][] grid) {
     int n = grid.length;
     int m = grid[0].length;
+    //0到所有1的最短距离的和，是一个全局变量，每次BFS都要更新
     int[][] dp = new int[n][m];
+    //每个点能够到达1的个数
     int[][] reach = new int[n][m];
+    //所有1的个数
     int countBuilding = 0;
     Queue<int[]> queue = new LinkedList<>();
 
