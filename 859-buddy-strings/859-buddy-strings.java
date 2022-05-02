@@ -1,5 +1,6 @@
 class Solution {
     /*
+    must swap for one time
     If A.length() != B.length(): no possible swap
 If A == B, we need swap two same characters. Check is duplicated char in A.
 In other cases, we find index for A[i] != B[i]. There should be only 2 diffs and it's our one swap.
@@ -8,6 +9,8 @@ In other cases, we find index for A[i] != B[i]. There should be only 2 diffs and
         if (s.length() != goal.length()) {
             return false;
         }
+        //aa aa return true
+        //ab ab return false
         if (s.equals(goal)) {
             //store unique char
             Set<Character> set = new HashSet<>();
