@@ -50,6 +50,8 @@ class FileSystem {
         return cur.content;
     }
     
+    //Trie structure
+    //base class for file and directory, only file have content, only directory have children
     class File {
         Map<String, File> children = new HashMap<>();
         String name;
@@ -60,6 +62,7 @@ class FileSystem {
         }
     }
 }
+
 
 /**
  * Your FileSystem object will be instantiated and called as such:
