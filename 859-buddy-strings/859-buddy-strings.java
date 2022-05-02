@@ -1,29 +1,21 @@
 class Solution {
-    /*
-    If A.length() != B.length(): no possible swap
-If A == B, we need swap two same characters. Check is duplicated char in A.
-In other cases, we find index for A[i] != B[i]. There should be only 2 diffs and it's our one swap.
-    */
     public boolean buddyStrings(String s, String goal) {
         if (s.length() != goal.length()) {
             return false;
         }
+        //if two string are same, chech whether there are duplicate letter in the string
         if (s.equals(goal)) {
-            //store unique char
+            //record all the uuique letter
             Set<Character> set = new HashSet<>();
             for (char c : s.toCharArray()) {
                 set.add(c);
             }
-            if (set.size() < s.length()) {
-                //have unique char
-                //it is ok we just need to swap the same two char
+            if (set.size () < s.length()) {
                 return true;
             } else {
-                //all char are different
                 return false;
             }
         }
-        //record all the different index
         List<Integer> diff = new LinkedList<>();
         for (int i = 0; i < s.length(); i++) {
             if (s.charAt(i) != goal.charAt(i)) {
