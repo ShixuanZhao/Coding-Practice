@@ -22,10 +22,10 @@ class Solution {
                 diff.add(i);
             }
         }
-        if (diff.size() == 2 && s.charAt(diff.get(0)) == goal.charAt(diff.get(1)) && goal.charAt(diff.get(0)) == s.charAt(diff.get(1))) {
+        if (diff.size() == 2 && s.charAt(diff.get(0)) == goal.charAt(diff.get(1)) && 
+          s.charAt(diff.get(1)) == goal.charAt(diff.get(0))) {
             return true;
-        } else {
-            return false;
         }
+        return false;
     }
 }
