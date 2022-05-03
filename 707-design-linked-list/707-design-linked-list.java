@@ -28,6 +28,7 @@ class MyLinkedList {
         addAtIndex(0, val);
     }
     
+    //if we use DDL, we can cost O(1)
     public void addAtTail(int val) {
         addAtIndex(size, val);
     }
