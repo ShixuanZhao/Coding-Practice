@@ -23,11 +23,11 @@ class Node {
 
 class Solution {
     // public Node connect(Node root) {
-    //     if (root == null) {
-    //         return root;
-    //     }
-    //     Queue<Node> q = new ArrayDeque<>();
-    //     q.offer(root);
+    //      if (root == null) {
+    //          return null;
+    //      }
+    //     Queue<Node> q = new LinkedList<>();
+    //     q.add(root);
     //     while (!q.isEmpty()) {
     //         int size = q.size();
     //         Node prev = null;
@@ -48,28 +48,33 @@ class Solution {
     //     return root;
     // }
     
-    public Node connect(Node root) {
-        if (root == null) {
-            return null;
-        }
-        //head is the head of the each level's LinkedList
-        Node head = root;
-        while (head != null) {
-            Node dummy = new Node(0);
-            Node cur = dummy;
-            while (head != null) {
-                if (head.left != null) {
-                    cur.next = head.left;
-                    cur = cur.next;
-                }
-                if (head.right != null) {
-                    cur.next = head.right;
-                    cur = cur.next;
-                }
-                head = head.next;
-            }
-            head = dummy.next;
-        }
-        return root;
-    }
+    //S = O(1)
+   public Node connect(Node root) {
+       if (root == null) {
+           return null;
+       }
+       Node head = root;
+       //level order
+       while (head != null) {
+           Node dummy = new Node(0);
+           Node temp = dummy;
+           //same level
+           //head is the upper layer
+           while (head != null) {
+               if (head.left != null) {
+                   temp.next = head.left;
+                   temp = temp.next;
+               }
+               if (head.right != null) {
+                   temp.next = head.right;
+                   temp = temp.next;
+               }
+               head = head.next;
+           }
+           //go to next layer
+           head = dummy.next;
+       }
+       return root;
+   }
+       
 }
