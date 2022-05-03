@@ -22,28 +22,53 @@ class Node {
 */
 
 class Solution {
+    // public Node connect(Node root) {
+    //     if (root == null) {
+    //         return root;
+    //     }
+    //     Queue<Node> q = new ArrayDeque<>();
+    //     q.offer(root);
+    //     while (!q.isEmpty()) {
+    //         int size = q.size();
+    //         Node prev = null;
+    //         for (int i = 0; i < size; i++) {
+    //             Node cur = q.poll();
+    //             if (prev != null) {
+    //                 prev.next = cur;
+    //             }
+    //             prev = cur;
+    //             if (cur.left != null) {
+    //                 q.offer(cur.left);
+    //             }
+    //             if (cur.right != null) {
+    //                 q.offer(cur.right);
+    //             }
+    //         }
+    //     }
+    //     return root;
+    // }
+    
     public Node connect(Node root) {
         if (root == null) {
-            return root;
+            return null;
         }
-        Queue<Node> q = new ArrayDeque<>();
-        q.offer(root);
-        while (!q.isEmpty()) {
-            int size = q.size();
-            Node prev = null;
-            for (int i = 0; i < size; i++) {
-                Node cur = q.poll();
-                if (prev != null) {
-                    prev.next = cur;
+        //head is the head of the each level's LinkedList
+        Node head = root;
+        while (head != null) {
+            Node dummy = new Node(0);
+            Node cur = dummy;
+            while (head != null) {
+                if (head.left != null) {
+                    cur.next = head.left;
+                    cur = cur.next;
                 }
-                prev = cur;
-                if (cur.left != null) {
-                    q.offer(cur.left);
+                if (head.right != null) {
+                    cur.next = head.right;
+                    cur = cur.next;
                 }
-                if (cur.right != null) {
-                    q.offer(cur.right);
-                }
+                head = head.next;
             }
+            head = dummy.next;
         }
         return root;
     }
