@@ -1,31 +1,34 @@
 class Solution {
+    /*
+    1.traverse s from left to right, remove the extra ) 
+    ())
+    if we meet ), but the open == 0, we do not append this )
+    2.traverse the result from 1 backward, remove the extra (
+    ()(
+    */
     public String minRemoveToMakeValid(String s) {
-        //store the index of () to be removed(invalid)
-        Set<Integer> indexToRemove = new HashSet<>();
-        //store the index of () '(' push ')' pop
-        Deque<Integer> stack = new ArrayDeque<>();
-        for (int i = 0; i < s.length(); i++) {
-            char c = s.charAt(i);
-            if (c == '(') {
-                stack.offerFirst(i);
-            } else if (c == ')') {
-                if (stack.isEmpty()) {
-                    indexToRemove.add(i);
-                } else {
-                    stack.pollFirst();
-                }
-            }
-        }
-        //if there are element in the stack, it would be unmatched '('
-        while (!stack.isEmpty()) {
-            indexToRemove.add(stack.pollFirst());
-        }
+        int open = 0;
         StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < s.length(); i++) {
-            if (!indexToRemove.contains(i)) {
-                sb.append(s.charAt(i));
+        for (char c : s.toCharArray()) {
+            if (c == '(') {
+                open++;
+            } else if (c == ')') {
+                if (open == 0) {
+                    continue;
+                }
+                open--;
             }
+            sb.append(c);
         }
-        return sb.toString();
+        //System.out.println(sb.toString());
+        StringBuilder res = new StringBuilder();
+        //traverse sb backward
+        for (int i = sb.length() - 1; i >= 0; i--) {
+            if (sb.charAt(i) == '(' && open-- > 0) {
+                continue;
+            }
+            res.append(sb.charAt(i));
+        }
+        return res.reverse().toString();
     }
 }
