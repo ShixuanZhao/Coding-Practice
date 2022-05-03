@@ -22,59 +22,29 @@ class Node {
 */
 
 class Solution {
-    // public Node connect(Node root) {
-    //      if (root == null) {
-    //          return null;
-    //      }
-    //     Queue<Node> q = new LinkedList<>();
-    //     q.add(root);
-    //     while (!q.isEmpty()) {
-    //         int size = q.size();
-    //         Node prev = null;
-    //         for (int i = 0; i < size; i++) {
-    //             Node cur = q.poll();
-    //             if (prev != null) {
-    //                 prev.next = cur;
-    //             }
-    //             prev = cur;
-    //             if (cur.left != null) {
-    //                 q.offer(cur.left);
-    //             }
-    //             if (cur.right != null) {
-    //                 q.offer(cur.right);
-    //             }
-    //         }
-    //     }
-    //     return root;
-    // }
-    
-    //S = O(1)
-   public Node connect(Node root) {
-       if (root == null) {
-           return null;
-       }
-       Node head = root;
-       //level order
-       while (head != null) {
-           Node dummy = new Node(0);
-           Node temp = dummy;
-           //same level
-           //head is the upper layer
-           while (head != null) {
-               if (head.left != null) {
-                   temp.next = head.left;
-                   temp = temp.next;
-               }
-               if (head.right != null) {
-                   temp.next = head.right;
-                   temp = temp.next;
-               }
-               head = head.next;
-           }
-           //go to next layer
-           head = dummy.next;
-       }
-       return root;
-   }
-       
+    public Node connect(Node root) {
+        if (root == null) {
+            return root;
+        }
+        Queue<Node> q = new ArrayDeque<>();
+        q.offer(root);
+        while (!q.isEmpty()) {
+            int size = q.size();
+            Node prev = null;
+            for (int i = 0; i < size; i++) {
+                Node cur = q.poll();
+                if (prev != null) {
+                    prev.next = cur;
+                }
+                prev = cur;
+                if (cur.left != null) {
+                    q.offer(cur.left);
+                }
+                if (cur.right != null) {
+                    q.offer(cur.right);
+                }
+            }
+        }
+        return root;
+    }
 }
