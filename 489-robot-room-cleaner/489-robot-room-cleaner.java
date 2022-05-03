@@ -17,7 +17,10 @@
  */
 
 class Solution {
-      public static final int[][] DIRS = {{-1, 0}, {0, 1}, {1, 0}, {0, -1}};
+//     For example, {{-1, 0}, {0, 1}, {1, 0}, {0, -1}} are up. right, down, left clockwise.
+// Why {-1, 0} is up?
+// It is (row - 1, col + 0) up rather than (x - 1, y + 0).
+      public static final int[][] DIRS = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}};;
 
 	public void cleanRoom(Robot robot) {
 		clean(robot, 0, 0, 0, new HashSet<>());
