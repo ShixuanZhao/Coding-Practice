@@ -25,6 +25,7 @@ class Solution {
 
 	private void clean(Robot robot, int x, int y, int curDirection, Set<String> cleaned) {
 		robot.clean();
+        //cleaned means visited
 		cleaned.add(x + " " + y);
 
 		for (int i = 0; i < 4; i++) {
