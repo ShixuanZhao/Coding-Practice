@@ -32,6 +32,7 @@ class Solution {
 		
 		Arrays.sort(s_num, comp);
 		// An extreme edge case by lc, say you have only a bunch of 0 in your int array
+        //000000, return 0
 		if(s_num[0].charAt(0) == '0')
 			return "0";
             
