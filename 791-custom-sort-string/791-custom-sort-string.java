@@ -11,11 +11,13 @@ class Solution {
             cnt[c - 'a']++;
         }
         StringBuilder sb = new StringBuilder();
+        //append the common letter
         for (char c : order.toCharArray()) {
             while (cnt[c - 'a']-- > 0) {
                 sb.append(c);
             }
         }
+        //append the letter that only in s
         for (char c = 'a'; c <= 'z'; c++) {
             while (cnt[c - 'a']-- > 0) {
                 sb.append(c);
