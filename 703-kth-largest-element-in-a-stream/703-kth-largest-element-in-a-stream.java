@@ -2,18 +2,20 @@ class KthLargest {
     PriorityQueue<Integer> pq;
     int k;
     public KthLargest(int k, int[] nums) {
-        this.k = k;
         pq = new PriorityQueue<>();
+        this.k = k;
         for (int num : nums) {
+            //we call helper func add, it will maintian the minHeap
+            // pq.add(num);
             add(num);
         }
     }
     
+    //maintain a minHeap which size == k
     public int add(int val) {
-        //keep a minHeap which size is k
         if (pq.size() < k) {
-            pq.offer(val);
-        } else if (val > pq.peek()) {
+            pq.add(val);
+        } else if (pq.peek() < val) {
             pq.poll();
             pq.offer(val);
         }
