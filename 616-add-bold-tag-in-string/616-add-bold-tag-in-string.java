@@ -9,8 +9,19 @@ class Solution {
         //the start index of word in s
         for (String word : words) {
             int start = 0;
-            while (s.indexOf(word, start) != -1) {
+            // while (s.indexOf(word, start) != -1) {
+            //     int index = s.indexOf(word, start);
+            //     int end = index + word.length();
+            //     for (int i = index; i < end; i++) {
+            //         bold[i] = true;
+            //     }
+            //     start++;
+            // }
+            while (start >= 0) {
                 int index = s.indexOf(word, start);
+                if (index == -1) {
+                    break;
+                }
                 int end = index + word.length();
                 for (int i = index; i < end; i++) {
                     bold[i] = true;
