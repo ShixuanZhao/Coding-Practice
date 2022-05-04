@@ -32,6 +32,7 @@ class Solution {
     //     return n;
     // }
     
+    //Optimize S = O(1)
     /*
      [5,0,3,8,6,2 10]
                 i
