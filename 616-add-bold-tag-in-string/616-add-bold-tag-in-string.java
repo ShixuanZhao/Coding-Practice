@@ -1,4 +1,7 @@
 class Solution {
+    /*
+    "abcxyz123abc", words = ["abc","123"]
+    */
     public String addBoldTag(String s, String[] words) {
         //use a boolean[] to mark the char that need to be bold
         int n = s.length();
@@ -6,13 +9,10 @@ class Solution {
         //the start index of word in s
         for (String word : words) {
             int start = 0;
-            while (start >= 0) {
-                start = s.indexOf(word, start);
-                if (start == -1) {
-                    break;
-                }
-                int end = start + word.length();
-                for (int i = start; i < end; i++) {
+            while (s.indexOf(word, start) != -1) {
+                int index = s.indexOf(word, start);
+                int end = index + word.length();
+                for (int i = index; i < end; i++) {
                     bold[i] = true;
                 }
                 start++;
