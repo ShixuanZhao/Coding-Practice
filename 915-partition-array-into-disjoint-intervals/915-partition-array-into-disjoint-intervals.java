@@ -32,20 +32,29 @@ class Solution {
     //     return n;
     // }
     
-    public int partitionDisjoint(int[] A) {
-        int cmax=A[0]; //cmax:current maximum
-        int nmax=A[0];//nmax: next maximum
-        int ans=0;
-        
-        for(int i=1;i<A.length;i++){
-            int val=A[i];
-          nmax=Math.max(val,nmax); //next max for case if i exist in left Part
-            
-            if(val<cmax){
-                ans=i;         //now left Part is till here
-                cmax=nmax; //maximum of left array is nmax(as we are maintaining maximum for split Part)
+    /*
+     [5,0,3,8,6,2 10]
+                i
+                must incorporate 2. previous we think 8 and 6 belong to right becasue we want
+                to shortest left length
+                now from beginning to i(including) belong to left
+      curMax:8
+      preMax:5
+      pIndex:3
+    */
+   public int partitionDisjoint(int[] A) {
+       //suppose the first ele belong to left
+        int partitionIdx = 1;
+        int currMax = A[0];
+        int prevMax = A[0];
+        for(int i = 1; i < A.length; i++) {
+            if(A[i] < prevMax) {
+                partitionIdx = i + 1;
+                prevMax = currMax;
+            } else {
+                currMax = Math.max(currMax, A[i]);
             }
         }
-        return ans+1; // we have to return length not idx so ans+1.
+        return partitionIdx;
     }
 }
