@@ -18,12 +18,12 @@ class Solution {
             //     start++;
             // }
             while (start >= 0) {
-                int index = s.indexOf(word, start);
-                if (index == -1) {
+                start = s.indexOf(word, start);
+                if (start == -1) {
                     break;
                 }
-                int end = index + word.length();
-                for (int i = index; i < end; i++) {
+                int end = start + word.length();
+                for (int i = start; i < end; i++) {
                     bold[i] = true;
                 }
                 start++;
