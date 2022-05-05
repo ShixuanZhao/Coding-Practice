@@ -39,6 +39,7 @@ class SparseVector {
     }
     //record the pair which key is not zero
     List<Pair> list;
+    // Time O(N), space O(L)
     SparseVector(int[] nums) {
         list = new ArrayList<>();
         for (int i = 0; i < nums.length; i++) {
@@ -56,6 +57,7 @@ class SparseVector {
         }
     }
     
+    // Time O(min(L1, L2) * log(max(L1, L2))), space O(1)
     private int dotProduct(SparseVector small, SparseVector large) {
         int res = 0;
         for (Pair p : small.list) {
@@ -66,8 +68,10 @@ class SparseVector {
         return res;
     }
     
+    //Binary search
     //search the val in arraylist which index is t
     //if not found, return -1
+    //对于每一个在size小的list里的数，在大的list里面做binary search
     private int search(List<Pair> list, int t) {
         int left = 0;
         int right = list.size() - 1;
