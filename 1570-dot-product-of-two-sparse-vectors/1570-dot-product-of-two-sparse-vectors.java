@@ -1,6 +1,6 @@
 class SparseVector {
-    //index to value
-    //We only need to store the values > 0, as we dont need to waste computing on calculating for all 0 valued indexes. We are also storing the distinct index-value pairs in a map.
+    //use a HashMap to record the ele that is not zero
+    //key is index, val is val
     Map<Integer, Integer> map;
     SparseVector(int[] nums) {
         map = new HashMap<>();
@@ -13,14 +13,18 @@ class SparseVector {
     
 	// Return the dotProduct of two sparse vectors
     public int dotProduct(SparseVector vec) {
-        // We want to iterate through the smaller map.
-        if (vec.map.size() < this.map.size()) {
-            return vec.dotProduct(this);
+        if (this.map.size() < vec.map.size()) {
+            return dotProduct(this, vec);
+        } else {
+            return dotProduct(vec, this);
         }
+    }
+    
+    private int dotProduct(SparseVector small, SparseVector large) {
         int res = 0;
-        for (int curIndex : this.map.keySet()) {
-            if (vec.map.containsKey(curIndex)) {
-                res += this.map.get(curIndex) * vec.map.get(curIndex);
+        for (int i : small.map.keySet()) {
+            if (large.map.containsKey(i)) {
+                res += small.map.get(i) * large.map.get(i);
             }
         }
         return res;
