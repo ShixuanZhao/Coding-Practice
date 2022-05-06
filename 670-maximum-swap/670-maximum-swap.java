@@ -56,6 +56,7 @@ class Solution {
     //     return num;
     // }
     
+    //brute force
     public int maximumSwap(int num) {
         char[] arr = String.valueOf(num).toCharArray();
         dfs(arr, 0);
@@ -66,7 +67,6 @@ class Solution {
         if (index == arr.length) {
             return;
         }
-        //find the index of the largest greater ele
         int maxIndex = index;
         for (int i = index + 1; i < arr.length; i++) {
             if (arr[i] > arr[index] && arr[i] >= arr[maxIndex]) {
