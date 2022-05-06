@@ -18,7 +18,10 @@ class Solution {
             if (s.isEmpty() || s.equals(".")) {
                 continue;
             } else if (s.equals("..")) {
-                stack.pollFirst();
+                if (!stack.isEmpty()) {
+                    stack.pollFirst();
+                }
+                
             } else {
                 stack.offerFirst(s);
             }
