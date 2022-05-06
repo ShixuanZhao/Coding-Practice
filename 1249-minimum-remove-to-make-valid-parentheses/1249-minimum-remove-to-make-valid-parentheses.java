@@ -5,6 +5,7 @@ class Solution {
     if we meet ), but the open == 0, we do not append this )
     2.traverse the result from 1 backward, remove the extra (
     ()(
+    make diff with 921. Minimum Add to Make Parentheses Valid
     */
     public String minRemoveToMakeValid(String s) {
         int open = 0;
