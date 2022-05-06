@@ -12,7 +12,7 @@ Now consider corner case, az and ba, where az = 0->25 and ba = 0->-1. When it go
         for (String s : strings) {
             //the idea of group all anagrams
             String key = getKey(s);
-            //"abc","bcd","xyz" key:11 11 11
+            //"abc","bcd","xyz" key:1,1   1,1    1,1  as String
             map.putIfAbsent(key, new ArrayList<>());
             map.get(key).add(s);
         }
@@ -31,6 +31,7 @@ Now consider corner case, az and ba, where az = 0->25 and ba = 0->-1. When it go
             }
             sb.append(diff);
             //to diffenriate 1 1 and 11
+            //can not be ignored
             sb.append(",");
         }
         return sb.toString();
