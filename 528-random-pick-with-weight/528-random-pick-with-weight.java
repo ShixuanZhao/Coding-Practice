@@ -18,12 +18,12 @@ class Solution {
         int t = random.nextInt(0, wSum[wSum.length - 1]) + 1;
         int left = 0;
         int right = wSum.length - 1;
-        if (wSum[left] == t) {
-            return left;
-        }
-        if (wSum[right] == t) {
-            return right;
-        }
+        // if (wSum[left] == t) {
+        //     return left;
+        // }
+        // if (wSum[right] == t) {
+        //     return right;
+        // }
         while (left < right - 1) {
             int mid = left + (right - left) / 2;
             if (wSum[mid] == t) {
