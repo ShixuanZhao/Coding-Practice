@@ -14,41 +14,41 @@
  * }
  */
 class Solution {
-    public int kthSmallest(TreeNode root, int k) {
-        //inOrder traverse
-        int[] cnt = new int[1];
-        int[] res = new int[1];
-        helper(root, k, cnt, res);
-        return res[0];
-    }
+//     public int kthSmallest(TreeNode root, int k) {
+//         //inOrder traverse
+//         int[] cnt = new int[1];
+//         int[] res = new int[1];
+//         helper(root, k, cnt, res);
+//         return res[0];
+//     }
     
-    private void helper(TreeNode root, int k, int[] cnt, int[] res) {
-        if (root == null) {
-            return;
-        }
-        helper(root.left, k, cnt, res);
-        cnt[0]++;
-        if (cnt[0] == k) {
-            res[0] = root.val;
-            return;
-        }
-        helper(root.right, k, cnt, res);
-    }
+//     private void helper(TreeNode root, int k, int[] cnt, int[] res) {
+//         if (root == null) {
+//             return;
+//         }
+//         helper(root.left, k, cnt, res);
+//         cnt[0]++;
+//         if (cnt[0] == k) {
+//             res[0] = root.val;
+//             return;
+//         }
+//         helper(root.right, k, cnt, res);
+//     }
     
     //iterative
-    // public int kthSmallest(TreeNode root, int k) {
-    //     Deque<TreeNode> stack = new ArrayDeque<>();
-    //     while (!stack.isEmpty() || root != null) {
-    //         while (root != null) {
-    //             stack.offerFirst(root);
-    //             root = root.left;
-    //         }
-    //         root = stack.pollFirst();
-    //         if (--k == 0) {
-    //             break;
-    //         }
-    //         root = root.right;
-    //     }
-    //     return root.val;
-    // }
+    public int kthSmallest(TreeNode root, int k) {
+        Deque<TreeNode> stack = new ArrayDeque<>();
+        while (!stack.isEmpty() || root != null) {
+            while (root != null) {
+                stack.offerFirst(root);
+                root = root.left;
+            }
+            TreeNode cur = stack.pollFirst();
+            if (--k == 0) {
+                return cur.val;
+            }
+            root = cur.right;
+        }
+        return -1;
+    }
 }
