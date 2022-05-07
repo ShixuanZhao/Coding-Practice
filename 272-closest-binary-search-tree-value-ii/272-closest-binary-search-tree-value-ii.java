@@ -19,6 +19,7 @@ class Solution {
         - -
     */
     public List<Integer> closestKValues(TreeNode root, double target, int k) {
+        //如果用List改成LinkedList， API;removeFirst(), addLast()
         List<Integer> res = new LinkedList<>();
         dfs(root, target, k, res);
         return res;
