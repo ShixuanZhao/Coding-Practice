@@ -14,6 +14,8 @@
  * }
  */
 class Solution {
+//     Traverse binary tree in-order to get sorted array
+// The problem become 108. Convert Sorted Array to Binary Search Tree
     List<TreeNode> sortedArr = new ArrayList<>();
     public TreeNode balanceBST(TreeNode root) {
         inorderTraverse(root);
