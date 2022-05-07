@@ -8,6 +8,7 @@
  * }
  */
 class Solution {
+    //WRONG
 //     public TreeNode inorderSuccessor(TreeNode root, TreeNode p) {
 //         TreeNode[] res = new TreeNode[1];
 //         inOrder(root, p, res);
@@ -26,7 +27,7 @@ class Solution {
 //         inOrder(root.right, p, res);
 //     }
     
-        public TreeNode inorderSuccessor(TreeNode root, TreeNode p) {
+    public TreeNode inorderSuccessor(TreeNode root, TreeNode p) {
         TreeNode[] res = new TreeNode[1];
         int[] cnt = new int[1];
         inOrder(root, p, res, cnt);
@@ -41,10 +42,10 @@ class Solution {
         if (cnt[0] == 0 && root.val > p.val) {
             res[0] = root;
             cnt[0]++;
+            return;
         }
         inOrder(root.right, p, res, cnt);
     }
-    
     //like binary search
 //     public TreeNode inorderSuccessor(TreeNode root, TreeNode p) {
 //     TreeNode succ = null;
