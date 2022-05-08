@@ -30,6 +30,8 @@ class Solution {
             return;
         }
         inOrder(root.left, prev, e1, e2);
+        //6, 3, 4, 5, 2
+// We compare each node with its next one and we can find out that 6 is the first element to swap because 6 > 3 and 2 is the second element to swap because 2 < 5.
         if (root.val < prev[0].val) {
             if (e1[0] == null) {
                 e1[0] = prev[0];
