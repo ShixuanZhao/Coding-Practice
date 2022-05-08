@@ -14,7 +14,7 @@ class Solution {
                 if (d1[0] == d2[0] || d1[1] == d2[1]) {
                     continue;
                 }
-                if (map.get(d1[0]).contains(d2[1]) && map.get(d2[0]).contains(d1[1])) {
+                if (map.get(d1[0]).contains(d2[1]) && map.get(d2[0]).contains(d1[1])) {// find other two points
                     res = Math.min(res, Math.abs(d1[0] - d2[0]) * Math.abs(d1[1] - d2[1]));
                 }
             }
