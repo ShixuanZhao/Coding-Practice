@@ -24,7 +24,7 @@ For the third "A": (N-9) * (9-6)"
 Complexity
 One pass, time complexity O(N).
 Space complexity O(1).
-逆向思维
+逆向思维:寻找每个字母对整体的贡献，对于同一个字母出现在不同的位置，找这些不同位置的左右边界，排列组合left * right
     */
      public int uniqueLetterString(String S) {
          //index[i][0] for char c: the last last orrurence, index[i][1] is the last orrurence
