@@ -27,6 +27,14 @@ And surprisingly the number of sub-arrays with this new element in it is equal t
                 }
                 i++;
             }
+            //the number of subarray
+            /*
+            [1,2,1,2,3] at most 2 ele
+             i
+                 j
+             res:1 + 2 + 3
+             when new ele come, we can form j - i + 1 new subarray(ending at index j)
+            */
             res += j - i + 1;
         }
         return res;
