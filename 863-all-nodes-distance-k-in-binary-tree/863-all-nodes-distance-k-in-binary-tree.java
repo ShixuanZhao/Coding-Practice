@@ -8,62 +8,116 @@
  * }
  */
 class Solution {
+    // public List<Integer> distanceK(TreeNode root, TreeNode target, int k) {
+    //     //BFS建图，从target到他所有上面的node，map储存子节点到父节点的映射
+    //     //从target开始bfs，向上面还有下面
+    //     Map<TreeNode, TreeNode> map = new HashMap<>();
+    //     Queue<TreeNode> queue = new LinkedList<>();
+    //     //一定要去重，因为还有hashmap里面的内容加入queue，画图看看generate rule
+    //     Set<TreeNode> visited = new HashSet<>();
+    //     queue.offer(root);
+    //     List<Integer> res = new LinkedList<>();
+    //     while (!queue.isEmpty()) {
+    //         TreeNode cur = queue.poll();
+    //         if (cur == target) {
+    //             break;
+    //         }
+    //         if (cur.left != null) {
+    //             map.put(cur.left, cur);
+    //             queue.offer(cur.left);
+    //         }
+    //         if (cur.right != null) {
+    //             map.put(cur.right, cur);
+    //             queue.offer(cur.right);
+    //         }
+    //     }
+    //     //second bfs
+    //     queue.clear();
+    //     queue.offer(target);
+    //     visited.add(target);
+    //     //level order
+    //     while (k-- > 0) {
+    //         if (queue.isEmpty()) {
+    //             //return a empty list
+    //             return res;
+    //         }
+    //         int size = queue.size();
+    //         while (size-- > 0) {
+    //             TreeNode cur = queue.poll();
+    //             //generate rule
+    //             if (cur.left != null && visited.add(cur.left)) {
+    //                 queue.offer(cur.left);
+    //             }
+    //             if (cur.right != null && visited.add(cur.right)) {
+    //                 queue.offer(cur.right);
+    //             }
+    //             if (map.get(cur) != null && visited.add(map.get(cur))) {
+    //                 queue.offer(map.get(cur));
+    //             }
+    //         }
+    //     }
+    //     //now, pop the queue
+    //     while (!queue.isEmpty()) {
+    //         res.add(queue.poll().val);
+    //     }
+    //     return res;
+    // }
+    
     public List<Integer> distanceK(TreeNode root, TreeNode target, int k) {
-        //BFS建图，从target到他所有上面的node，map储存子节点到父节点的映射
-        //从target开始bfs，向上面还有下面
-        Map<TreeNode, TreeNode> map = new HashMap<>();
-        Queue<TreeNode> queue = new LinkedList<>();
-        //一定要去重，因为还有hashmap里面的内容加入queue，画图看看generate rule
+        List<Integer> res = new ArrayList<>();
+        if (k == 0) {
+            res.add(target.val);
+            return res;
+        }
+        Map<TreeNode, List<TreeNode>> map = new HashMap<>();
+        preorder(map, root);
+        //System.out.println(map.size());
+        Queue<TreeNode> q = new LinkedList<>();
         Set<TreeNode> visited = new HashSet<>();
-        queue.offer(root);
-        List<Integer> res = new LinkedList<>();
-        while (!queue.isEmpty()) {
-            TreeNode cur = queue.poll();
-            if (cur == target) {
-                break;
-            }
-            if (cur.left != null) {
-                map.put(cur.left, cur);
-                queue.offer(cur.left);
-            }
-            if (cur.right != null) {
-                map.put(cur.right, cur);
-                queue.offer(cur.right);
-            }
-        }
-        //second bfs
-        queue.clear();
-        queue.offer(target);
+        q.add(target);
         visited.add(target);
-        //level order
-        while (k-- > 0) {
-            if (queue.isEmpty()) {
-                //return a empty list
-                return res;
-            }
-            int size = queue.size();
-            while (size-- > 0) {
-                TreeNode cur = queue.poll();
-                //generate rule
-                if (cur.left != null && visited.add(cur.left)) {
-                    queue.offer(cur.left);
-                }
-                if (cur.right != null && visited.add(cur.right)) {
-                    queue.offer(cur.right);
-                }
-                if (map.get(cur) != null && visited.add(map.get(cur))) {
-                    queue.offer(map.get(cur));
+        while (!q.isEmpty()) {
+            int size = q.size();
+            for (int i = 0; i < size; i++) {
+                TreeNode cur = q.poll();
+                for (TreeNode nei : map.getOrDefault(cur, new ArrayList<>())) {
+                    //System.out.println(nei.val);
+                    if (visited.add(nei)) {
+                        q.offer(nei);
+                    }
                 }
             }
-        }
-        //now, pop the queue
-        while (!queue.isEmpty()) {
-            res.add(queue.poll().val);
+            if (--k == 0) {
+                //System.out.println(k);
+                for (TreeNode node : q) {
+                    res.add(node.val);
+                }
+            }
         }
         return res;
     }
     
-    
+    private void preorder(Map<TreeNode, List<TreeNode>> map, TreeNode root) {
+        if (root == null) {
+            return;
+        }
+        //construct a undirected graph
+        if (root.left != null) {
+            map.putIfAbsent(root, new ArrayList<>());
+            map.putIfAbsent(root.left, new ArrayList<>());
+            map.get(root).add(root.left);
+            map.get(root.left).add(root);
+        }
+        if (root.right != null) {
+            map.putIfAbsent(root, new ArrayList<>());
+            map.putIfAbsent(root.right, new ArrayList<>());
+            map.get(root).add(root.right);
+            map.get(root.right).add(root);
+        }
+        
+        preorder(map, root.left);
+        preorder(map, root.right);
+    }
     
     
     
