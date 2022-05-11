@@ -23,7 +23,6 @@ int[][] moves = { {1}, {0, 2}, {0, 1, 3, 4}, {2, 4}, { 0 } };
             next[4] = (M[2] + M[3]) % mod;
             M = next;
         }
-        // return (int)(M[0] + M[1] + M[2] + M[3] + M[4]) % mod;
         long answer = 0;
         for (int i=0; i<5; i++) {
             answer = (answer + M[i]) % mod;
