@@ -9,6 +9,7 @@ class Solution {
     The idea here is to accumulate combinations that ends with a particular letter
     It sounds very similar to 935. Knight Dialer
 int[][] moves = { {1}, {0, 2}, {0, 1, 3, 4}, {2, 4}, { 0 } };
+顺序型dp
     */
     public int countVowelPermutation(int n) {
         int mod = 1000000007;
