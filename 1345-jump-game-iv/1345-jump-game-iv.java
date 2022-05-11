@@ -34,6 +34,7 @@ class Solution {
                         q.offer(cur);
                     }
                 }
+                //it is important, eg:777777777712, we have duplicate 7
                 next.clear();
             }
             step++;
