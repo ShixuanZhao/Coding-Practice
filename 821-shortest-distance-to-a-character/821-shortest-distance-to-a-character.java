@@ -16,7 +16,9 @@ class Solution {
             res[i] = i - pos;
         }
         //backward
-        //index of last seen position on the left side
+        //index of last seen position on the right side
+        //because initial pos would be the last occurence position
+        //we can traverse from pos - 1, pos would be the last seen occurence of char on its right
         for (int i = pos - 1; i >= 0; i--) {
             if (s.charAt(i) == c) {
                 pos = i;
