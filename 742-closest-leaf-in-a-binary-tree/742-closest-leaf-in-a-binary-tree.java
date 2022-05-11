@@ -14,6 +14,14 @@
  * }
  */
 class Solution {
+    /*
+    It sounds like a graph rather than a tree for we can go parent-ward to look for leaves.
+So we have to point child to its parent as well, which is done by childToParent map.
+
+Now the problem becomes to find the shortest path from targetNode to any leaf, which can be solved by BFS, where the start is targetNode, the end is the first leaf node.
+
+Please note that we locate targetNode in buildParentMap.
+    */
        private static TreeNode targetNode;
     private static int k;
     
