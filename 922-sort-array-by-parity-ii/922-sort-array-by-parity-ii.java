@@ -4,6 +4,7 @@ class Solution {
     [4,5,2,7]
              e
               o
+              two pointers
     */
     public int[] sortArrayByParityII(int[] nums) {
         int even = 0;
