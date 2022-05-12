@@ -25,8 +25,6 @@ class Solution {
         if (root == null) {
             return root;
         }
-        TreeNode l = dfs(root.left, val, depth, curDepth + 1);
-        TreeNode r = dfs(root.right, val, depth, curDepth + 1);
         if (depth == 1) {
             TreeNode newRoot = new TreeNode(val);
             newRoot.left = root;
@@ -41,8 +39,8 @@ class Solution {
             root.right = right;
             return root;
         }
-        root.left = l;
-        root.right = r;
+        root.left = dfs(root.left, val, depth, curDepth + 1);
+        root.right = dfs(root.right, val, depth, curDepth + 1);
         return root;
     }
 }
