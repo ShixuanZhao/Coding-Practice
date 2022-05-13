@@ -5,6 +5,17 @@ class Solution {
             = M[i][j - 1]  ...
             else false
     */
+    /*
+        2个string的2维dp的母题都是edit distance
+        M[i]: whether isInterleave from index 0 to index i(including index i)
+        s1 = "() aabcc",
+        
+        s2 = "()dbbca",
+        
+        s3 = "()aadbbcbcac"
+              
+        M[i][j] = true is s1[0.. i - 1] and s2[0 .. j - 1] interleave s3[0 .. i + j - 1]
+    */
     public boolean isInterleave(String s1, String s2, String s3) {
         int m = s1.length();
         int n = s2.length();
