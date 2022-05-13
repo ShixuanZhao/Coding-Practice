@@ -30,6 +30,7 @@ class Solution {
         }
         for (int i = 1; i <= m; i++) {
             for (int j = 1; j <= n; j++) {
+                //the logic is false, we can choose either match s1 or s2
                 // if (s1.charAt(i - 1) == s3.charAt(i + j - 1)) {
                 //     M[i][j] = M[i - 1][j];
                 // } else if (s2.charAt(j - 1) == s3.charAt(i + j - 1)) {
@@ -40,8 +41,6 @@ class Solution {
                 int c1 = s1.charAt(i - 1);
                 int c2 = s2.charAt(j - 1);
                 int c3 = s3.charAt(i + j - 1);
-                // If c3 matches c1, then is every char before c1 in s1 valid?
-                // If c3 matches c2, then is every char before c2 in s2 valid?
                 M[i][j] = (c1 == c3 && M[i - 1][j]) || (c2 == c3 && M[i][j - 1]);
             }
         }
