@@ -1,4 +1,5 @@
 class Solution {
+    //DP
     public int maximalRectangle(char[][] matrix) {
         // 1 0 0      1 0 0
         // 1 1 1  ->  2 1 1   height matrix
@@ -47,4 +48,48 @@ class Solution {
         }
         return res;
     }
+    
+    // public int maximalRectangle(char[][] matrix) {
+        //利用84的解法，对于每一行调用一次
+    //     int row = matrix.length;
+    //     if (row == 0) {
+    //         return 0;
+    //     }
+    //     int col = matrix[0].length;
+    //     int res = 0;
+    //     int[] heights = new int[col];
+    //     for (int i = 0; i < row; i++) {
+    //         for (int j = 0; j < col; j++) {
+    //             if (matrix[i][j] == '1') {
+    //                 heights[j] += 1;
+    //             } else {
+    //                 heights[j] = 0;
+    //             }
+    //         }
+    //         res = Math.max(largestRectangleArea(heights), res);
+    //     }
+    //     return res;
+    // }
+
+    // private int largestRectangleArea(int[] heights) {
+    //     int result = 0;
+    //     //we store the index in the stack
+    //     Deque<Integer> stack = new ArrayDeque<>();
+    //     //人为的在最后设置一个高度为0的矩形，为了能弹出stack中所有元素
+    //     for (int i = 0; i <= heights.length; i++) {
+    //         int cur = i == heights.length ? 0 : heights[i];
+    //         //当cur <= stack顶元素，右边界可以确定，更新res；
+    //         //注意是while循环,对stack操作注意stack不是空
+    //         //注意=也可以
+    //         while (!stack.isEmpty() && cur <= heights[stack.peekFirst()]) {
+    //             int height = heights[stack.pollFirst()];
+    //             //corner case:第一个元素
+    //             int left = stack.isEmpty() ? 0 : stack.peekFirst() + 1;
+    //             //右边界就是i, [)
+    //             result = Math.max(result, (i - left) * height);
+    //         }
+    //         //!!!!do not forget
+    //         stack.offerFirst(i);
+    //     }
+    //     return result;
 }
