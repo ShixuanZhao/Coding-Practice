@@ -11,6 +11,7 @@
 class Solution {
     public ListNode plusOne(ListNode head) {
         head = reverse(head);
+        //use dummy node to avoid the corner case of onlt one node
         ListNode dummy = new ListNode(0);
         dummy.next = head;
         ListNode x = dummy;
