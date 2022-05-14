@@ -10,38 +10,25 @@
  */
 class Solution {
     public ListNode plusOne(ListNode head) {
-        if (head == null) {
-            return null;
-        }
-        ListNode tail = reverse(head);
-        //System.out.println(tail.val);
-        //ListNode dummy = new ListNode(0);
-        ListNode cur = tail;
-        //dummy.next = tail;
+        head = reverse(head);
+        ListNode dummy = new ListNode(0);
+        dummy.next = head;
+        ListNode x = dummy;
         int carry = 1;
-        while (carry > 0 || cur != null) {
-            if (cur.next != null) {
-                if (cur.val != 9) {
-                    cur.val = cur.val + 1;    
-                    break;
-                } else {
-                    cur.val = 0;
-                    carry = 1;
-                }
-                cur = cur.next;
-            } else {
-                if (cur.val != 9) {
-                    cur.val = cur.val + 1;    
-                    break;
-                } else {
-                    cur.val = 0;
-                    ListNode newNode = new ListNode(carry);
-                    cur.next = newNode;
-                    break;
-                }
+        while (carry > 0 || x.next != null) {
+            if (x.next != null) {
+                x = x.next;
+                carry += x.val;
+                x.val = carry % 10;
+                carry /= 10;
+            }
+            else {
+                x.next = new ListNode(carry);
+                x = x.next;
+                carry = 0;
             }
         }
-        return reverse(tail);
+        return reverse(dummy.next);
     }
     
     private ListNode reverse(ListNode head) {
