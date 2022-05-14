@@ -14,7 +14,10 @@
  * }
  */
 class Solution {
-    //信息传递
+    //信息传递 这个题目结合了
+// backtracking 来统计深度
+// pure recursion 只选择最深的node
+//O(n)统计深度自上而下，最深深度统计后结果自下而上做选择
     public TreeNode lcaDeepestLeaves(TreeNode root) {
         return dfs(root, 0).node;
     }
