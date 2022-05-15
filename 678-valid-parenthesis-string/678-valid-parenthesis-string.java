@@ -33,25 +33,31 @@ class Solution {
 //         return cnt == 0;
 //     }
     
+    //best solution:counting
     public boolean checkValidString(String s) {
-        int cmin = 0, cmax = 0; // open parentheses count in range [cmin, cmax]
+        int cmin = 0;
+        int cmax = 0;
         for (char c : s.toCharArray()) {
             if (c == '(') {
-                cmax++;
                 cmin++;
+                cmax++;
             } else if (c == ')') {
-                cmax--;
                 cmin--;
-            } else if (c == '*') {
-                cmax++; // if `*` become `(` then openCount++
-                cmin--; // if `*` become `)` then openCount--
-                // if `*` become `` then nothing happens
-                // So openCount will be in new range [cmin-1, cmax+1]
+                cmax--;
+            } else {
+                //c == '*'
+                cmax++;
+                cmin--;
             }
-            if (cmax < 0) return false; // Currently, don't have enough open parentheses to match close parentheses-> Invalid
-                                        // For example: ())(
-            cmin = Math.max(cmin, 0);   // It's invalid if open parentheses count < 0 that's why cmin can't be negative
+            //too many )
+            if (cmax < 0) {
+                return false;
+            }
+            //can choose to * to empty
+            if (cmin < 0) {
+                cmin = 0;
+            }
         }
-        return cmin == 0; // Return true if can found `openCount == 0` in range [cmin, cmax]
+        return cmin == 0;
     }
 }
