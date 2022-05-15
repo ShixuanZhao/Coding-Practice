@@ -79,6 +79,8 @@ for the bottom elements and the following pops.
 
 class CustomStack {
     int n;
+    //when the ele is poped,we do increment
+    //inc[i]; index i ele should be added inc[i] when it is poped
     int[] inc;
     Stack<Integer> stack;
     public CustomStack(int maxSize) {
@@ -97,6 +99,7 @@ class CustomStack {
         if (i < 0)
             return -1;
         if (i > 0)
+            //update i - 1 position 
             inc[i - 1] += inc[i];
         int res = stack.pop() + inc[i];
         inc[i] = 0;
@@ -106,6 +109,7 @@ class CustomStack {
     public void increment(int k, int val) {
         int i = Math.min(k, stack.size()) - 1;
         if (i >= 0)
+            //just mark in inc 
             inc[i] += val;
     }
 }
