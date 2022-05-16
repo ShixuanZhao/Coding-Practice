@@ -36,6 +36,7 @@ class Solution {
                     M[i][j] = M[i - 1][j];
                 } else {
                     //M[i][j - coins[i - 1]]用第i个coin
+                    //not M[i - 1][j - coins[i - 1]] because you have an infinite number of each kind of coin.
                     M[i][j] = M[i - 1][j] + M[i][j - coins[i - 1]];
                 }
             }
