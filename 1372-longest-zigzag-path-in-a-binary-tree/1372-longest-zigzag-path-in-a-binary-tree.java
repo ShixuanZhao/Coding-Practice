@@ -21,6 +21,7 @@ class Solution {
     }
     
     //root the num of node either go left or go right
+    //res[0]:from root go left child res[1]:from root go right child
     private int[] dfs(TreeNode root) {
         if (root == null) {
             return new int[] {0, 0};
