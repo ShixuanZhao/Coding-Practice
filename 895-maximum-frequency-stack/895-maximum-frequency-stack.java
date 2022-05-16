@@ -1,16 +1,5 @@
 class FreqStack {
-    /*
-    5 7 5 4 
-    pop:5 7
-    
-Hash map freq will count the frequence of elements.
-Hash map m is a map of stack.
-If element x has n frequence, we will push x n times in m[1], m[2] .. m[n]
-maxfreq records the maximum frequence.
-    */
-    //<ele, freq>
     Map<Integer, Integer> freq;
-    //<freq, all ele have this freq>
     Map<Integer, Deque<Integer>> map;
     int maxFreq;
     public FreqStack() {
