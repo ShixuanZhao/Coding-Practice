@@ -17,5 +17,6 @@ class Solution {
         }
         return M[amount] == Integer.MAX_VALUE ? -1 : M[amount];
     }
-
+    //M2:无限背包，int[coins.length + 1][amount + 1]
+    //j是空间容量,if j is valid M[i][j] = Math.min(M[i - 1][j], M[i][j - coins[i - 1]] + 1)
 }
