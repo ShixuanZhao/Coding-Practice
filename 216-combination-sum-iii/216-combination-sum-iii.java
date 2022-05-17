@@ -1,20 +1,22 @@
 class Solution {
-     public List<List<Integer>> combinationSum3(int k, int n) {
-    List<List<Integer>> ans = new ArrayList<>();
-    combination(ans, new ArrayList<Integer>(), k, 1, n);
-    return ans;
-}
-
-private void combination(List<List<Integer>> ans, List<Integer> comb, int k,  int start, int n) {
-	if (comb.size() == k && n == 0) {
-		List<Integer> li = new ArrayList<Integer>(comb);
-		ans.add(li);
-		return;
-	}
-	for (int i = start; i <= 9; i++) {
-		comb.add(i);
-		combination(ans, comb, k, i+1, n-i);
-		comb.remove(comb.size() - 1);
-	}
-}
+    public List<List<Integer>> combinationSum3(int k, int n) {
+        List<List<Integer>> res = new ArrayList<>();
+        List<Integer> cur = new ArrayList<>();
+        dfs(res, cur, k, n, 1, 0);
+        return res;
+    }
+    
+    private void dfs(List<List<Integer>> res, List<Integer> cur, int k, int n, int start, int sum) {
+        if (cur.size() == k) {
+            if (sum == n) {
+                res.add(new ArrayList<>(cur));
+            }
+            return;
+        }
+        for (int i = start; i <= 9; i++) {
+            cur.add(i);
+            dfs(res, cur, k, n, i + 1, sum + i);
+            cur.remove(cur.size() - 1);
+        }
+    }
 }
