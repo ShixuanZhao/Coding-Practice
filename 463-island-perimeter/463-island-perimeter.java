@@ -17,6 +17,7 @@ class Solution {
         if (i < 0 || i >= m || j < 0 || j >= n || grid[i][j] == 0) {
             return 1;
         }
+        //this is important to avoid duplicate border
         if (visited[i][j]) {
             return 0;
         }
