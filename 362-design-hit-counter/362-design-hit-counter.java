@@ -1,21 +1,19 @@
 class HitCounter {
-    //record the most recent record 300 timestamp,最近300个timestamp
-    //rolling array
+    //record the timestamp
     int[] time;
-    //the most recent 300 hit responding to time[]
-    int[] hit;
+    int[] cnt;
     public HitCounter() {
         time = new int[300];
-        hit = new int[300];
+        cnt = new int[300];
     }
     
     public void hit(int timestamp) {
         int index = timestamp % 300;
-        if (time[index] != timestamp) {
+        if (timestamp != time[index]) {
             time[index] = timestamp;
-            hit[index] = 1;
+            cnt[index] = 1;
         } else {
-            hit[index]++;
+            cnt[index]++;
         }
     }
     
@@ -23,7 +21,7 @@ class HitCounter {
         int res = 0;
         for (int i = 0; i < 300; i++) {
             if (timestamp - time[i] < 300) {
-                res += hit[i];
+                res += cnt[i];
             }
         }
         return res;
