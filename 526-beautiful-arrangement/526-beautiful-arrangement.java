@@ -40,6 +40,7 @@ class Solution {
             res++;
             return;
         }
+        //premutation: swap-swap
         for (int i = index; i < arr.length; i++) {
             swap(arr, index, i);
             if (arr[index] % index == 0 || index % arr[index] == 0) {
