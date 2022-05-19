@@ -17,6 +17,9 @@ class Solution {
             while (odd < n && nums[odd] % 2 == 1) {
                 odd += 2;
             }
+            if (odd >= n || even >= n) {
+                break;
+            }
             if (odd < n && even < n) {
                 //swap
                 int temp = nums[even];
