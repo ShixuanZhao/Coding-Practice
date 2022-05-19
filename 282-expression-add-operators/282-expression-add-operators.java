@@ -40,6 +40,13 @@ for example, if you have a sequence of 12345 and you have proceeded to 1 + 2 + 3
                 sb.setLength(len);
                 dfs(num, target, sb.append("-").append(cur), i + 1, prevRes - cur, -cur, res);
                 sb.setLength(len);
+                /*
+                1 + 2  *  3
+                    prev  cur
+                1 + 2 = 3
+                3 - 2 + 2 * 3 = 7 
+            prevRes
+                */
                 dfs(num, target, sb.append("*").append(cur), i + 1, prevRes - prevNum + cur * prevNum, cur * prevNum, res);
                 sb.setLength(len);
             }
