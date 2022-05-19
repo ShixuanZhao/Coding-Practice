@@ -92,24 +92,49 @@ class Solution {
     //     return res;
     // }
     
+    // public int[] maxSlidingWindow(int[] nums, int k) {
+    //     //Pair[0] is the index, Pair[1] is the val
+    //     PriorityQueue<int[]> maxHeap = new PriorityQueue<>((a, b) -> (b[1] - a[1]));
+    //     int n = nums.length;
+    //     int[] res = new int[n - k + 1];
+    //     //fisrt put k - 1 number of ele
+    //     for (int i = 0; i < k - 1; i++) {
+    //         maxHeap.offer(new int[] {i, nums[i]});
+    //     }
+    //     int index = 0;
+    //     for (int i = k - 1; i < n; i++) {
+    //         maxHeap.offer(new int[] {i, nums[i]});
+    //         //clever technique to lazy remove elements outside of the window
+    //         while (!maxHeap.isEmpty() && maxHeap.peek()[0] < i - k + 1) {
+    //             maxHeap.poll();
+    //         }
+    //         res[index++] = maxHeap.peek()[1];
+    //     }
+    //     return res;
+    // }
+    
+    //maintain a descreasing queue
     public int[] maxSlidingWindow(int[] nums, int k) {
-        //Pair[0] is the index, Pair[1] is the val
-        PriorityQueue<int[]> maxHeap = new PriorityQueue<>((a, b) -> (b[1] - a[1]));
+        if (nums == null || k <= 0) {
+			return new int[0];
+		}
+        //store the index
+        Deque<Integer> q = new ArrayDeque<>();
         int n = nums.length;
-        int[] res = new int[n - k + 1];
-        //fisrt put k - 1 number of ele
-        for (int i = 0; i < k - 1; i++) {
-            maxHeap.offer(new int[] {i, nums[i]});
-        }
         int index = 0;
-        for (int i = k - 1; i < n; i++) {
-            maxHeap.offer(new int[] {i, nums[i]});
-            //clever technique to lazy remove elements outside of the window
-            while (!maxHeap.isEmpty() && maxHeap.peek()[0] < i - k + 1) {
-                maxHeap.poll();
+        int[] res = new int[n - k + 1];
+        for (int i = 0; i < n; i++) {
+            while (!q.isEmpty() && q.peekFirst() < i - k + 1) {
+                q.pollFirst();
             }
-            res[index++] = maxHeap.peek()[1];
-        }
+            while (!q.isEmpty() && nums[i] > nums[q.peekLast()]) {
+                q.pollLast();
+            }
+            q.offerLast(i);
+            if (i >= k - 1) {
+                res[index++] = nums[q.peekFirst()];
+            }
+        } 
         return res;
     }
 }
