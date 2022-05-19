@@ -9,6 +9,7 @@ class Solution {
             //case1:a is the most number and it is not continuous
             //case2,3:'b'/'c' is continuous
             //(a >= b && a >= c && A != 2) || (B == 2 && a > 0 && a >= c) || (C == 2 && a > 0 && a >= b)
+            //this condition would be more reasonable
             if ((a >= b && a >= c && A != 2) || (B == 2 && a > 0 && a >= c) || (C == 2 && a > 0 && a >= b))  {
                 sb.append("a");
                 a--;
