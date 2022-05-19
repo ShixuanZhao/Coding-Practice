@@ -1,4 +1,12 @@
 class SparseVector {
+    /*
+    brute force:TC: O(N) SC : O(1)  n == nums1.length == nums2.length
+    hashmap to store the non-zero index and val:
+    TC: O(n) for creating the Hash Map; O(L) for calculating the dot product.
+    SC :O(L) for creating the Hash Map L is the num of non-zero ele
+    
+    */
+    
     //use a HashMap to record the ele that is not zero
     //key is index, val is val
 //     Map<Integer, Integer> map;
@@ -29,6 +37,8 @@ class SparseVector {
 //         }
 //         return res;
 //     }
+    
+    //Value Pair Indexing
     class Pair {
         int key;
         int val;
