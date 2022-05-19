@@ -5,17 +5,19 @@ class Solution {
         Deque<Integer> mind = new ArrayDeque<>();
         //sliding window, i is slow, j is the fast
         int i = 0, j;
+        int res = 1;
         for (j = 0; j < nums.length; ++j) {
             while (!maxd.isEmpty() && nums[j] > maxd.peekLast()) maxd.pollLast();
             while (!mind.isEmpty() && nums[j] < mind.peekLast()) mind.pollLast();
             maxd.add(nums[j]);
             mind.add(nums[j]);
-            if (maxd.peek() - mind.peek() > limit) {
+            while (maxd.peek() - mind.peek() > limit) {
                 if (maxd.peek() == nums[i]) maxd.poll();
                 if (mind.peek() == nums[i]) mind.poll();
                 ++i;
             }
+            res = Math.max(res, j - i + 1);
         }
-        return j - i;
+        return res;
     }
 }
