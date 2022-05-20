@@ -34,25 +34,25 @@ public class Codec {
         if (val[0].equals("X")) {
             return null;
         }
+        //must put TreeNode in q, not the string
         Queue<TreeNode> q = new LinkedList<>();
         TreeNode root = new TreeNode(Integer.valueOf(val[0]));
         q.offer(root);
-        int index = 1;
-        while (index < val.length) {
+        int i = 1;
+        while (i < val.length) {
             TreeNode cur = q.poll();
-            //ignore the null
-            if (!val[index].equals("X")) {
-                TreeNode left = new TreeNode(Integer.valueOf(val[index]));
+            if (!val[i].equals("X")) {
+                TreeNode left = new TreeNode(Integer.valueOf(val[i]));
                 cur.left = left;
                 q.offer(left);
             }
-            index++;
-            if (!val[index].equals("X")) {
-                TreeNode right = new TreeNode(Integer.valueOf(val[index]));
+            i++;
+            if (!val[i].equals("X")) {
+                TreeNode right = new TreeNode(Integer.valueOf(val[i]));
                 cur.right = right;
                 q.offer(right);
             }
-            index++;
+            i++;
         }
         return root;
     }
