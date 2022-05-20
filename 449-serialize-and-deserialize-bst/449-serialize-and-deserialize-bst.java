@@ -18,6 +18,8 @@ public class Codec {
             return "";
         }
         String res = String.valueOf(root.val);
+        //must check for not the leaf node
+        //if the leaf node, we do not need to add ',' we just return 
         if (root.left != null) {
             res += "," + serialize(root.left);
         }
@@ -25,7 +27,6 @@ public class Codec {
             res += "," + serialize(root.right);
         }
         return res;
-        //return res + "," + serialize(root.left) + "," + serialize(root.right);
     }
 
     // Decodes your encoded data to tree.
