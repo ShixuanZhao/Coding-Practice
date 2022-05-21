@@ -14,15 +14,12 @@
  * }
  */
 class Solution {
+    //找左右边界，缩小范围。遇到这种（）嵌套的，都是recursion
     public TreeNode str2tree(String s) {
         System.out.println(s);
         if (s == null || s.length() == 0) {
             return null;
         }
-        //base case:only one number (5) leaf node
-        // if (s.charAt(0) == '(' && s.charAt(s.length() - 1) == ')') {
-        //     s = s.substring
-        // }
         //find the root
         TreeNode root = null;
         int index = s.indexOf("(");
@@ -48,6 +45,7 @@ class Solution {
             }
         }
         root.left = str2tree(s.substring(left_bound + 1, i));
+        //！may be there is no ")"
         if (i != s.length() - 1) {
             root.right = str2tree(s.substring(i + 2, s.length() - 1));
         }
