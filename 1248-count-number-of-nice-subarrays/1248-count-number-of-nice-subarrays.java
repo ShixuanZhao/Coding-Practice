@@ -6,11 +6,21 @@ class Solution {
     
     //the number of subarray which has at most k odd num
     public int atMost(int[] A, int k) {
-        int res = 0, i = 0, n = A.length;
+        int res = 0;
+        int n = A.length;
+        int odd = 0;
+        int i = 0;
         for (int j = 0; j < n; j++) {
-            k -= A[j] % 2;
-            while (k < 0)
-                k += A[i++] % 2;
+            if (A[j] % 2 == 1) {
+                odd++;
+            }
+            while (odd > k) {
+                if (A[i] % 2 == 1) {
+                    odd--;
+                }
+                i++;
+            }
+            //length of window
             res += j - i + 1;
         }
         return res;
