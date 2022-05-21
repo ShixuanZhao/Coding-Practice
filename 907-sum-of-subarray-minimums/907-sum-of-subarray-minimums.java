@@ -3,36 +3,43 @@ class Solution {
     // res = sum(A[i] * f(i))
     // where f(i) is the number of subarrays,
     // in which A[i] is the minimum.
+    /*
+     0 1 2 3 4  
+    [3,1,2,4]
+        ik   j
+        [2] [2 4]
+        (k - i) * (j - k) = 1 * 2 = 2
+        看每个ele对于整体sum的贡献，就是以每个ele为中心找到prev lesser和next lesser就找到了左右边界
+        （i..ele...j）not including，然后做排列组合
+        [71,55,82,55]
+        left: [-1, -1, 1, 1]
+    */
     public int sumSubarrayMins(int[] arr) {
         int mod = (int) Math.pow(10, 9) + 7;
         int n = arr.length;
-        long res = 0;
+        //prev lesser
         int[] left = new int[n];
         int[] right = new int[n];
-        //right lesser and left lesser
-        //right[i] = j means arr[j] is the next less element of arr[i]
-        //left[i]: PLE(previous less element)
-        Arrays.fill(right, n);
+        //do not forget to initialize the left[] and right[]
         Arrays.fill(left, -1);
+        Arrays.fill(right, n);
+        //store the index
         Deque<Integer> stack = new ArrayDeque<>();
-        //right[i], keep a ascending stack
-        for (int i = 0; i < n; i++) {
-            while (!stack.isEmpty() && arr[i] < arr[stack.peekFirst()]) {
-                right[stack.pollFirst()] = i;
-            }
-            stack.offerFirst(i);
-        }
-        stack.clear();
-        //left[i], from right to left, keep an ascending stack
-        //in case of duplicated num, we keep strict less when finding left[i]
-        //1在6个subarr中都是最小，6 = 2*3
         for (int i = n - 1; i >= 0; i--) {
-            while (!stack.isEmpty() && arr[i] <= arr[stack.peekFirst()]) {
+            //there can be duplicate number, so = is ok
+            while (!stack.isEmpty() && arr[stack.peekFirst()] >= arr[i]) {
                 left[stack.pollFirst()] = i;
             }
             stack.offerFirst(i);
         }
-        //求出所有以i为min的subarray的sum，i向左右扩散
+        stack.clear();
+        for (int i = 0; i < n; i++) {
+            while (!stack.isEmpty() && arr[stack.peekFirst()] > arr[i]) {
+                right[stack.pollFirst()] = i;
+            }
+            stack.offerFirst(i);
+        }
+        long res = 0;
         for (int i = 0; i < n; i++) {
             res = (res + (long)arr[i] * (i - left[i]) * (right[i] - i)) % mod;
         }
