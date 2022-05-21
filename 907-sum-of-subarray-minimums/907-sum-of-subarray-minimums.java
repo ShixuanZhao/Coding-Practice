@@ -13,6 +13,14 @@ class Solution {
         （i..ele...j）not including，然后做排列组合
         [71,55,82,55]
         left: [-1, -1, 1, 1]
+              
+              0  1   2  3
+             [71,55,82,55]
+        left  -1 -1 1  1
+        right  1  3 3 4
+        res = 71 + 4 * 55 + 82 + 2 * 55 = 483 but the right ans is 593
+        because the first 55 the right bound should be 4 not 3
+        so when we build left[] and right[], we should let one strictly >=, the another one should be <
     */
     public int sumSubarrayMins(int[] arr) {
         int mod = (int) Math.pow(10, 9) + 7;
@@ -34,6 +42,8 @@ class Solution {
         }
         stack.clear();
         for (int i = 0; i < n; i++) {
+            //if when we build left making >=, this round must >, otherwise there would be duplicate subarray
+            //like two [71,55,82,55]
             while (!stack.isEmpty() && arr[stack.peekFirst()] > arr[i]) {
                 right[stack.pollFirst()] = i;
             }
