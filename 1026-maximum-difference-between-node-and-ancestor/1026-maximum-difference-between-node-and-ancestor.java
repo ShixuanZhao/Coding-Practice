@@ -42,10 +42,23 @@ class Solution {
         return maxAncestorDiff(root, Integer.MAX_VALUE, Integer.MIN_VALUE);
     }
 
+    //draw recursion tree
+    /*
+          8(min:8, max:8)
+    3(3, 8)       10(8, 10)
+    / \              \
+ 1(7)     6(3, 8) (return 5)
+     /  \
+     4    7
+     |
+     null(return:8 - 3 = 5)
+     节点1返回7，节点三 compare 7 and 5 所以返回7 
+    */
     private int maxAncestorDiff(TreeNode root, int min, int max) {
         if (root == null) {
             return max - min;
         }
+        //update min and max up to down直上直下的一条path
         min = Math.min(min, root.val);
         max = Math.max(max, root.val);
         int left = maxAncestorDiff(root.left, min, max);
