@@ -15,12 +15,14 @@ class Solution {
         int res = 0;
         //because we need unique pair, so we need to iterate hashmap
         for (int num : map.keySet()) {
-            //if k == 0, we need to chech the freq must >=2
+            //if k == 0, we need to check the freq must >=2
+            //this is the reason why we must use hashmap instead of hashset
             if (k == 0) {
                 if (map.get(num) >= 2) {
                     res++;
                 }
             } else {
+                //search only in one direction
                 if (map.containsKey(num + k)) {
                     res++;
                 }
