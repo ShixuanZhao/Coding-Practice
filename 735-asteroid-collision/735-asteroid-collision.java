@@ -1,5 +1,8 @@
 class Solution {
     /*
+    //     overall, there are totally 4 scenarios will happen: 1.+ + 2.- - 3.+ - 4.- +
+// when collision happens: only 3 which is + -
+// use a stack to keep track of the previous and compare current value with previous ones
     stack:5 10
     if positive, push into stack
     if negative, case by case
@@ -13,6 +16,7 @@ class Solution {
             if (cur > 0) {
                 stack.offerFirst(cur);
             } else {
+                // destroy the previous positive one(s) repeatedly
                 while (!stack.isEmpty() && stack.peekFirst() > 0 && -cur > stack.peekFirst()) {
                     stack.pollFirst();
                 }
