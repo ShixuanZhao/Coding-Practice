@@ -1,6 +1,7 @@
 class Solution {
     /*
     corner case: k == 0
+    [3,1,4,1,5]
     freqMap  key: 3 1 4 5
              val: 1 2 1 1
     */
@@ -11,22 +12,20 @@ class Solution {
         for (int i : nums) {
             map.put(i, map.getOrDefault(i, 0) + 1);
         }
-        
-        for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
+        int res = 0;
+        //because we need unique pair, so we need to iterate hashmap
+        for (int num : map.keySet()) {
+            //if k == 0, we need to chech the freq must >=2
             if (k == 0) {
-                //count how many elements in the array that appear more than twice.
-                //this is the reason why we must use hashmap instead of hashset
-                if (entry.getValue() >= 2) {
-                    count++;
-                } 
+                if (map.get(num) >= 2) {
+                    res++;
+                }
             } else {
-                //search only in one direction
-                if (map.containsKey(entry.getKey() + k)) {
-                    count++;
+                if (map.containsKey(num + k)) {
+                    res++;
                 }
             }
         }
-        
-        return count;
+        return res;
     }
 }
