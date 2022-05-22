@@ -20,6 +20,7 @@ class Solution {
         return res;
     }
     
+    //the longest path that must through root
     private int helper(TreeNode root) {
         if (root == null) {
             return 0;
