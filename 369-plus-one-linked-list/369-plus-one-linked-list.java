@@ -48,28 +48,63 @@ class Solution {
 //     }
     
     //recursion
+//     public ListNode plusOne(ListNode head) {
+//         if (head == null) {
+//             return null;
+//         }
+//         if (addWithCarry(head) == 0) {
+//             return head;
+//         } else {
+//             ListNode newNode = new ListNode(1);
+//             newNode.next = head;
+//             return newNode;
+//         }
+//     }
+    
+//     ////adding one from tail and return the carry on the head
+//     private int addWithCarry(ListNode head) {
+//         if (head == null) {
+//             return 1;
+//         }
+//         int res = head.val + addWithCarry(head.next);
+//         head.val = res % 10;
+//         return res / 10;
+//     }
+    
+    //set a global carry
+    int carry = 0;
     public ListNode plusOne(ListNode head) {
+        ListNode head1 = helper(head);
+        if (carry == 1) {
+            ListNode newNode = new ListNode(1);
+            newNode.next = head1;
+            return newNode;
+        } else {
+            return head1;
+        }
+    }
+    
+    private ListNode helper(ListNode head) {
         if (head == null) {
             return null;
         }
-        if (addWithCarry(head) == 0) {
+        if (head.next == null) {
+            head.val += 1;
+            if (head.val == 10) {
+                head.val = 0;
+                carry = 1;
+            }
             return head;
-        } else {
-            ListNode newNode = new ListNode(1);
-            newNode.next = head;
-            return newNode;
         }
-    }
-    
-    private int addWithCarry(ListNode head) {
-        if (head == null) {
-            return 1;
+        head.next = helper(head.next);
+        if (carry == 1) {
+            head.val++;
+            carry = 0;
         }
-        int res = head.val + addWithCarry(head.next);
-        head.val = res % 10;
-        return res / 10;
-            
+        if (head.val == 10) {
+            head.val = 0;
+            carry = 1;
+        }
+        return head;
     }
-    
-    
 }
