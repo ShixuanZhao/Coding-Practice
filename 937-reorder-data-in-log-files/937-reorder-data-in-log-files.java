@@ -3,6 +3,7 @@ class Solution {
         Arrays.sort(logs, (a, b) -> {
            //make sure the type, letter or digit
             //a[0] is the type, and a[1] is the content
+            //2 is the size
             String[] a1 = a.split(" ", 2);
             String[] b1 = b.split(" ", 2);
             boolean isDigit1 = Character.isDigit(a1[1].charAt(0));
