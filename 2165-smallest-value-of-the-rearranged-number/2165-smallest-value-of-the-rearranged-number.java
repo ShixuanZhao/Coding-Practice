@@ -25,6 +25,7 @@ Swap it with the first number (e.g. 200037)
             while (i < c.length && c[i] == '0') {
                 i++;
             }
+            //if not negative we need to find out the first non-leading zero then swap with first zero
             char temp = c[0];
             c[0] = c[i];
             c[i] = temp;
