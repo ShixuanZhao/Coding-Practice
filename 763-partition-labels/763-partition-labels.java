@@ -20,16 +20,18 @@ first build lastIndex arr
             return res;
         }
         //record the last occurence position for each letter
-       int[] last = new int[26];
-        for (int i = 0; i < s.length(); i++) {
-            last[s.charAt(i) - 'a'] = i;
+        int[] lastPos = new int[26];
+        int n = s.length();
+        for (int i = 0; i < n; i++) {
+            lastPos[s.charAt(i) - 'a'] = i;
         }
+        //find the most further distance
         int start = 0;
         int end = 0;
-        for (int i = 0; i < s.length(); i++) {
-            end = Math.max(end, last[s.charAt(i) - 'a']);
+        for (int i = 0; i < n; i++) {
+            end = Math.max(end, lastPos[s.charAt(i) - 'a']);
             if (i == end) {
-                res.add(end - start + 1);
+                res.add(end -start + 1);
                 start = end + 1;
             }
         }
