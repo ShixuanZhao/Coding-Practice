@@ -50,7 +50,7 @@ class Solution {
     //recursion
     public ListNode plusOne(ListNode head) {
         if (head == null) {
-            return head;
+            return null;
         }
         if (addWithCarry(head) == 0) {
             return head;
@@ -61,7 +61,6 @@ class Solution {
         }
     }
     
-    //adding one from tail and return the carry
     private int addWithCarry(ListNode head) {
         if (head == null) {
             return 1;
@@ -69,5 +68,8 @@ class Solution {
         int res = head.val + addWithCarry(head.next);
         head.val = res % 10;
         return res / 10;
+            
     }
+    
+    
 }
