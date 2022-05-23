@@ -26,10 +26,12 @@ class Solution {
 		    public int compare(String str1, String str2){
 		        String s1 = str1 + str2;
 				String s2 = str2 + str1;
-				return s2.compareTo(s1); // reverse order here, so we can do append() later
+                //大的在前小的在后
+				return s2.compareTo(s1); // 
 		    }
 	     };
-		
+		//[3,30,34,5,9]
+        //after sorting:9 5 34 3 30
 		Arrays.sort(s_num, comp);
 		// An extreme edge case by lc, say you have only a bunch of 0 in your int array
         //000000, return 0
