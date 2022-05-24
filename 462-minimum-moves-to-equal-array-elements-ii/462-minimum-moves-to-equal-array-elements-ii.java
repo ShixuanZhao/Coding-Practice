@@ -1,17 +1,17 @@
 class Solution {
     /*
-    [1,10,2,9]
-    1 2 9 10
+    排序之后2 2配对，任何一个数在两个数之间滑动，距离是一样的，然后再往里面的2个pair
+    找中位数（最优解是快排） O(n)
     */
-    public int minMoves2 (int[] nums) {
-        if (nums == null || nums.length == 0)
-            return 0;
-        int n = nums.length;
-        Arrays.sort (nums);
-        int mid = n/2;
+    public int minMoves2(int[] nums) {
+        Arrays.sort(nums);
+        int i = 0, j = nums.length-1;
         int count = 0;
-        for (int i = 0; i < n; i++)
-            count += (Math.abs (nums [i] - nums [mid]));
+        while(i < j){
+            count += nums[j]-nums[i];
+            i++;
+            j--;
+        }
         return count;
     }
 }
