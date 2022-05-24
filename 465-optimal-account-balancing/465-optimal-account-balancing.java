@@ -35,9 +35,9 @@ class Solution {
                 list.set(i, cur + next);
                 minOps = Math.min(minOps, dfs(start + 1, list) + 1);
                 list.set(i, next);
-                // if (cur + next == 0) {
-                //     break;
-                // }
+                if (cur + next == 0) {
+                    break;
+                }
             }
         }
         return minOps;
