@@ -14,20 +14,91 @@ nums = [2,1,3,1], then the mapping function is 0->2, {1,3}->1, 2->3. Then the se
     1-3-2-4-2-4-2...
     arr[0]-arr[arr[0]]...
     */
+    // public int findDuplicate(int[] nums) {
+        //有可能重复的数字出现多次
+        //M1:HashSet
+        // Set<Integer> set = new HashSet<>();
+        // for (int num : nums) {
+        //     if (!set.add(num)) {
+        //         return num;
+        //     }
+        // }
+        // return -1;
+        
+        //sort
+        // Arrays.sort(nums);
+        // for (int i = 0; i < nums.length - 1; i++) {
+        //     if (nums[i] == nums[i + 1]) {
+        //         return nums[i];
+        //     }
+        // }
+        // return -1;
+        
+        //swap-swap
+        /*
+         0 1 2 3 4
+        [1,2,3,4,2]
+        */
+//         for (int i = 0; i < nums.length; i++) {
+//             while (i != nums[i] - 1) {
+//                 if (nums[i] == nums[nums[i] - 1]) {
+//                     return nums[i];
+//                 }
+//                 swap(nums, i, nums[i] - 1);
+//             }
+//         }
+//         return -1;
+//     }
+    
+//     private void swap(int[] nums, int i, int j) {
+//         int temp = nums[i];
+//         nums[i] = nums[j];
+//         nums[j] = temp;
+//     }
+        
+    //find the intersction of a cycle linkedlist
+    // public int findDuplicate(int[] nums) {
+    //     int slow = nums[0];
+    //     int fast = nums[0];
+    //     while (true) {
+    //         slow = nums[slow];
+    //         fast = nums[nums[fast]];
+    //         if (slow == fast) {
+    //             fast = nums[0];
+    //             while (slow != fast) {
+    //                 slow = nums[slow];
+    //                 fast = nums[fast];
+    //             }
+    //             return slow;
+    //         }
+    //     }
+    // }
+    
+    //guess the ans by using binary search
     public int findDuplicate(int[] nums) {
-        int slow = nums[0];
-        int fast = nums[0];
-        while (true) {
-            slow = nums[slow];
-            fast = nums[nums[fast]];
-            if (slow == fast) {
-                fast = nums[0];
-                while (fast != slow) {
-                    slow = nums[slow];
-                    fast = nums[fast];
-                }
-                return slow;
+        //the ans is between [left, right]
+        //left mid right are num instead of index
+        int left = 1;
+        int right = nums.length - 1;
+        while (left < right) {
+            int mid = left + (right - left) / 2;
+            int cnt = countInRange(nums, left, mid);
+            if (cnt > mid - left + 1) {
+                right = mid;
+            } else {
+                left = mid + 1;
             }
         }
+        return left;
+    }
+    
+    private int countInRange(int[] nums, int start, int end) {
+        int cnt = 0;
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] >= start && nums[i] <= end) {
+                cnt++;
+            }
+        }
+        return cnt;
     }
 }
