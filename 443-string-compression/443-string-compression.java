@@ -3,10 +3,11 @@ class Solution {
     public int compress(char[] chars) {
         int slow = 0;
         int fast = 0;
-        while (fast < chars.length) {
+        int n = chars.length;
+        while (fast < n) {
             char temp = chars[fast];
             int cnt = 0;
-            while (fast < chars.length && chars[fast] == temp) {
+            while (fast < n && chars[fast] == temp) {
                 fast++;
                 cnt++;
             }
