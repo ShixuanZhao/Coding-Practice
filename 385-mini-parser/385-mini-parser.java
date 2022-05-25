@@ -28,33 +28,33 @@
  */
 class Solution {
     public NestedInteger deserialize(String s) {
-        if(s == null || s.isEmpty()) return new NestedInteger();
-        Stack<NestedInteger> stack = new Stack<>();
-        int sign = 1, len = s.length() ;
-        for(int i = 0 ; i < len ; i++){
-            char c = s.charAt(i);
-            if(c == '['){
-                stack.push(new NestedInteger()); // start of a new NestedInteger
-            }else if( c == ']' && stack.size() > 1){ // End of a NesterdInteger
-                NestedInteger n = stack.pop();
-                stack.peek().add(n); 
-            }else if(c == '-'){ // just change the sign 
-                sign = -1;
-            }else if(Character.isDigit(c)){ // if digit check for all the continous ones
-                int num = c - '0';
-                while( i + 1 < len && Character.isDigit(s.charAt(i+1))){
-                    num = num * 10 + s.charAt(i+1) - '0';
-                    i++;
+        int n = s.length();
+        if (!s.startsWith("[")) {
+            return new NestedInteger(Integer.valueOf(s));
+        }
+        Deque<NestedInteger> stack = new ArrayDeque<>();
+        int left = 1;
+        int right = 1;
+        NestedInteger res = new NestedInteger();
+        stack.offerFirst(res);
+        for (; right < s.length(); right++) {
+            if (s.charAt(right) == '[') {
+                NestedInteger ni = new NestedInteger();
+                stack.peekFirst().add(ni);
+                stack.offerFirst(ni);
+                left = right + 1;
+            } else if (s.charAt(right) == ',' || s.charAt(right) == ']') {
+                //corner case empty list
+                if (left < right) {
+                    NestedInteger ni = new NestedInteger(Integer.valueOf(s.substring(left, right)));    
+                    stack.peekFirst().add(ni);
                 }
-                num = num * sign;
-                if(!stack.isEmpty()){
-                    stack.peek().add(new NestedInteger(num)); // add to previous item if not empty
-                }else{
-                    stack.push(new NestedInteger(num));
+                if (s.charAt(right) == ']') {
+                    stack.pollFirst();
                 }
-                sign = 1; // reset the sign
+                left = right + 1;
             }
         }
-        return stack.isEmpty() ? new NestedInteger() : stack.pop() ; 
+        return res;
     }
 }
