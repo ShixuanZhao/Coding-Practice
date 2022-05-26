@@ -16,6 +16,8 @@ class Solution {
     //     return res;
     // }
     
+    
+    //BEST
    // public int countGoodSubstrings(String s) {
    //     int[] map = new int[26];
    //     int n = s.length();
