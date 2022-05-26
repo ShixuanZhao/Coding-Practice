@@ -1,13 +1,14 @@
 class Solution {
     /*
     initialize max123 as Integer.MIN_VALUE is not right because we can have this corner case value
-    so as null can handle with corner case
+    so as null can handle with corner case or Long.MIN_VALUE
     */
     // public int thirdMax(int[] nums) {
     //     Integer max1 = null;
     //     Integer max2 = null;
     //     Integer max3 = null;
     //     for (Integer n : nums) {
+    //         because we need distinct one
     //         if (n.equals(max1) || n.equals(max2) || n.equals(max3)) continue;
     //         if (max1 == null || n > max1) {
     //             max3 = max2;
@@ -29,6 +30,7 @@ class Solution {
        PriorityQueue<Integer> pq = new PriorityQueue<>();
        Set<Integer> set = new HashSet<>();
        for(int n : nums) {
+           //not consider the duplicate one
            if(set.add(n)) {
                pq.offer(n);
                if(pq.size() > 3 ) pq.poll();
