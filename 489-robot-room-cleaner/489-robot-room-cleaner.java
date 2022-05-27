@@ -36,8 +36,9 @@ class Solution {
                 dfs(robot, nx, ny, curDir, visited);
                 goback(robot);
             }
+            //do not forget update both bot and curDir
             robot.turnRight();
-            //change dir
+            //change dir for next position
             curDir = (curDir + 1) % 4;
         }
     }
