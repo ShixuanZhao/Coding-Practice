@@ -20,6 +20,8 @@ public class Solution {
         helper(root);
         return max;
     }
+    
+    //int[0]:increasing from root int[1]:decreasing from root
     public int[] helper(TreeNode root){
         if(root == null) return new int[]{0,0};
         int[] left = helper(root.left);
@@ -34,11 +36,13 @@ public class Solution {
         }
         if(root.right != null){
             if(root.val - root.right.val == 1){
+                //向上返回，只能取最大的一边，这样才是path
                 des = Math.max(des,right[1]+1);
             }else if(root.val - root.right.val == -1){
                 inc = Math.max(inc,right[0]+1);
             }
         }
+        //包含root的递增序列和递减序列（从root开始），整体合在一起就是单调的
         max = Math.max(max,inc+des-1);
         return new int[]{inc,des};
     }
