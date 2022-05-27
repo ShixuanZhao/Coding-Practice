@@ -23,32 +23,30 @@ class Solution {
       public static final int[][] DIRS = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}};;
 
 	public void cleanRoom(Robot robot) {
-		clean(robot, 0, 0, 0, new HashSet<>());
+		dfs(robot, 0, 0, 0, new HashSet<String>());
 	}
 
-	private void clean(Robot robot, int x, int y, int curDirection, Set<String> cleaned) {
-		robot.clean();
-        //cleaned means visited
-		cleaned.add(x + " " + y);
-
-		for (int i = 0; i < 4; i++) {
-			int nx = x + DIRS[curDirection][0];
-			int ny = y + DIRS[curDirection][1];
-			if (!cleaned.contains(nx + " " + ny) && robot.move()) {
-				clean(robot, nx, ny, curDirection, cleaned);
-				goBack(robot);
-			}
-			robot.turnRight();
-			curDirection = (curDirection + 1) % 4;
-		}
-
-	}
-
-	private void goBack(Robot robot) {
-		robot.turnRight();
-		robot.turnRight();
-		robot.move();
-		robot.turnRight();
-		robot.turnRight();
-	}
+	private void dfs(Robot robot, int i, int j, int curDir, Set<String> visited) {
+        robot.clean();
+        visited.add(i + "," + j);
+        for (int k = 0; k < 4; k++) {
+            int nx = i + DIRS[curDir][0];
+            int ny = j + DIRS[curDir][1];
+            if (!visited.contains(nx + "," + ny) && robot.move()) {
+                dfs(robot, nx, ny, curDir, visited);
+                goback(robot);
+            }
+            robot.turnRight();
+            //change dir
+            curDir = (curDir + 1) % 4;
+        }
+    }
+    
+    private void goback(Robot robot) {
+        robot.turnRight();
+        robot.turnRight();
+        robot.move();
+        robot.turnRight();
+        robot.turnRight();
+    }
 }
