@@ -23,7 +23,7 @@ class Solution {
       public static final int[][] DIRS = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}};;
 
 	public void cleanRoom(Robot robot) {
-		clean(robot, 0, 0, 0, new HashSet<>());
+		clean(robot, 0, 0, 1, new HashSet<>());
 	}
 
 	private void clean(Robot robot, int x, int y, int curDirection, Set<String> cleaned) {
