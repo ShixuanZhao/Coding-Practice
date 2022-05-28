@@ -30,10 +30,10 @@ class Solution {
         //System.out.println(newHead.val);
         ListNode dummy = new ListNode(0);
         /*
-        1-2
-           i
-        5-4-3
-            j
+        1-2-3
+            i
+        5-4
+           j
         dummy-1-5-2-4-3
                     c
         */
@@ -47,10 +47,7 @@ class Solution {
             newHead = newHead.next;
             cur = cur.next;
         }
-        //the second list is longer
-        // if (newHead != null) {
-        //     cur.next = newHead;
-        // } 
+       //the first list is longer if the number of two list is not equal
         if (head != null) {
             cur.next = head;
         }
