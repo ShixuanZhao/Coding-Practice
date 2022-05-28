@@ -14,10 +14,15 @@
  * }
  */
 class Solution {
+    Map<Integer, List<TreeNode>> map = new HashMap<>();
+    
     public List<TreeNode> allPossibleFBT(int n) {
         List<TreeNode> res = new ArrayList<>();
         if (n == 1) {
             return Arrays.asList(new TreeNode(0));
+        }
+        if (map.containsKey(n)) {
+            return map.get(n);
         }
         //enumerate the the number of left subtree
         //n -2 1 1
@@ -33,6 +38,7 @@ class Solution {
                 }
             }
         }
+        map.put(n, res);
         return res;
     }
 }
