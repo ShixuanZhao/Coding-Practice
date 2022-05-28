@@ -29,6 +29,18 @@ class Solution {
         if (head[0] == null) {
             head[0] = root;
         }
+        //this is false:prev[0].left = null;
+        // if (prev[0] != null) {
+        //     prev[0].left = null;
+        //     prev[0].right = root;
+        // }
+        /*
+            2
+          1   4
+             3
+             3 and 4 can form cycle
+             last node is 4, so 4.left = null
+        */
         if (prev[0] != null) {
             prev[0].right = root;
         }
