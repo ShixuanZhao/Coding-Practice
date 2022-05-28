@@ -48,9 +48,9 @@ class Solution {
             cur = cur.next;
         }
         //the second list is longer
-        if (newHead != null) {
-            cur.next = newHead;
-        } 
+        // if (newHead != null) {
+        //     cur.next = newHead;
+        // } 
         if (head != null) {
             cur.next = head;
         }
