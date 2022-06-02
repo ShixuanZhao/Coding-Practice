@@ -15,9 +15,10 @@ class Solution {
                 for (int i = index; i < end; i++) {
                     bold[i] = true;
                 }
-                //aaaa find aaa, the letter can be used
+                //aaaa find aaa, the letter can be reused!
                 //aaa
                 // aaa
+                //not index + word.legnth()
                 start = index + 1;
             }
         }
