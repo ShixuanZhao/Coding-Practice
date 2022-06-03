@@ -9,6 +9,7 @@ class Solution {
             }
         }
         int res = 0;
+        //<< is *   >> is /
         for (int i = 0; i < 32; i++) {
             res += bit[i] % 3 << i;
         }
