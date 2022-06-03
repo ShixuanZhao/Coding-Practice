@@ -38,6 +38,7 @@ class Solution {
             dfs(root.left, sb);
             dfs(root.right, sb);
         }
+        //backtrack here!!
         sb.setLength(sb.length() - 1);
     }
     
