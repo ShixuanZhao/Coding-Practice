@@ -33,9 +33,11 @@ class Solution {
     public int numTrees(int n) {
         //the number of unique of BST using the first i ele
         int[] M = new int[n + 1];
+        //M[0] = 1 not 0
         M[0] = 1;
         M[1] = 1;
         for (int i = 2; i <= n; i++) {
+            //the number of node including root
             for (int j = 1; j <= i; j++) {
                 M[i] += M[j - 1] * M[i - j];
             }
