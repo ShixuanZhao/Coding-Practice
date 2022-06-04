@@ -5,37 +5,20 @@ class Solution {
     int antiDia = 0;
     public String tictactoe(int[][] moves) {
         for (int i = 0; i < moves.length; i++) {
+            int r = moves[i][0];
+            int c = moves[i][1];
             if (i % 2 == 0) {
                 //A plays, add 1
-                row[moves[i][0]]++;
-                col[moves[i][1]]++;
-                if (moves[i][0] == moves[i][1]) {
-                    dia++;
-                }
-                if (moves[i][0] == 2 - moves[i][1]) {
-                    antiDia++;
-                }
-                if (row[moves[i][0]] == 3 || col[moves[i][1]] == 3 || dia == 3 || antiDia == 3) {
+                if (++row[r] == 3 || ++col[c] == 3 || r == c && ++dia == 3 || r + c == 2 && ++antiDia == 3) {
                     return "A";
                 }
             } else {
                 //B plays, minus 1
-                row[moves[i][0]]--;
-                col[moves[i][1]]--;
-                if (moves[i][0] == moves[i][1]) {
-                    dia--;
-                }
-                if (moves[i][0] == 2 - moves[i][1]) {
-                    antiDia--;
-                }
-                if (row[moves[i][0]] == -3 || col[moves[i][1]] == -3 || dia == -3 || antiDia == -3) {
+                if (--row[r] == -3 || --col[c] == -3 || r == c && --dia == -3 || r + c == 2 && --antiDia == -3) {
                     return "B";
                 }
             }
         }
-        if (moves.length < 9) {
-            return "Pending";
-        }
-        return "Draw";
+        return moves.length == 9 ? "Draw" : "Pending"; 
     }
 }
