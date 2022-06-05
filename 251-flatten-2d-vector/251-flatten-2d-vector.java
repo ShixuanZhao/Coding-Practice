@@ -1,27 +1,29 @@
 class Vector2D {
-    int[][] vec;
     int indexList;
     int indexEle;
+    int[][] vector;
     public Vector2D(int[][] vec) {
-        this.vec = vec;
+        indexList = 0;
+        indexEle = 0;
+        vector = vec;
     }
     
     public int next() {
         if (!hasNext()) {
             return -1;
         }
-        return vec[indexList][indexEle++];
+        return vector[indexList][indexEle++];
     }
     
     public boolean hasNext() {
-        while (indexList < vec.length && indexEle >= vec[indexList].length) {
+        //must be while not if because some list can be empty. we need to keep moving index
+        while (indexList < vector.length && indexEle >= vector[indexList].length) {
             indexList++;
             indexEle = 0;
         }
-        return indexList < vec.length;
+        return indexList < vector.length;
     }
 }
-
 /**
  * Your Vector2D object will be instantiated and called as such:
  * Vector2D obj = new Vector2D(vec);
