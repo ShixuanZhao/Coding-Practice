@@ -27,4 +27,9 @@ class Solution {
         res = Math.max(res, forward.val + backward.val);
         forward = forward.next;
     }
+    //M2
+    //Here we first find the middle of the linked list.
+// Then after finding the middle, we just reverse all the nodes from the middle
+// Now we keep 2 pointer one pointing to the head and the other pointing to the starting of the reversed part.
+// Just find the maximum twin sum until the pointer pointing to the reversed part reaches null.
 }
