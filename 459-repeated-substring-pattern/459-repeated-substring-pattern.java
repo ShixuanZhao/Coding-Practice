@@ -26,20 +26,25 @@ class Solution {
     */
     public boolean repeatedSubstringPattern(String str) {
         int n = str.length();
+        // pattern must repeat at least twice, i.e. pattern length is at most n/2
         for (int len = 1; len <= n / 2; len++) {
             if (n % len != 0) {
                 continue;
             }
             String pattern = str.substring(0, len);
+            //start index
             int i = 0;
+            //end index
             int j = len - 1;
             while (j < n) {
+                // failed for this pattern, try next pattern		
                 if (!pattern.equals(str.substring(i, j + 1))) {
                     break;
                 }
                 i += len;
                 j += len;
             }
+            // if it past the last substring check, i will be n
             if (i == n) {
                 return true;
             }
