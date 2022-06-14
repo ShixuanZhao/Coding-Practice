@@ -1,10 +1,12 @@
 class Solution {
+    //如果要求给出boundry，记录snapshot when update the globalMax
     public int maxProduct(int[] nums) {
         //母题：max subarray sum
          if(nums.length == 0)
             return 0;
         int ans = nums[0];
         //两个mDP分别定义为以i结尾的子数组的最大积与最小积；
+        //因为nums[i]可能是正的或负的，我需要看linear scan前一个
         int[] maxDP = new int[nums.length];
         int[] minDP = new int[nums.length];
         //初始化DP；
@@ -26,6 +28,10 @@ class Solution {
         return ans;
     
     }
+    //max[i]:the largest product of the subarray within the range of [0,i] (including the i-th element)
+    //max[i] = Math.max(a[i], Math.max(max[i - 1] * a[i], min[i - 1] * a[i]))
+    //min[i].....
+    //use two var
 //     public int maxProduct(int[] nums) {
         
 //         int max = nums[0], min = nums[0], ans = nums[0];
