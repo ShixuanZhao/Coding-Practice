@@ -7,6 +7,8 @@ class Solution {
         int res = 0;
         int n = nums.length;
         boolean[] seen = new boolean[n];
+        //may have multiple cycle
+        //try every possible start 
         for (int num : nums) {
             int cnt = 0;
             while (!seen[num]) {
