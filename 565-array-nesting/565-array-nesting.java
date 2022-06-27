@@ -5,13 +5,14 @@ class Solution {
 // Space O(N) (space can be O(1))
     public int arrayNesting(int[] nums) {
         int res = 0;
-        boolean[] seen = new boolean[nums.length];
-        for (int i : nums) {
+        int n = nums.length;
+        boolean[] seen = new boolean[n];
+        for (int num : nums) {
             int cnt = 0;
-            while (!seen[i]) {
-                seen[i] = true;
+            while (!seen[num]) {
                 cnt++;
-                i = nums[i];
+                seen[num] = true;
+                num = nums[num];
             }
             res = Math.max(res, cnt);
         }
