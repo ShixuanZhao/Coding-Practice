@@ -25,6 +25,7 @@ dif:   8   7   6   5    1   1   1   1
         int right = n;
         for (int i = 0; i < n; i++) {
             res[i] = k % 2 != 0 ? left++ : right--;
+            //must k > 1, the last sequence is increasing, count 1 distinct diff
             if (k > 1) {
                 k--;
             }
