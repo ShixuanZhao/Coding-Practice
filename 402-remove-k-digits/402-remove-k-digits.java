@@ -6,7 +6,8 @@ class Solution {
         k:3 2 1 0
     */
     public String removeKdigits(String num, int k) {
-        //keep a ascending stack, at most delete k times
+        //生成最小递增序列，每次出现更小的时候我们就把前面更大的替换，可替换次数不超过k
+        //ascending stack
         Deque<Character> stack = new ArrayDeque<>();
         for (char c : num.toCharArray()) {
             while (!stack.isEmpty() && k > 0 && c < stack.peekFirst()) {
@@ -15,21 +16,21 @@ class Solution {
             }
             stack.offerFirst(c);
         }
-        //if still have k, we pop from tail
+        //如果k还有剩余，stack从后往前remove
         while (k > 0) {
             stack.pollFirst();
             k--;
         }
-        //corner case: leading zero, if stack is empty, return 0
+        //corner case 0200 remove the leading zero
         StringBuilder sb = new StringBuilder();
-        boolean isLeading = true;
+        //use a flag to represent the leading zero
+        boolean flag = true;
+        //this is a deque, this time we operate the other end of deque
         while (!stack.isEmpty()) {
-            //skip the leading zero
-            //use another end of deque
-            while (!stack.isEmpty() && stack.peekLast() == '0' && isLeading) {
+            while (!stack.isEmpty() && stack.peekLast() == '0' && flag) {
                 stack.pollLast();
-            }
-            isLeading = false;
+            } 
+            flag = false;
             if (!stack.isEmpty()) {
                 sb.append(stack.pollLast());
             }
