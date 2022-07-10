@@ -6,7 +6,7 @@ class Solution {
         //排除法
         boolean[] isPrime = new boolean[n];
         Arrays.fill(isPrime, true);
-        for (int i = 2; i < n; i++) {
+        for (int i = 2; i <= (int) Math.sqrt(n); i++) {
             if (isPrime[i]) {
                 for (int j = 2 * i; j < n; j += i) {
                     isPrime[j] = false;
