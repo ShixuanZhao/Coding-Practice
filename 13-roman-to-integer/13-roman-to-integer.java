@@ -29,5 +29,16 @@ class Solution {
             prev = c;
         }
         return res;
+        // if (s.length() == 1) {
+        //     return map.get(s.charAt(0));
+        // }
+        // int res = map.get(s.charAt(0));
+        // for (int i = 1; i < s.length(); i++) {
+        //     res += map.get(s.charAt(i));
+        //     if (map.get(s.charAt(i)) > map.get(s.charAt(i - 1))) {
+        //         res -= 2 * map.get(s.charAt(i - 1));
+        //     }
+        // }
+        // return res;
     }
 }
