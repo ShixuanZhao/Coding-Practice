@@ -5,6 +5,9 @@ class Solution {
         M C M
           p c
       res:1000+100+1000-200=1900
+      "MCMXCIV"
+         i
+       1000 + 100 - 200 
     */
     public int romanToInt(String s) {
         Map<Character, Integer> map = new HashMap<>();
@@ -15,15 +18,15 @@ class Solution {
         map.put('C', 100);
         map.put('D', 500);
         map.put('M', 1000);
-        char prev = ' ';
-        int res = 0;
-        for (char c : s.toCharArray()) {
-            res += map.get(c);
-            //ab (a < b) we make minus
-            if (prev != ' ' && map.get(prev) < map.get(c)) {
-                res -= 2 * map.get(prev);
+        if (s.length() == 1) {
+            return map.get(s.charAt(0));
+        }
+        int res = map.get(s.charAt(0));
+        for (int i = 1; i < s.length(); i++) {
+            res += map.get(s.charAt(i));
+            if (map.get(s.charAt(i)) > map.get(s.charAt(i - 1))) {
+                res -= 2 * map.get(s.charAt(i - 1));
             }
-            prev = c;
         }
         return res;
     }
