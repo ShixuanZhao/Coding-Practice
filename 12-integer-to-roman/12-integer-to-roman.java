@@ -4,6 +4,7 @@ class Solution {
         step2:let num = 48 - 40 = 8, and repeat step1 until num == 0 
         num:8 3 2 1 0
         sb:XL V I I I
+        在基础版本之上，添加4和9的：900 400 90 40 9 4
     */
     public String intToRoman(int num) {
         final int[] values = new int[] {1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1};
