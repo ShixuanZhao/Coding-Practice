@@ -20,6 +20,7 @@ class Solution {
         map.put('M', 1000);
         char prev = ' ';
         int res = 0;
+        //或者从右往左遍历，这样能确定是加还是减
         for (char c : s.toCharArray()) {
             res += map.get(c);
             if (prev != ' ' && map.get(c) > map.get(prev)) {
