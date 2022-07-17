@@ -18,27 +18,28 @@ class Solution {
         map.put('C', 100);
         map.put('D', 500);
         map.put('M', 1000);
-        char prev = ' ';
-        int res = 0;
+        //char prev = ' ';
+        //int res = 0;
         //或者从右往左遍历，这样能确定是加还是减
-        for (char c : s.toCharArray()) {
-            res += map.get(c);
-            if (prev != ' ' && map.get(c) > map.get(prev)) {
-                res -= 2 * map.get(prev);
-            }
-            prev = c;
-        }
-        return res;
-        // if (s.length() == 1) {
-        //     return map.get(s.charAt(0));
-        // }
-        // int res = map.get(s.charAt(0));
-        // for (int i = 1; i < s.length(); i++) {
-        //     res += map.get(s.charAt(i));
-        //     if (map.get(s.charAt(i)) > map.get(s.charAt(i - 1))) {
-        //         res -= 2 * map.get(s.charAt(i - 1));
+        // for (char c : s.toCharArray()) {
+        //     res += map.get(c);
+        //     if (prev != ' ' && map.get(c) > map.get(prev)) {
+        //         res -= 2 * map.get(prev);
         //     }
+        //     prev = c;
         // }
         // return res;
+        if (s.length() == 1) {
+            return map.get(s.charAt(0));
+        }
+        int res = map.get(s.charAt(s.length() - 1));
+        for (int i = 0; i < s.length() - 1; i++) {
+            if (map.get(s.charAt(i)) < map.get(s.charAt(i + 1))) {
+                res -= map.get(s.charAt(i));
+            } else {
+                res += map.get(s.charAt(i));
+            }
+        }
+        return res;
     }
 }
