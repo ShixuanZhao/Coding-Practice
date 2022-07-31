@@ -41,4 +41,32 @@ class Solution {
         }
         return maxLevel;
     }
+    
+    //dfs
+//     public int maxLevelSum(TreeNode root) {
+//         int maxSum = Integer.MIN_VALUE;
+//         int maxLevel = -1;
+//         List<Integer> levelSum = new ArrayList<>();
+//         dfs(root, levelSum, 0);
+//         for (int i = 0; i < levelSum.size(); i++) {
+//             if (levelSum.get(i) > maxSum) {
+//                 maxSum = levelSum.get(i);
+//                 maxLevel = i + 1;
+//             }
+//         }
+//         return maxLevel;
+//     }
+    
+//     private void dfs(TreeNode root, List<Integer> levelSum, int level) {
+//         if (root == null) {
+//             return;
+//         }
+//         if (levelSum.size() == level) {
+//             levelSum.add(root.val);
+//         } else {
+//             levelSum.set(level, levelSum.get(level) + root.val);
+//         }
+//         dfs(root.left, levelSum, level + 1);
+//         dfs(root.right, levelSum, level + 1);
+//     }
 }
