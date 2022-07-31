@@ -26,6 +26,7 @@ class Solution {
     //             ty -= tx;
     //         }
     //     }
+    //compare root:(tx, ty) with (sx, sy)
     //     return sx == tx && sy == ty;
     // }
     
