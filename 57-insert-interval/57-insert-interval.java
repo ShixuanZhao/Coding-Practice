@@ -21,21 +21,22 @@ class Solution {
      we also need to ensure new.end >= old.start
     */
     public int[][] insert(int[][] intervals, int[] newInterval) {
-        List<int[]> res = new LinkedList<>();
+        int n = intervals.length;
+        List<int[]> res = new ArrayList<>();
+        //find the position that can begin to merge
         int i = 0;
-        while (i < intervals.length && intervals[i][1] < newInterval[0]) {
+        while (i < n && intervals[i][1] < newInterval[0]) {
             res.add(intervals[i]);
             i++;
         }
-        //begin to merge
-        //the judge condition is important
-        while (i < intervals.length && intervals[i][0] <= newInterval[1]) {
+        //keep merging
+        while (i < n && intervals[i][1] >= newInterval[0] && intervals[i][0] <= newInterval[1]) {
             newInterval[0] = Math.min(newInterval[0], intervals[i][0]);
             newInterval[1] = Math.max(newInterval[1], intervals[i][1]);
             i++;
         }
         res.add(newInterval);
-        while (i < intervals.length) {
+        while (i < n) {
             res.add(intervals[i]);
             i++;
         }
