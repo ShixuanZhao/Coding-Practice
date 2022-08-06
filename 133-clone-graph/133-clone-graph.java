@@ -19,22 +19,44 @@ class Node {
 */
 
 class Solution {
-    public Node cloneGraph(Node node) {
-        Map<Node, Node> map = new HashMap<>();
-        return dfs(node, map);
-    }
+//     public Node cloneGraph(Node node) {
+//         Map<Node, Node> map = new HashMap<>();
+//         return dfs(node, map);
+//     }
     
-    private Node dfs(Node node, Map<Node, Node> map) {
+//     private Node dfs(Node node, Map<Node, Node> map) {
+//         if (node == null) {
+//             return null;
+//         }
+//         if (map.containsKey(node)) {
+//             return map.get(node);
+//         }
+//         Node newNode = new Node(node.val);
+//         map.put(node, newNode);
+//         for (Node nei : node.neighbors) {
+//             newNode.neighbors.add(dfs(nei, map));
+//         }
+//         return newNode;
+//     }
+    public Node cloneGraph(Node node) {
         if (node == null) {
-            return null;
+            return node;
         }
-        if (map.containsKey(node)) {
-            return map.get(node);
-        }
+        Map<Node, Node> map = new HashMap<>();
+        Queue<Node> q = new LinkedList<>();
+        q.offer(node);
         Node newNode = new Node(node.val);
         map.put(node, newNode);
-        for (Node nei : node.neighbors) {
-            newNode.neighbors.add(dfs(nei, map));
+        while (!q.isEmpty()) {
+            Node cur = q.poll();
+            for (Node nei : cur.neighbors) {
+                if (!map.containsKey(nei)) {
+                    Node newNei = new Node(nei.val);
+                    map.put(nei, newNei);
+                    q.offer(nei);
+                }
+                map.get(cur).neighbors.add(map.get(nei));
+            }
         }
         return newNode;
     }
