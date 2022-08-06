@@ -6,6 +6,7 @@ class Solution {
         int[] M = new int[target + 1];
         M[0] = 1;
         for (int i = 1; i <= target; i++) {
+            ////j 是右小段，右小段是一个数字，这样算的话肯定会有重读其实是permutation问题
             for (int j = 0; j < n; j++) {
                 if (nums[j] <= i) {
                     M[i] += M[i - nums[j]];
