@@ -10,6 +10,18 @@ class Solution {
           
           r
     return the smaller one
+    
+    /*
+      max
+    
+  1   / \
+    /    \
+          \ 
+           \  /  2
+            \/
+            min
+            begin > end
+    from max 直接到 Min 中间是没有点的，在1或者2两段
     */
     public int findMin(int[] nums) {
         int n = nums.length;
