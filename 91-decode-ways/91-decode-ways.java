@@ -26,4 +26,42 @@ class Solution {
         }
         return M[n];
     }
+    
+    //dfs Find all possible decode ways
+    /*
+           226
+       2|26     22|6
+    2|2|6 2|26
+    */
+//     public List<String> numDecodings(String s) {
+//         StringBuilder sb = new StringBuilder();
+//         List<String> res = new LinkedList<>();
+//         dfs(res, sb, 0, s);
+//         return res;
+//     }
+    
+//     private void dfs(List<String> res, StringBuilder sb, int index, String s) {
+//         if (index == s.length()) {
+//             res.add(sb.toString());
+//             return;
+//         }
+//         //one digit
+//         int a = s.charAt(index) - '0';
+//         if (a >= 1 && a <= 9) {
+//             char temp = (char)(a - 1 + 'A');
+//             sb.append(temp);
+//             dfs(res, sb, index + 1, s);
+//             sb.deleteCharAt(sb.length() - 1);
+//         }
+//         if (index + 1 < s.length()) {
+//             int b = (s.charAt(index) - '0') * 10 + s.charAt(index + 1) - '0';
+//             if (b >= 10 && b <= 26) {
+//                 char temp = (char)(b - 1 + 'A');
+//                 sb.append(temp);
+//                 dfs(res, sb, index + 2, s);
+//                 sb.deleteCharAt(sb.length() - 1);
+//             }
+//         }
+//     }
+
 }
