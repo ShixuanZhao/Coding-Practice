@@ -36,21 +36,47 @@ class Solution {
            -------cur
            remove cur, so we do not update end
     */
+    // public int eraseOverlapIntervals(int[][] intervals) {
+    //     if (intervals == null || intervals.length == 0) {
+    //         return 0;
+    //     }
+    //     Arrays.sort(intervals, (a, b) -> (a[1] - b[1]));
+    //     int end = Integer.MIN_VALUE;
+    //     int cnt = 0;
+    //     for (int i = 0; i < intervals.length; i++) {
+    //         if (end <= intervals[i][0]) {
+    //             //non-overlapping
+    //             end = intervals[i][1];
+    //         } else {
+    //             //remove the cur one
+    //             cnt++;
+    //         }
+    //     }
+    //     return cnt;
+    // }
+    
     public int eraseOverlapIntervals(int[][] intervals) {
-        if (intervals == null || intervals.length == 0) {
-            return 0;
+        int n = intervals.length;
+        return n - numOfNotOverlapping(intervals);
+    }
+    
+    private int numOfNotOverlapping(int[][] intervals) {
+        int n = intervals.length;
+        if (n == 1) {
+            return 1;
         }
-        Arrays.sort(intervals, (a, b) -> (a[1] - b[1]));
-        int end = Integer.MIN_VALUE;
-        int cnt = 0;
-        for (int i = 0; i < intervals.length; i++) {
-            if (end <= intervals[i][0]) {
-                //non-overlapping
-                end = intervals[i][1];
-            } else {
-                //remove the cur one
+        //sort by end point
+        Arrays.sort(intervals, (a, b) -> {
+            return a[1] - b[1];
+        });
+        int cnt = 1;
+        int end = intervals[0][1];
+        for (int i = 1; i < n; i++) {
+            if (intervals[i][0] >= end) {
                 cnt++;
+                end = intervals[i][1];
             }
+            //if intersect, we keep the prev one
         }
         return cnt;
     }
