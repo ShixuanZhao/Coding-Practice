@@ -1,60 +1,57 @@
 class Solution {
-    /*
-    ["wrt","wrf","er","ett","rftt"]
-                      prev
-                              cur
-     1 compare the first diff letter
-     construct the directed graph Map<Character, List<Character>> map, and indegree map
-     t->f w->e  r->t e->r
-     2 toponology sort with BFS
-     
-    */
     public String alienOrder(String[] words) {
+        //If there are multiple solutions, return any of them.
+        //so if there is only one word in the words, return any of them
         if (words == null || words.length == 0) {
             return "";
         }
+        int n = words.length;
         Map<Character, List<Character>> map = new HashMap<>();
+        //must use the indegree map
+        //when bfs, only the indegree of one char become 0, it can be from q
         Map<Character, Integer> indegree = new HashMap<>();
-        //must be initialize to every unique char
+        //indegree record all the char
         for (String word : words) {
             for (char c : word.toCharArray()) {
                 map.putIfAbsent(c, new LinkedList<>());
                 indegree.putIfAbsent(c, 0);
             }
         }
-        for (int i = 1; i < words.length; i++) {
+        for (int i = 1; i < n; i++) {
             String prev = words[i - 1];
             String cur = words[i];
-            //corner case:apple app is invalid return ""
             int j = 0;
-            for (; j < Math.min(prev.length(), cur.length()); j++) {
-                if (prev.charAt(j) != cur.charAt(j)) {
-                    map.get(prev.charAt(j)).add(cur.charAt(j));
-                    indegree.put(cur.charAt(j), indegree.getOrDefault(cur.charAt(j), 0) + 1);
+            int k = 0;
+            while (j < prev.length() && k < cur.length()) {
+                if (prev.charAt(j) == cur.charAt(k)) {
+                    j++;
+                    k++;
+                } else {
+                    map.get(prev.charAt(j)).add(cur.charAt(k));
+                    indegree.put(cur.charAt(k), indegree.get(cur.charAt(k)) + 1);
                     break;
                 }
             }
-            if (j == cur.length() && cur.length() < prev.length()) {
+            //apple app is invalid, return ""
+            if (k == cur.length() && j < prev.length()) {
                 return "";
             }
         }
-        //System.out.println(map.size());
-        //System.out.println(indegree.size());
-        //BFS
-        Queue<Character> q = new ArrayDeque<>();
-        for (Map.Entry<Character, Integer> entry : indegree.entrySet()) {
-            if (entry.getValue() == 0) {
-                q.offer(entry.getKey());
+        //beign to BFS
+        Queue<Character> q = new LinkedList<>();
+        for (Character c : indegree.keySet()) {
+            if (indegree.get(c) == 0) {
+                q.offer(c);
             }
         }
         StringBuilder sb = new StringBuilder();
         while (!q.isEmpty()) {
-            char c = q.poll();
-            //System.out.println(c);
-            sb.append(c);
-            for (char nei : map.getOrDefault(c, new LinkedList<>())) {
-                indegree.put(nei, indegree.get(nei) - 1);
-                if (indegree.get(nei) == 0) {
+            char cur = q.poll();
+            sb.append(cur);
+            for (Character nei : map.getOrDefault(cur, new LinkedList<>())) {
+                int cnt = indegree.get(nei);
+                indegree.put(nei, --cnt);
+                if (cnt == 0) {
                     q.offer(nei);
                 }
             }
