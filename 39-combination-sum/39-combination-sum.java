@@ -36,6 +36,8 @@ class Solution {
     }
     
     private void dfs(List<List<Integer>> res, List<Integer> sub, int[] candidates, int startIndex, int sum, int target) {
+        //base case
+        //because we know all the element in the array is positive, we can trum
         if (sum > target) {
             return;
         }
