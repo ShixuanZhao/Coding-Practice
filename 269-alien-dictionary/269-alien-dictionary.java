@@ -1,4 +1,14 @@
 class Solution {
+    /*
+    ["wrt","wrf","er","ett","rftt"]
+                      prev
+                              cur
+     1 compare the first diff letter
+     construct the directed graph Map<Character, List<Character>> map, and indegree map
+     t->f w->e  r->t e->r
+     2 toponology sort with BFS
+     
+    */
     public String alienOrder(String[] words) {
         //If there are multiple solutions, return any of them.
         //so if there is only one word in the words, return any of them
