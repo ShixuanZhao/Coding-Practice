@@ -11,6 +11,7 @@ class Solution {
     remove ele from backward
     remove the leading zero
     corner case: after remove the leading zero, stack is empty, return "0"
+    stack相当于是一个缓存我们暂时还不确定在缓存里的元素要不要
     */
     public String removeKdigits(String num, int k) {
         //suppose k <= num.length()
@@ -26,6 +27,7 @@ class Solution {
             }
             stack.offerFirst(num.charAt(i));
         }
+        //remove ele from backward
         while (k > 0 && !stack.isEmpty()) {
             k--;
             stack.pollFirst();
