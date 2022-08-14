@@ -1,5 +1,6 @@
 class StockPrice {
     //we need this two treeMap, imagine the stock picture, one price can respond to multiple timestamp
+    //picture: x is timestamp, y is price
     //timestamp to price
     TreeMap<Integer, Integer> record = new TreeMap<>();
     //price to timestamp
