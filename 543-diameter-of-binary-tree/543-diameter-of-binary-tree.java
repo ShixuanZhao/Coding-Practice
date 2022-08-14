@@ -14,21 +14,30 @@
  * }
  */
 class Solution {
+    //iterate all the root
+    //the max path length pass through the root
+    //return global max
+    /*
+       1 
+      2  3
+    4   5
+    for node2, left:1 right:1
+    update max:left + right
+    return: max(left, right) + 1
+    */
     int res = 0;
     public int diameterOfBinaryTree(TreeNode root) {
-        helper(root);
+        dfs(root);
         return res;
     }
     
-    //the longest path that must through root
-    private int helper(TreeNode root) {
+    private int dfs(TreeNode root) {
         if (root == null) {
             return 0;
         }
-        int left = helper(root.left);
-        int right = helper(root.right);
+        int left = dfs(root.left);
+        int right = dfs(root.right);
         res = Math.max(res, left + right);
-        //System.out.println(res);
         return Math.max(left, right) + 1;
     }
 }
