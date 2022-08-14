@@ -10,6 +10,7 @@ class Solution {
 // This allows us to run a single BFS search that emerges from different places (all the targets aka all the zero cells) in the grid
    int[][] dirs = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
     //从每一个0开始多源BFS。最先到的肯定是距离最短的
+    //逆向思维：要求每一个点到0的距离，现在BFS，求所有的0到每个点的距离，以为是层序遍历，所以最先到的就是最短的
     public int[][] updateMatrix(int[][] mat) {
         int m = mat.length;
         int n = mat[0].length;
