@@ -27,26 +27,44 @@ public List<Integer> boundaryOfBinaryTree(TreeNode root) {
     
     return nodes;
 }
-    //top down
+    //top down all the left boundary, not including the bottom node, 
+    //the bottom would be counted in leaves
 public void leftBoundary(TreeNode root) {
-    if(root == null || (root.left == null && root.right == null)) return;
+    if (root == null) {
+        return;
+    }
+    if (root.left == null && root.right == null) {
+        return;
+    }
     nodes.add(root.val);
-    if(root.left == null) leftBoundary(root.right);
-    else leftBoundary(root.left);
+    if (root.left != null) {
+        leftBoundary(root.left);
+    } else {
+        leftBoundary(root.right);
+    }
 }
     //bottom up order
 public void rightBoundary(TreeNode root) {
-    if(root == null || (root.right == null && root.left == null)) return;
-    if(root.right == null)rightBoundary(root.left);
-    else rightBoundary(root.right);
-    nodes.add(root.val); // add after child visit(reverse)
+    if (root == null) {
+        return;
+    }
+    if (root.left == null && root.right == null) {
+        return;
+    }
+    if (root.right != null) {
+        rightBoundary(root.right);
+    } else {
+        rightBoundary(root.left);
+    }
+    nodes.add(root.val);
 }
     
 public void leaves(TreeNode root) {
-    if(root == null) return;
-    if(root.left == null && root.right == null) {
-        nodes.add(root.val);
+    if (root == null) {
         return;
+    }
+    if (root.left == null && root.right == null) {
+        nodes.add(root.val);
     }
     leaves(root.left);
     leaves(root.right);
