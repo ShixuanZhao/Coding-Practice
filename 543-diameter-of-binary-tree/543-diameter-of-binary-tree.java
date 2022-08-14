@@ -31,6 +31,7 @@ class Solution {
         return res;
     }
     
+    /////the longest path that must through root
     private int dfs(TreeNode root) {
         if (root == null) {
             return 0;
