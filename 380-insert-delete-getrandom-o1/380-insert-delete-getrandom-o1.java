@@ -15,6 +15,7 @@ class RandomizedSet {
         return true;
     }
     
+    //like help pop(),把头尾交换，尾巴砍掉,heapify
     public boolean remove(int val) {
         if (!indexMap.containsKey(val)) {
             return false;
