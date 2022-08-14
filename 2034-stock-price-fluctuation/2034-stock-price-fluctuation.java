@@ -1,30 +1,31 @@
 class StockPrice {
-    //use sorted data structure
-    //key is the timestamp val is the price
+    //we need this two treeMap, imagine the stock picture, one price can respond to multiple timestamp
+    //timestamp to price
     TreeMap<Integer, Integer> record = new TreeMap<>();
-    //key is the price, val is a set of timestamp
+    //price to timestamp
     TreeMap<Integer, Set<Integer>> val = new TreeMap<>();
-    
     public StockPrice() {
         
     }
     
     public void update(int timestamp, int price) {
         if (record.containsKey(timestamp)) {
-            int prevPrice = record.get(timestamp);
-            Set<Integer> set = val.get(prevPrice);
+            //remove the old timestamp from val map
+            int oldPrice = record.get(timestamp);
+            Set<Integer> set = val.get(oldPrice);
             set.remove(timestamp);
-            if (set.isEmpty()) {
-                val.remove(prevPrice);
+            if (set.size() == 0) {
+                val.remove(oldPrice);
             }
         }
+        //update
+        record.put(timestamp, price);
         val.putIfAbsent(price, new HashSet<>());
         val.get(price).add(timestamp);
-        record.put(timestamp, price);
     }
     
     public int current() {
-        return record.lastEntry().getValue();
+        return record.lastEntry().getValue();     
     }
     
     public int maximum() {
