@@ -1,4 +1,11 @@
 class Solution {
+    /*
+     Let's see what are all the possible characters in the input string:
+Whitespaces (' ')
+Digits ('0', '1', '2', '3', '4', '5', '6', '7', '8', '9')
+A sign ('+' or '-')
+Anything else (alphabetic characters, symbols, special characters, etc.)
+    */
     public int myAtoi(String str) {
         int i = 0;
         int n = str.length();
