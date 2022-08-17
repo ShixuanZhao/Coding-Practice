@@ -19,4 +19,27 @@ class Solution {
         }
         return M[n - 1];
     }
+    
+    //M[i] whether can reach last position from index i
+    // public boolean canJump(int[] nums) {
+//         //make a diff from leetcode746
+//         if (nums.length == 1) {
+//             return true;
+//         }
+//         int n = nums.length;
+//         boolean[] M = new boolean[n];
+//         M[n - 1] = true;
+//         for (int i = n - 2; i >= 0; i--) {
+//             if (i + nums[i] >= n - 1) {
+//                 M[i] = true;
+//             } else {
+//                 for (int j = 1; j <= nums[i]; j++) {
+//                     if (M[i + j]) {
+//                         M[i] = true;
+//                         break;
+//                     }
+//                 }
+//             }
+//         }
+//         return M[0];
 }
