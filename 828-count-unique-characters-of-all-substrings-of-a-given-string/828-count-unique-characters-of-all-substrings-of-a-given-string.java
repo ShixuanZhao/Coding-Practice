@@ -27,19 +27,24 @@ Space complexity O(1).
 逆向思维:寻找每个字母对整体的贡献，对于同一个字母出现在不同的位置，找这些不同位置的左右边界，排列组合left * right
     */
      public int uniqueLetterString(String S) {
-         //index[i][0] for char c: the last last orrurence, index[i][1] is the last orrurence
-        int[][] index = new int[26][2];
-        for (int i = 0; i < 26; ++i) Arrays.fill(index[i], -1);
-        int res = 0, N = S.length(), mod = (int)Math.pow(10, 9) + 7;
-        for (int i = 0; i < N; ++i) {
-            int c = S.charAt(i) - 'A';
-            res = (res + (i - index[c][1]) * (index[c][1] - index[c][0]) % mod) % mod;
-            //update the last two occurence of char c
-            index[c] = new int[] {index[c][1], i};
-        }
-         //for last occurence of c
-        for (int c = 0; c < 26; ++c)
-            res = (res + (N - index[c][1]) * (index[c][1] - index[c][0]) % mod) % mod;
-        return res;
+         //last last and last appreceing index for each letter
+         int[][] index = new int[26][2];
+         int res = 0;
+         //at first, all index should be -1
+         for (int i = 0; i < 26; i++) {
+             Arrays.fill(index[i], -1);
+         }
+         int n = S.length();
+         //iterate, find c, and find last last c and last c, expand from the last c
+         for (int i = 0; i < S.length(); i++) {
+             int c = S.charAt(i) - 'A';
+             res += (i - index[c][1]) * (index[c][1] - index[c][0]);
+             index[c] = new int[] {index[c][1], i};
+         }
+         //for last apprience of each letter
+         for (int i = 0; i < 26; i++) {
+             res += (n - index[i][1]) * (index[i][1] - index[i][0]);
+         }
+         return res;
     }
 }
