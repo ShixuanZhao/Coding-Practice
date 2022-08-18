@@ -8,18 +8,19 @@ class Solution {
     */
     public int getMaxLen(int[] nums) {
         int res = 0;
-        for (int i = 0; i < nums.length; i++) {
+        int n = nums.length;
+        for (int i = 0; i < n; i++) {
             if (nums[i] == 0) {
                 continue;
             }
-            int j = i;
-            //the index of first neg
-            int neg = -1;
-            //the number of neg in [i, j]
+            //number of negative number
             int cnt = 0;
-            while (j < nums.length && nums[j] != 0) {
-                if (neg == -1 && nums[j] < 0) {
-                    neg = j;
+            //first index of negative
+            int firstIndex = -1;
+            int j = i;
+            for (; j < n && nums[j] != 0; j++) {
+                if (firstIndex == -1 && nums[j] < 0) {
+                    firstIndex = j;
                 }
                 if (nums[j] < 0) {
                     cnt++;
@@ -27,9 +28,8 @@ class Solution {
                 if (cnt % 2 == 0) {
                     res = Math.max(res, j - i + 1);
                 } else {
-                    res = Math.max(res, j - neg);
+                    res = Math.max(res, j - firstIndex);
                 }
-                j++;
             }
             i = j;
         }
