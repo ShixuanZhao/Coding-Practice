@@ -13,7 +13,7 @@ class Solution {
             if (nums[i] == 0) {
                 continue;
             }
-            //number of negative number
+            //number of negative number in [i, j]
             int cnt = 0;
             //first index of negative
             int firstIndex = -1;
@@ -31,6 +31,7 @@ class Solution {
                     res = Math.max(res, j - firstIndex);
                 }
             }
+            //the next start postion after 0
             i = j;
         }
         return res;
