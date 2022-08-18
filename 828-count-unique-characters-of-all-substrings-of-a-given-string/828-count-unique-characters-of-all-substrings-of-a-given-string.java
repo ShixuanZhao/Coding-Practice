@@ -27,7 +27,7 @@ Space complexity O(1).
 逆向思维:寻找每个字母对整体的贡献，对于同一个字母出现在不同的位置，找这些不同位置的左右边界，排列组合left * right
     */
      public int uniqueLetterString(String S) {
-         //last last and last appreceing index for each letter
+         //last last and last occurence index for each letter
          int[][] index = new int[26][2];
          int res = 0;
          //at first, all index should be -1
@@ -41,7 +41,7 @@ Space complexity O(1).
              res += (i - index[c][1]) * (index[c][1] - index[c][0]);
              index[c] = new int[] {index[c][1], i};
          }
-         //for last apprience of each letter
+         //for last occurence of each letter
          for (int i = 0; i < 26; i++) {
              res += (n - index[i][1]) * (index[i][1] - index[i][0]);
          }
