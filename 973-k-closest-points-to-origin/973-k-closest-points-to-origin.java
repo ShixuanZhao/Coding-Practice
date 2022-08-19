@@ -1,50 +1,39 @@
 class Solution {
     /*
-        input:int[][] points, int k
-        output: int[][]
-        clarify: k >= points.length return all the points
-                  else   return k cloest
-        k > 0, number of points > 0
-        high level:use a maxHeap size == k, compare by the distance
-        iterate the points
-        if (size of heap < k)
-            push the point into heap
-       else 
-            if(top of maxHeap > new point) {
-                pop the top and push the new one
-            } else {
-                do nothing
-            }
-    */
-    class Pair {
-        int dis;
-        int index;
-        public Pair(int dis, int index) {
-            this.dis = dis;
-            this.index = index;
-        }
-    }
     
+    Thus, the max heap is always maintain top K smallest elements from the first one to crruent one. Once the size of the heap is over its maximum capacity, 
+	it will exclude the maximum element in it, since it can not be the proper candidate anymore.
+	
+    use a maxHeap size == k, store Point
+    iterate the points arr,
+    if size < k, push into q
+    else   
+        if dis to (0,0) < top in maxHeap, pop the top and push into heap
+    */
     public int[][] kClosest(int[][] points, int k) {
-        //define a maxHeap
-        PriorityQueue<Pair> maxHeap = new PriorityQueue<>((a, b) -> (b.dis - a.dis));
-        for (int i = 0; i < points.length; i++) {
-            int distance = points[i][0] * points[i][0] + points[i][1] * points[i][1];
-            if (maxHeap.size() < k) {
-                maxHeap.offer(new Pair(distance, i));
-            } else {
-                if (maxHeap.peek().dis > distance) {
-                    maxHeap.poll();
-                    maxHeap.offer(new Pair(distance, i));
-                }
+        PriorityQueue<Point> pq = new PriorityQueue<>((a, b) -> ((b.x * b.x + b.y * b.y) - (a.x * a.x + a.y * a.y)));
+        for (int[] p : points) {
+            if (pq.size() < k) {
+                pq.offer(new Point(p[0], p[1]));
+            } else if (pq.peek().x * pq.peek().x + pq.peek().y * pq.peek().y > p[0] * p[0] + p[1] * p[1]) {
+                pq.poll();
+                pq.offer(new Point(p[0], p[1]));
             }
         }
-        //output
         int[][] res = new int[k][2];
-        for (int i = k - 1; i >= 0; i--) {
-            //pay attention to the type
-            res[i] = points[maxHeap.poll().index];
+        while (!pq.isEmpty()) {
+            Point p = pq.poll();
+            res[--k] = new int[] {p.x, p.y};
         }
         return res;
+    }
+    
+    class Point {
+        int x;
+        int y;
+        public Point(int x, int y) {
+            this.x = x;
+            this.y = y;
+        }
     }
 }
