@@ -23,6 +23,7 @@ Complexity: Time O(n), Space O(26)
         Arrays.fill(last, -1);
         long res = 0, n = s.length();
         for (int i = 0; i < s.length(); ++i) {
+            //排除左边的A，右边不卡边界
             res += (i - last[s.charAt(i) - 'a']) * (n - i);
             last[s.charAt(i) - 'a'] = i;
         }
