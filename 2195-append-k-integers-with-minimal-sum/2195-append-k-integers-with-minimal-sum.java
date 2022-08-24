@@ -26,6 +26,7 @@ determine current missing upper bound hi; Compute the subtotal in [lo, hi] and a
     public long minimalKSum(int[] nums, int k) {
         Arrays.sort(nums);
         long ans = 0, lo = 1;
+        //[lo, hi] is what we expected to add
         for (int num : nums) {
             if (num > lo) {
                 long hi = Math.min(num - 1, lo + k - 1);
