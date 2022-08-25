@@ -17,6 +17,9 @@ class Solution {
         return res;
     }
     
+    //Trie.TrieNode
+    //T = O(M*4^L) M is the number of cells in the board and L is the maximum length of words.
+    //Space Complexity: O(N), where N is the total number of letters in the dictionary.
     private void dfs(char[][] board, boolean[][] visited, int x, int y, Trie.TrieNode root, List<String> res) { 
         if (x < 0 || x >= board.length || y < 0 || y >= board[0].length || visited[x][y] || root.children[board[x][y] - 'a'] == null) {
             return;
@@ -37,6 +40,7 @@ class Solution {
     class Trie {
         class TrieNode {
             //store the whole word in the last letter of the word
+            //使用ending word模板
             String word;
             TrieNode[] children;
             public TrieNode() {
@@ -50,6 +54,7 @@ class Solution {
         
         public void build(String[] words) {
             for (String word : words) {
+                //this position
                 TrieNode node = root;
                 for (char c : word.toCharArray()) {
                     if (node.children[c - 'a'] == null) {
