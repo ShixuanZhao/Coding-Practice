@@ -52,6 +52,7 @@ class Solution {
             this.root = new TrieNode();
         }
         
+        //words.length * max(word)
         public void build(String[] words) {
             for (String word : words) {
                 //this position
