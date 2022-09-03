@@ -28,6 +28,10 @@ class Solution {
         for (char c : s.toCharArray()) {
             map.put(c, map.getOrDefault(c, 0) + 1);
         }
+        //the index in bucket is freq, and freq start from 0, so max is s.length()
+        //size
+        //not List<Character>[] bucket = new List<Chracter>[s.length() + 1];
+        //can not new a array with generic
         List<Character>[] bucket = new List[s.length() + 1];
         for (char c : map.keySet()) {
             int freq = map.get(c);
