@@ -28,19 +28,19 @@ class Solution {
         for (char c : s.toCharArray()) {
             map.put(c, map.getOrDefault(c, 0) + 1);
         }
-        int n = s.length();
-        List<Character>[] freq = new List[n + 1];
+        List<Character>[] bucket = new List[s.length() + 1];
         for (char c : map.keySet()) {
-            int f = map.get(c);
-            if (freq[f] == null) {
-                freq[f] = new LinkedList<>();
+            int freq = map.get(c);
+            if (bucket[freq] == null) {
+                bucket[freq] = new LinkedList<>();
             }
-            freq[f].add(c);
+            bucket[freq].add(c);
         }
         StringBuilder sb = new StringBuilder();
+        //i is the freq
         for (int i = s.length(); i >= 1; i--) {
-            if (freq[i] != null) {
-                for (char c : freq[i]) {
+            if (bucket[i] != null) {
+                for (char c : bucket[i]) {
                     for (int j = 0; j < i; j++) {
                         sb.append(c);
                     }
