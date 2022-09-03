@@ -40,11 +40,15 @@ class Solution {
         j 
     */
     public boolean isValid(String s) {
+        //i:当前待匹配的元素的index，模拟栈顶元素(slow)
         char[] arr = s.toCharArray();
+        //inclusive,没有任何元素没有被匹配上
         int i = -1;
+        //fast 当前看的元素
         int j = 0;
         while (j < s.length()) {
             if (i == -1 || !isMatch(arr[i], arr[j])) {
+                //没匹配上，替换成那个未匹配的元素
                 arr[++i] = arr[j++];
             } else {
                 i--;
