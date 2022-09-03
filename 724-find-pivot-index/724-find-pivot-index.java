@@ -1,4 +1,6 @@
 class Solution {
+    //maintain two var: prefixSum and suffixSum, update them when tarversing the arr
+    //at first, suffix is the sum
     public int pivotIndex(int[] nums) {
         int n = nums.length;
         //sum is suffixSum
@@ -6,14 +8,14 @@ class Solution {
         for (int num : nums) {
             sum += num;
         }
-        int prefixSum = 0;
-        for (int i = 0; i < n; i++) {
-            //suffixSum
+        int curSum = 0;
+        for (int i = 0; i < nums.length; i++) {
             sum -= nums[i];
-            if (prefixSum == sum) {
+            if (sum == curSum) {
                 return i;
             }
-            prefixSum = prefixSum + nums[i];
+            //update prefixSum
+            curSum += nums[i];
         }
         return -1;
     }
