@@ -7,7 +7,16 @@ class Solution {
     for each letter, try to change it to another letter from a-z, check whether it is in wordSet
     if yes, generate
     until we find the endWord
-    T = (26 * m * )
+    
+    time complexity is O(N*M), where N is size of the dictionary and M is length of the word.
+  not consider string equals
+Details:
+
+To generate neighbors - O(26 * M)
+To check if the word exists in dict - O(1). This is a reason why it is better to put all words to the Set. Note, that the original version of this problem uses List<String> wordList. It is a bit confusing since author changed the signature to Set<String> dict.
+To generate a tree and traverse the tree via BFS - O(N)
+So, the result is O(26 * M * 1 * N) -> O(M * N)
+S= O(n) bfs tree
     */
     public int ladderLength(String beginWord, String endWord, List<String> wordList) {
         Set<String> wordSet = new HashSet<>();
