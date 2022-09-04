@@ -1,53 +1,62 @@
 class Solution {
     /*
-    
+    BFS
+    h it  h i t
+    ait   h a  t
+    bit
+    for each letter, try to change it to another letter from a-z, check whether it is in wordSet
+    if yes, generate
+    until we find the endWord
+    T = (26 * m * )
     */
     public int ladderLength(String beginWord, String endWord, List<String> wordList) {
-        Set<String> dict = new HashSet<>(wordList);
-        if (!dict.contains(endWord)) {
+        Set<String> wordSet = new HashSet<>();
+        for (String s : wordList) {
+            wordSet.add(s);
+        }
+        if (!wordSet.contains(endWord)) {
             return 0;
         }
         Queue<String> q = new LinkedList<>();
-        int step = 1;
-        Set<String> visited = new HashSet<>();    
         q.offer(beginWord);
+        int level = 0;
+        Set<String> visited = new HashSet<>();
         visited.add(beginWord);
         while (!q.isEmpty()) {
             int size = q.size();
             for (int i = 0; i < size; i++) {
                 String cur = q.poll();
                 if (cur.equals(endWord)) {
-                    return step;
+                    return level + 1;
                 }
-                List<String> neiList = getNei(cur, dict);
-                if (neiList.size() == 0) {
-                    continue;
-                }
+                List<String> neiList = getNei(cur, wordSet);
                 for (String nei : neiList) {
                     if (visited.add(nei)) {
                         q.offer(nei);
                     }
                 }
             }
-            step++;
+            level++;
         }
         return 0;
     }
     
-    private List<String> getNei(String cur, Set<String> dict) {
-        List<String> res = new LinkedList<>();
+    private List<String> getNei(String cur, Set<String> set) {
+        List<String> res = new ArrayList<>();
+        char[] arr = cur.toCharArray();
         for (int i = 0; i < cur.length(); i++) {
-            StringBuilder sb = new StringBuilder(cur);
+            char temp = arr[i];
             for (char c = 'a'; c <= 'z'; c++) {
-                if (c == cur.charAt(i)) {
+                if (c == temp) {
                     continue;
                 }
-                sb.setCharAt(i, c);
-                String newWord = sb.toString();
-                if (dict.contains(newWord)) {
+                arr[i] = c;
+                String newWord = new String(arr);
+                if (set.contains(newWord)) {
                     res.add(newWord);
                 }
             }
+            arr[i] = temp;
         }
         return res;
     }
