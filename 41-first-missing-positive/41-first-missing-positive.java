@@ -15,15 +15,10 @@ class Solution {
         //assume there are not duplicate numbers
         int n = nums.length;
         for (int i = 0; i < n; i++) {
-            int cur = nums[i];
-            //cur - 1 is the next index to swap and must in inside bound
-            //nums[cur - 1] != cur: if there is duplicate number, will go into dead loop
-            while (cur - 1 >= 0 && cur - 1 < n && nums[cur - 1] != cur) {
-                //swap(nums, i, cur - 1);
-                int temp = nums[cur - 1];
-                nums[cur - 1] = cur;
-                cur = temp;
-            }
+            //nums[i] - 1 is the next index we want to swap, and nums[i] has not been put on right position
+           while (nums[i] - 1 >= 0 && nums[i] - 1 < n && nums[nums[i] - 1] != nums[i]) {
+               swap(nums, i, nums[i] - 1);
+           }
         }
         for (int i = 0; i < n; i++) {
             if (i + 1 != nums[i]) {
