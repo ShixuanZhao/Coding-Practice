@@ -60,6 +60,7 @@ nums = [2,1,3,1], then the mapping function is 0->2, {1,3}->1, 2->3. Then the se
     public int findDuplicate(int[] nums) {
         int slow = nums[0];
         int fast = nums[0];
+        //一定有环，所以while true
         while (true) {
             slow = nums[slow];
             fast = nums[nums[fast]];
