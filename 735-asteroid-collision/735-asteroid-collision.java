@@ -1,14 +1,14 @@
 class Solution {
     /*
-    //     overall, there are totally 4 scenarios will happen: 1.+ + 2.- - 3.+ - 4.- +
-// when collision happens: only 3 which is + -
-// use a stack to keep track of the previous and compare current value with previous ones
-    stack:5 10
-    if positive, push into stack
-    if negative, case by case
-    pop: 5 -6 prev is positive and keep poping
-    if prev < 0, push
-    if prev > 0, cur < 0, prev == cur, pop once
+    [10,2,-5]
+           i
+     stack:10 2
+     +: push into stack
+     -: 
+     stack is empty or top < 0, push
+     stack is not empty, cur > top, keep pop  
+                 =,pop once
+                 <, not pop
     */
     public int[] asteroidCollision(int[] asteroids) {
         Deque<Integer> stack = new ArrayDeque<>();
@@ -16,13 +16,13 @@ class Solution {
             if (cur > 0) {
                 stack.offerFirst(cur);
             } else {
-                // destroy the previous positive one(s) repeatedly
                 while (!stack.isEmpty() && stack.peekFirst() > 0 && -cur > stack.peekFirst()) {
                     stack.pollFirst();
                 }
                 if (stack.isEmpty() || stack.peekFirst() < 0) {
                     stack.offerFirst(cur);
-                } else if (stack.peekFirst() == -cur) {
+                }
+                if (!stack.isEmpty() && -cur == stack.peekFirst()) {
                     stack.pollFirst();
                 }
             }
