@@ -57,7 +57,7 @@ class Solution {
     // }
 
     //DP T = O(n^3) S = O(n^2)
-    //case1:L()R  L:( or * R:) or * M[i][j] depend on M[i + 1][j - 1] 
+    //case1:L()R  L:( or *    R:) or * M[i][j] depend on M[i + 1][j - 1] 
     //case2:()|()
     //        k    M[i][k] && M[k + 1][j]
     public boolean checkValidString(String s) {
