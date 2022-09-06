@@ -9,6 +9,7 @@ class Solution {
      stack is not empty, cur > top, keep pop  
                  =,pop once
                  <, not pop
+    what is left in stack, is the final res
     */
     public int[] asteroidCollision(int[] asteroids) {
         Deque<Integer> stack = new ArrayDeque<>();
@@ -16,6 +17,7 @@ class Solution {
             if (cur > 0) {
                 stack.offerFirst(cur);
             } else {
+                //// destroy the previous positive one(s) repeatedly
                 while (!stack.isEmpty() && stack.peekFirst() > 0 && -cur > stack.peekFirst()) {
                     stack.pollFirst();
                 }
