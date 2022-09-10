@@ -5,20 +5,36 @@ class Solution {
     else = false
     M[0] = true;
     */
+    // public boolean canJump(int[] nums) {
+    //     int n = nums.length;
+    //     boolean[] M = new boolean[n];
+    //     M[0] = true;
+    //     for (int i = 1; i < n; i++) {
+    //         for (int j = i - 1; j >= 0; j--) {
+    //             if (M[j] && j + nums[j] >= i) {
+    //                 M[i] = true;
+    //                 break;
+    //             }
+    //         }
+    //     }
+    //     return M[n - 1];
+    // }
+    
+    //greedy,如果当前index可以到达，我们就更新更远的可以到达的位置
     public boolean canJump(int[] nums) {
-        int n = nums.length;
-        boolean[] M = new boolean[n];
-        M[0] = true;
-        for (int i = 1; i < n; i++) {
-            for (int j = i - 1; j >= 0; j--) {
-                if (M[j] && j + nums[j] >= i) {
-                    M[i] = true;
-                    break;
-                }
+        //the max index we can reach locally
+        int max = 0;
+        for (int i = 0; i < nums.length - 1; i++) {
+            if (i <= max) {
+                max = Math.max(max, i + nums[i]);
             }
         }
-        return M[n - 1];
+        return max >= nums.length - 1;
     }
+    
+    
+    
+    
     
     //M[i] whether can reach last position from index i
     // public boolean canJump(int[] nums) {
