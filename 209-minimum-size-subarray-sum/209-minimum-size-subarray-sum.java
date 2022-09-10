@@ -1,6 +1,7 @@
 class Solution {
     /*
     clarification:If there is no such subarray, return 0 instead.
+    positive integers！！！only positive can use sliding window
     nums = [2,3,1,2,4,3] T = 7
                     i
                       j
