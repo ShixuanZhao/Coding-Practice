@@ -27,19 +27,19 @@ class Solution {
         }
         int left = dfs(root.left);
         int right = dfs(root.right);
-        if (root.left != null && root.left.val - 1 == root.val) {
-            //cur left, including root
-            left++;
+        int leftRes = 0;
+        int rightRes = 0;
+        if (root.left != null && root.val == root.left.val - 1) {
+            leftRes = left + 1;
         } else {
-            left = 1;
+            leftRes = 1;
         }
-        
         if (root.right != null && root.right.val - 1 == root.val) {
-            right++;
+            rightRes = right + 1;
         } else {
-            right = 1;
+            rightRes = 1;
         }
-        int len = Math.max(left, right);
+        int len = Math.max(leftRes, rightRes);
         res = Math.max(res, len);
         return len;
     }
