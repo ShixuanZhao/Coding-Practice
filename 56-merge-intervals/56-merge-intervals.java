@@ -9,24 +9,53 @@ class Solution {
             if  prev.end >= cur.start merge
             else cannot merge add prev to res
             T = O(nlogn + n) n is the length
+            
+            [[1,6],[2,6],[8,10],[15,18]]
+                                  cur   
+                                        next
+            res:[1, 6] [8, 10] [15, 18]
+              
     */
+    // public int[][] merge(int[][] intervals) {
+    //    int n = intervals.length;
+    //     if (n == 1) {
+    //         return intervals;
+    //     }
+    //     Arrays.sort(intervals, (a, b) -> (a[0] - b[0]));
+    //     List<int[]> res = new LinkedList<>();
+    //     int[] prev = intervals[0];
+    //     for (int i = 1; i < n; i++) {
+    //         if (intervals[i][0] <= prev[1]) {
+    //             prev[1] = Math.max(prev[1], intervals[i][1]);
+    //         } else {
+    //             res.add(prev);
+    //             prev = intervals[i];
+    //         }
+    //     }
+    //     //do not forget to add the last interval
+    //     res.add(prev);
+    //     return res.toArray(new int[res.size()][2]);
+    // }
+    
     public int[][] merge(int[][] intervals) {
-       int n = intervals.length;
+        int n = intervals.length;
         if (n == 1) {
             return intervals;
         }
-        Arrays.sort(intervals, (a, b) -> (a[0] - b[0]));
         List<int[]> res = new LinkedList<>();
-        int[] prev = intervals[0];
-        for (int i = 1; i < n; i++) {
-            if (intervals[i][0] <= prev[1]) {
-                prev[1] = Math.max(prev[1], intervals[i][1]);
+        Arrays.sort(intervals, (a, b) -> (a[0] - b[0]));
+        //cur is merged interval
+        int[] cur = intervals[0];
+        for (int[] interval : intervals) {
+            if (cur[1] >= interval[0]) {
+                cur[1] = Math.max(cur[1], interval[1]);
             } else {
-                res.add(prev);
-                prev = intervals[i];
+                //cannot be merged
+                res.add(cur);
+                cur = interval;
             }
         }
-        res.add(prev);
+        res.add(cur);
         return res.toArray(new int[res.size()][2]);
     }
     
