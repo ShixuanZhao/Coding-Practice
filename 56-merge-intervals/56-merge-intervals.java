@@ -37,6 +37,20 @@ class Solution {
     //     return res.toArray(new int[res.size()][2]);
     // }
     
+    /*
+    follow up : return the length of the corverd intervals
+    similiar: only diff:
+    for (int[] interval : intervals) {
+            if (cur[1] >= interval[0]) {
+                cur[1] = Math.max(cur[1], interval[1]);
+            } else {
+                //cannot be merged
+                res += cur[1] - cur[0]
+                cur = interval;
+            }
+        }
+    res += res += cur[1] - cur[0]
+    */
     public int[][] merge(int[][] intervals) {
         int n = intervals.length;
         if (n == 1) {
