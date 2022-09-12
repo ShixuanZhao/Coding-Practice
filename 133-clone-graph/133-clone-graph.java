@@ -25,35 +25,36 @@ class Solution {
     }
     
     //return the copied node, and think about the subproblem
-    // private Node dfs(Node node, Map<Node, Node> map) {
-    //     if (node == null) {
-    //         return null;
-    //     }
-    //     if (map.containsKey(node)) {
-    //         return map.get(node);
-    //     }
-    //     Node newNode = new Node(node.val);
-    //     map.put(node, newNode);
-    //     for (Node nei : node.neighbors) {
-    //         newNode.neighbors.add(dfs(nei, map));
-    //     }
-    //     return newNode;
-    // }
     private Node dfs(Node node, Map<Node, Node> map) {
         if (node == null) {
             return node;
         }
+        if (map.containsKey(node)) {
+            return map.get(node);
+        }
         Node newNode = new Node(node.val);
         map.put(node, newNode);
         for (Node nei : node.neighbors) {
-            if (!map.containsKey(nei)) {
-                Node temp = dfs(nei, map);
-                map.put(nei, temp);
-            }
-            map.get(node).neighbors.add(map.get(nei));
+            Node temp = dfs(nei, map);
+            map.get(node).neighbors.add(temp);
         }
         return newNode;
     }
+    // private Node dfs(Node node, Map<Node, Node> map) {
+    //     if (node == null) {
+    //         return node;
+    //     }
+    //     Node newNode = new Node(node.val);
+    //     map.put(node, newNode);
+    //     for (Node nei : node.neighbors) {
+    //         if (!map.containsKey(nei)) {
+    //             Node temp = dfs(nei, map);
+    //             map.put(nei, temp);
+    //         }
+    //         map.get(node).neighbors.add(map.get(nei));
+    //     }
+    //     return newNode;
+    // }
     
     // public Node cloneGraph(Node node) {
     //     if (node == null) {
