@@ -28,6 +28,7 @@ class Solution {
                 for (int[] dir : dirs) {
                     int x = cur[0] + dir[0];
                     int y = cur[1] + dir[1];
+                    //nei是空的或者visited过，跳过
                     if(x < 0 || y < 0 || x >= m || y >= n || grid[x][y] == 0 || grid[x][y] == 2) {
                         continue;
                     }
