@@ -10,7 +10,7 @@ class Solution {
     boolean[][] visited = new boolean[n][m];
     
     // in the BFS approach, for each step, we are interested in getting the maximum min that we have seen so far, thus we reverse the ordering in the pq
-      //maximum the min
+      //maximum the min, maxHeap
     Queue<int[]> pq = new PriorityQueue<>((a,b) -> b[2] - a[2]);
     
     pq.offer(new int[]{0, 0, A[0][0]});
