@@ -49,6 +49,7 @@ class Solution {
     
     //better solution T = O(n) S = O(n)
     //BFS, we do not sorting for each col
+    //BFS is ok because If two nodes are in the same row and column, the order should be from left to right.
     public List<List<Integer>> verticalOrder(TreeNode root) {
         List<List<Integer>> res = new LinkedList<>();
         if (root == null) {
@@ -59,6 +60,7 @@ class Solution {
         //key is the col number, val is a list ele in this col
         //add the map, when we pop the node from q
         //the root, col is 0 left:-1 right:+1
+        //update we the node is popped from q
         Map<Integer, List<Integer>> map = new HashMap<>();
         //key is the node, val is the col number
         //the mapping between node and col
