@@ -50,31 +50,34 @@ class Solution {
     //better solution T = O(n) S = O(n)
     //BFS, we do not sorting for each col
     //BFS is ok because If two nodes are in the same row and column, the order should be from left to right.
+    /*
+    BFS
+    <col, List<Integer>> map 
+    <TreeNode, Integer> colMap record node to col, 
+    BFS
+    q:3 colMap(3, 0)
+    expand 3, and update the map
+    generate: 9, 8 update colMap
+    for 9 (9, -1)
+    for 8 (8, 1)
+    go through map, get res
+    */
     public List<List<Integer>> verticalOrder(TreeNode root) {
-        List<List<Integer>> res = new LinkedList<>();
+        List<List<Integer>> res = new ArrayList<>();
         if (root == null) {
             return res;
         }
-        Queue<TreeNode> q = new ArrayDeque<>();
-        q.offer(root);
-        //key is the col number, val is a list ele in this col
-        //add the map, when we pop the node from q
-        //the root, col is 0 left:-1 right:+1
-        //update we the node is popped from q
-        //or we can use a treemap, and not keep the var min 
-        Map<Integer, List<Integer>> map = new HashMap<>();
-        //key is the node, val is the col number
-        //the mapping between node and col
-        //update when we offer child node into the queue
+        Map<Integer, List<Integer>> resMap = new HashMap<>();
         Map<TreeNode, Integer> colMap = new HashMap<>();
+        int minCol = 0;
+        Queue<TreeNode> q = new LinkedList<>();
+        q.offer(root);
         colMap.put(root, 0);
-        //the mininum col
-        int min = 0;
         while (!q.isEmpty()) {
             TreeNode cur = q.poll();
             int col = colMap.get(cur);
-            map.putIfAbsent(col, new LinkedList<>());
-            map.get(col).add(cur.val);
+            resMap.putIfAbsent(col, new ArrayList<>());
+            resMap.get(col).add(cur.val);
             if (cur.left != null) {
                 q.offer(cur.left);
                 colMap.put(cur.left, col - 1);
@@ -83,11 +86,13 @@ class Solution {
                 q.offer(cur.right);
                 colMap.put(cur.right, col + 1);
             }
-            min = Math.min(min, col);
+            minCol = Math.min(minCol, col);
         }
-        while (map.containsKey(min)) {
-            res.add(map.get(min++));
+        while (resMap.containsKey(minCol)) {
+            res.add(resMap.get(minCol));
+            minCol++;
         }
         return res;
+        
     }
 }
