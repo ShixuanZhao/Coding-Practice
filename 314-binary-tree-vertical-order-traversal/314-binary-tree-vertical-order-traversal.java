@@ -63,21 +63,30 @@ class Solution {
     go through map, get res
     */
     public List<List<Integer>> verticalOrder(TreeNode root) {
-        List<List<Integer>> res = new ArrayList<>();
+        List<List<Integer>> res = new LinkedList<>();
         if (root == null) {
             return res;
         }
-        Map<Integer, List<Integer>> resMap = new HashMap<>();
-        Map<TreeNode, Integer> colMap = new HashMap<>();
-        int minCol = 0;
-        Queue<TreeNode> q = new LinkedList<>();
+        Queue<TreeNode> q = new ArrayDeque<>();
         q.offer(root);
+        //key is the col number, val is a list ele in this col
+        //add the map, when we pop the node from q
+        //the root, col is 0 left:-1 right:+1
+        //update we the node is popped from q
+        //or we can use a treemap, and not keep the var min 
+        Map<Integer, List<Integer>> map = new HashMap<>();
+        //key is the node, val is the col number
+        //the mapping between node and col
+        //update when we offer child node into the queue
+        Map<TreeNode, Integer> colMap = new HashMap<>();
         colMap.put(root, 0);
+        //the mininum col
+        int min = 0;
         while (!q.isEmpty()) {
             TreeNode cur = q.poll();
             int col = colMap.get(cur);
-            resMap.putIfAbsent(col, new ArrayList<>());
-            resMap.get(col).add(cur.val);
+            map.putIfAbsent(col, new LinkedList<>());
+            map.get(col).add(cur.val);
             if (cur.left != null) {
                 q.offer(cur.left);
                 colMap.put(cur.left, col - 1);
@@ -86,13 +95,11 @@ class Solution {
                 q.offer(cur.right);
                 colMap.put(cur.right, col + 1);
             }
-            minCol = Math.min(minCol, col);
+            min = Math.min(min, col);
         }
-        while (resMap.containsKey(minCol)) {
-            res.add(resMap.get(minCol));
-            minCol++;
+        while (map.containsKey(min)) {
+            res.add(map.get(min++));
         }
         return res;
-        
     }
 }
