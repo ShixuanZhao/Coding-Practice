@@ -61,6 +61,7 @@ class Solution {
         //add the map, when we pop the node from q
         //the root, col is 0 left:-1 right:+1
         //update we the node is popped from q
+        //or we can use a treemap, and not keep the var min 
         Map<Integer, List<Integer>> map = new HashMap<>();
         //key is the node, val is the col number
         //the mapping between node and col
