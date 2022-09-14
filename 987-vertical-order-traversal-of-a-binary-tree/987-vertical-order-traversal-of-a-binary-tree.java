@@ -60,6 +60,7 @@ class Solution {
             return res;
         }
         // make sure on each level, the node is sorted by value
+        //example3,6比5先进q，但是要先弹出5在弹出6，所以要用pq，里面根据值来比较
         PriorityQueue<VerticalNode> pq = new PriorityQueue<>();
          // key is col
         Map<Integer, List<Integer>> map = new TreeMap<>();
