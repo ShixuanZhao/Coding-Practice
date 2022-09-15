@@ -21,13 +21,17 @@ class Solution {
     //     }
     //     return res;
     // }
+    //BFS2
+    //T = O(klogk)
     public List<List<Integer>> kSmallestPairs(int[] nums1, int[] nums2, int k) {
         List<List<Integer>> res = new ArrayList<>();
         int m = nums1.length;
         int n = nums2.length;
         int[][] dirs = new int[][] {{1, 0}, {0, 1}};
+        //imagine it is a matrix, visited set is important
         Set<Integer> visited = new HashSet<>();
         visited.add(0);
+        //pq store the two index point to nums1 and nums2
         PriorityQueue<int[]> pq = new PriorityQueue<>((a, b) -> Integer.compare(nums1[a[0]] + nums2[a[1]], nums1[b[0]] + nums2[b[1]]));
         pq.offer(new int[] {0, 0});
         while (!pq.isEmpty()) {
