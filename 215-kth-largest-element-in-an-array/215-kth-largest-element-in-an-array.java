@@ -5,6 +5,11 @@ class Solution {
     if index == k return
     if index < k left = index + 1
     else right = index - 1
+    
+    nums = [3,2,3,1,2,4,5,5,6], k = 4 
+    we need to return 4 not 3
+    5 5 can be counted twice, if so we can use qucik select
+    otherwise, we can only use min Heap with k size, and we need to use a hashset to avoid duplicate
     */
     public int findKthLargest(int[] nums, int k) {
         int n = nums.length;
@@ -12,6 +17,7 @@ class Solution {
         int target = n - k;
         int left = 0;
         int right = n - 1;
+        //iterative 
         while (true) {
             int index = partition(nums, left, right);
             if (index == target) {
@@ -60,10 +66,12 @@ class Solution {
 //     }
     
 // //averge T = O(n)每次排除一半 n + n/2 + n/4 ... = 2n - 1 = O(n)
+    //do partially sorting
 //     private void quickSelect(int[] nums, int k, int left, int right) {
 //         if (left >= right) {
 //             return;  
 //         }
+    //随便选一个位置，左边都比他小，右边都比他大
 //         int pos = partition(nums, left, right);
 //         if (pos == nums.length - k) {
 //             return;
