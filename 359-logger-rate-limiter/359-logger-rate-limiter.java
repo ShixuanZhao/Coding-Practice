@@ -1,14 +1,14 @@
 class Logger {
+    //<message, the lastest timestamp>
     Map<String, Integer> map;
     public Logger() {
         map = new HashMap<>();
     }
-
+    
     public boolean shouldPrintMessage(int timestamp, String message) {
-        //threshold
-        int end = map.getOrDefault(message, timestamp);
-        if (end <= timestamp) {
-            map.put(message, timestamp + 10);
+        int time = map.getOrDefault(message, -1);
+        if (time == -1 || timestamp - time >= 10) {
+            map.put(message, timestamp);
             return true;
         }
         return false;
