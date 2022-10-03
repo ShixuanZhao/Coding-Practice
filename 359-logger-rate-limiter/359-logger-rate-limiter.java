@@ -6,6 +6,7 @@ class Logger {
     }
     
     public boolean shouldPrintMessage(int timestamp, String message) {
+        //the lastest timestamp that the message occur
         int time = map.getOrDefault(message, -1);
         if (time == -1 || timestamp - time >= 10) {
             map.put(message, timestamp);
