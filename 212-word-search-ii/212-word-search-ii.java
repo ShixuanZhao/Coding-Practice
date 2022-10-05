@@ -39,7 +39,7 @@ class Solution {
     
     class Trie {
         class TrieNode {
-            //store the whole word in the last letter of the word
+            //store the whole word in the last letter of the word!!!
             //使用ending word模板
             String word;
             TrieNode[] children;
