@@ -1,47 +1,32 @@
 public class Codec {
-	// Encodes a list of strings to a single string.
+/*
+We ought to define a delimiter to separate words within the list, however, any character delimiter can be part of the original word. Thus, we use lengthOfStr + : to delimit a word.
+
+Take ["a:b", "c"] for example, the encoded word is s = "3:a:b1:c".
+*/
+    // Encodes a list of strings to a single string.
     public String encode(List<String> strs) {
         StringBuilder sb = new StringBuilder();
-        for(String s : strs) {
-            sb.append(s.length()).append('/').append(s);
+        for (String s : strs) {
+            sb.append(s.length()).append("/").append(s);
         }
         return sb.toString();
     }
 
     // Decodes a single string to a list of strings.
     public List<String> decode(String s) {
-        List<String> ret = new ArrayList<String>();
-        int i = 0;
-        //s: 5/Hello5/World
-        while(i < s.length()) {
-            //i is the from index, representing the index position to start the search from
-            int slash = s.indexOf('/', i);
-            int size = Integer.valueOf(s.substring(i, slash));
-            i = slash + size + 1;
-            ret.add(s.substring(slash + 1, i));
+        List<String> res = new LinkedList<>();
+        int start = 0;
+        //3/app5/apple
+        while (start < s.length()) {
+            //index of "/"
+            int index = s.indexOf("/", start);
+            int size = Integer.valueOf(s.substring(start, index));
+            start = index + size + 1;
+            res.add(s.substring(index + 1, start));
         }
-        return ret;
+        return res;
     }
-    //Wrong, cannot pass "" case because for empty string, it would not go into line41
-//      public String encode(List<String> strs) {
-//          StringBuilder sb = new StringBuilder();
-//         for(String s : strs) {
-//             sb.append(s).append('/');
-//         }
-//          sb.deleteCharAt(sb.length() - 1);
-//          System.out.println(sb.toString());
-//         return sb.toString();
-//      }
-    
-//      public List<String> decode(String s) {
-//         List<String> res = new ArrayList<>();
-//          String[] arr = s.split("/");
-//          System.out.println(Arrays.toString(arr));
-//          for (int i = 0; i < arr.length; i++) {
-//              res.add(arr[i]);
-//          }
-//          return res;
-//      }
 }
 
 // Your Codec object will be instantiated and called as such:
