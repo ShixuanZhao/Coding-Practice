@@ -1,3 +1,19 @@
+/*
+    capacity:2
+map    3     1
+       |     | 
+     (3,3) (1,1)
+     
+    ds: double LinkedList HashMap<Integer, Node<Integer, Integer>>
+    get:case1:if 4 is not in the list, return -1
+        case2:   in the list   return value remove from original position and moveToHead
+               
+    put:
+    case1:put(1,5), put the exsiting node update the value and move to head
+    case2:put(3,3) not exceed capacity, move to head
+    case3:put(4,3) the capacity is not enough,remove the last ele, move the new one to head
+    update the HashMap
+*/
 class LRUCache {
     class Node {
         int key;
