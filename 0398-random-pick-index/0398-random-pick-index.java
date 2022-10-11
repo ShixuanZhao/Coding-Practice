@@ -11,6 +11,7 @@ class Solution {
         for(int i = 0; i < nums.length; i++) {
             if(target == nums[i]) count++;
         }
+        //choose the pickIndex-th number
         int pickIndex = rand.nextInt(count);
         for(int i = 0; i < nums.length; i++) {
             if(target == nums[i]) {
