@@ -12,6 +12,19 @@ For each A[i], we will record its history.
 With a snap_id and a its value.
 
 When we want to get the value in history, just binary search the time point.
+
+ds: use an array of map
+ for each map, key is snap_id, val is val for this snapshot
+
+Complexity
+Time O(logS)
+Space O(S)
+where S is the number of set called.
+
+SnapshotArray(int length) is O(N) time
+set(int index, int val) is O(1) in Python and O(logSnap) in Java
+snap() is O(1)
+get(int index, int snap_id) is O(logSnap)
 */
     TreeMap<Integer, Integer>[] A;
     int snap_id = 0;
