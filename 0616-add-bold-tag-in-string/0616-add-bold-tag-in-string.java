@@ -1,6 +1,8 @@
 class Solution {
     /*
     "abcxyz123abc", words = ["abc","123"]
+    1.mark
+    2.add prefix <b> and suffix </b>
     */
     public String addBoldTag(String s, String[] words) {
         //use a boolean[] to mark the char that need to be bold
@@ -19,6 +21,7 @@ class Solution {
                 //aaa
                 // aaa
                 //not index + word.legnth()
+                //not start = start + 1, too slow
                 start = index + 1;
             }
         }
