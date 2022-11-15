@@ -10,9 +10,10 @@ class Solution {
             if (cur == 1) {
                 return true;
             }
-            if (!set.add(cur)) {
+            if (set.contains(cur)) {
                 return false;
             }
+            set.add(cur);
             n = cur;
         }
     }
