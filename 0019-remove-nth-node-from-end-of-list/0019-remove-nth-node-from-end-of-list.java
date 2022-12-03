@@ -15,6 +15,7 @@ class Solution {
         dummy.next = head;
         ListNode fast = dummy;
         ListNode slow = dummy;
+        //assume n < length of LinkedList
         for (int i = 0; i < n; i++) {
             fast = fast.next;
         }
