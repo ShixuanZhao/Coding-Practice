@@ -14,6 +14,8 @@ class Solution {
         return false;
     }
     
+    //T = O(N * 4^L) where NN is the number of cells in the board and LL is the length of the word to be matched.
+    //4个方向所以是4叉树
     private boolean dfs(int i, int j, char[][] board, int index, String word, boolean[][] visited) {
         int m = board.length;
         int n = board[0].length;
