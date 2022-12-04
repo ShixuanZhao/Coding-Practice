@@ -56,13 +56,12 @@ class Solution {
         if (root == null) {
             return root;
         }
+        TreeNode left = deleteNode(root.left, temp);
+        TreeNode right = deleteNode(root.right, temp);
         if (root.left == null && root.right == null) {
             temp.add(root.val);
             return null;
         }
-        TreeNode left = deleteNode(root.left, temp);
-        TreeNode right = deleteNode(root.right, temp);
-        
         root.left = left;
         root.right = right;
         return root;
