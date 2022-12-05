@@ -34,6 +34,7 @@ class Solution {
         return dfs(head, root) || isSubPath(head, root.left) || isSubPath(head, root.right);
     }
     
+    //start from head, judge whether have a path
     private boolean dfs(ListNode head, TreeNode root) {
         if (head == null) {
             return true;
